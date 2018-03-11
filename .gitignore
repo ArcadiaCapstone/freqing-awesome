@@ -1,0 +1,8 @@
+node_modules
+
+.idea
+
+build
+
+backend/music
+backend/uploads
