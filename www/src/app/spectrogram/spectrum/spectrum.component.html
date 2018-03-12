@@ -1,0 +1,61 @@
+<canvas id="spectrogram"></canvas>
+<canvas id="legend"></canvas>
+<!--#menu.menu-button(data-toggle="popover").icon.icon-menu
+-->
+<!--include menu.html-->
+<div id="iosButton"></div>
+<div class="music-box__modal" id="record">
+  <div class="music-box__modal__message">
+    <div class="music-box__modal__record-rings"></div>
+    <div class="music-box__modal__record-rings"></div>
+    <div class="music-box__modal__icon icon-mic"></div>
+  </div>
+</div>
+
+<div class="music-box__modal" id="drawAnywhere">
+  <div class="music-box__modal__message">
+    <!--.music-box__modal__icon.icon-draw-->
+    <!--.music-box__hand-animation-sprite-->
+  </div>
+</div>
+<!---->
+<!--#loadingSound.music-box__modal-->
+<!--	.music-box__modal__message-->
+<!--		#loadingMessage.music-box__modal__message__text Flute-->
+<!--		<svg class="spinner" width="55px" height="55px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>-->
+<div class="music-box__buttons">
+  <div id="controlPanel">
+    <div class="music-box__buttons__sampler" data-sampler data-name="sampler">
+      <div class="icon icon-play-button"></div>
+    </div>
+    <div class="music-box__buttons__record" data-record data-name="record">
+      <div class="icon icon-rec"></div>
+    </div>
+  </div>
+  <div id="toggler">
+    <div id="freqToggler">
+      <div class="music-box__buttons__toggle" data-down-arrow data-name="down">
+        <div class="icon icon-down-arrow"></div>
+      </div>
+      <div id="freqSample"></div>
+      <div class="music-box__buttons__toggle" data-up-arrow data-name="up">
+        <div class="icon icon-up-arrow"></div>
+      </div>
+    </div>
+    <div class="form-group" id="waveform">
+      <select class="form-control" id="wavetype">
+        <option>Sin</option>
+        <option>Square</option>
+        <option>Saw</option>
+        <option>Tri</option>
+      </select>
+    </div>
+  </div>
+  <div class="music-box__buttons__button" data-mic data-name="mic">
+    <div class="icon icon-mic"></div>
+  </div>
+  <div class="music-box__buttons__button" data-draw data-name="draw">
+    <div class="icon icon-draw"></div>
+  </div>
+  <!--include uploadList.html-->
+</div>
