@@ -216,9 +216,9 @@ Toolkit.spectrogram = (function() {
 
     },
 
-    updateDetails: function(details) {
-      $('#freqSample').text(details[0].toString() + " " + details[1].toString() + "Hz");
-    },
+    // updateDetails: function(details) {
+    //   $('#freqSample').text(details[0].toString() + " " + details[1].toString() + "Hz");
+    // },
 
     /**
      * Convert between frequency and the offset on the canvas (in screen space).
@@ -275,8 +275,6 @@ Toolkit.spectrogram = (function() {
     }
   };
 
-
-
   return spec3D;
 
 })();
@@ -325,7 +323,7 @@ Toolkit.main = (function() {
         controller.zRot = 90;
         clickCount = 0;
       }
-    }
+    };
 
     let parseQueryString = function() {
       let q = window.location.search.slice(1).split('&');
@@ -390,56 +388,56 @@ Toolkit.main = (function() {
     };
 
     let startup = function() {
-      let i = 0;
+      // let i = 0;
       // loadUploads();
       getLocalization();
       window.parent.postMessage('ready','*');
 
       let sp = Toolkit.spectrogram;
-      sp.updateDetails(notes[i].split(':'));
+      // sp.updateDetails(notes[i].split(':'));
       sp.attached();
 
       // --------------------------------------------
-      let $playButton = $('.music-box__buttons__sampler');
-      $playButton.click(function(e) {
-        if ($(this).hasClass('selected')) {
-          $playButton.removeClass('selected');
-          sp.stop();
-        }
-        else {
-          $playButton.removeClass('selected');
-          $(this).addClass('selected');
-          let src = "bin/snd/";
-          let info = notes[i].split(':');
-          src += info[1];
-          sp.startRender();
-          sp.drawingMode = false;
-          let waveType = $('#wavetype').val();
-          console.log(waveType);
-          if (waveType !== 'Sin')
-            src += waveType;
-          $(this).prop('data-src', src + ".wav");
-          console.log($(this).prop('data-src'));
-          if ($(this).prop('data-src') !== undefined) {
-            sp.play($(this).prop('data-src'));
-            // if(!sp.isPlaying())
-            //     $(this).removeClass('selected');
-          }
-          console.log(sp.isPlaying());
-
-
-        }
-      });
+      // let $playButton = $('.music-box__buttons__sampler');
+      // $playButton.click(function(e) {
+      //   if ($(this).hasClass('selected')) {
+      //     $playButton.removeClass('selected');
+      //     sp.stop();
+      //   }
+      //   else {
+      //     $playButton.removeClass('selected');
+      //     $(this).addClass('selected');
+      //     let src = "bin/snd/";
+      //     let info = notes[i].split(':');
+      //     src += info[1];
+      //     sp.startRender();
+      //     sp.drawingMode = false;
+      //     let waveType = $('#wavetype').val();
+      //     console.log(waveType);
+      //     if (waveType !== 'sin')
+      //       src += waveType;
+      //     $(this).prop('data-src', src + ".wav");
+      //     console.log($(this).prop('data-src'));
+      //     if ($(this).prop('data-src') !== undefined) {
+      //       sp.play($(this).prop('data-src'));
+      //       // if(!sp.isPlaying())
+      //       //     $(this).removeClass('selected');
+      //     }
+      //     console.log(sp.isPlaying());
+      //
+      //
+      //   }
+      // });
       // --------------------------------------------
-      let $toggle = $('.music-box__buttons__toggle');
-      $toggle.click(function(e) {
-        if ($(this).attr('data-name') === 'up')
-          i === notes.length ? i = 0 : i++;
-        if ($(this).attr('data-name') === 'down')
-          i === 0 ? i = notes.length : i--;
-        sp.updateDetails(notes[i].split(':'));
-
-      });
+      // let $toggle = $('.music-box__buttons__toggle');
+      // $toggle.click(function(e) {
+      //   if ($(this).attr('data-name') === 'up')
+      //     i === notes.length ? i = 0 : i++;
+      //   if ($(this).attr('data-name') === 'down')
+      //     i === 0 ? i = notes.length : i--;
+      //   sp.updateDetails(notes[i].split(':'));
+      //
+      // });
       // --------------------------------------------
       let $music_bbb = $('.music-box__buttons__button');
       $music_bbb.click(function(e) {
