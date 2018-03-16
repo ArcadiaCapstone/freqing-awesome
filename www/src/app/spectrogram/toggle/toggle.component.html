@@ -1,0 +1,44 @@
+<div id="toggler" class="col">
+  <div id="freqToggler" class="row">
+
+    <div class="toggle" (click)="toggleDown()">
+      <div class="icon icon-down-arrow"></div>
+    </div>
+
+    <h3 class="freqSample">{{sample}}<span><img id="typeIcon" src="../bin/icons/{{typeIcon}}.svg"></span></h3>
+
+    <div class="toggle" (click)="toggleUP()">
+      <div class="icon icon-up-arrow"></div>
+    </div>
+
+  </div>
+  <article>
+    <select id="waveType" aria-disabled="true" (change)="selectChangeHandler($event)">
+      <option id="sin" value="">Sin</option>
+      <option id="sqr" value="square">Square</option>
+      <option id="saw" value="saw">Sawtooth</option>
+      <option id="tri" value="tri">Triangle</option>
+    </select>
+  </article>
+  <h3 class="loopLabel">Loop</h3>
+  <div id="loopCheck">
+    <label class="switch">
+      <input type="checkbox" (change)="setLoop($event)">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <div class="row controlPanel">
+    <div class="control">
+      <div class="playButton icon icon-play-button" (click)="playSample(this)"></div>
+    </div>
+    <div class="control">
+      <div class="pauseButton icon icon-pause-sign" (click)="pauseSample(this)"></div>
+    </div>
+    <div class="control">
+      <div class="stopButton icon icon-stop-button" (click)="stopSample(this)"></div>
+    </div>
+  </div>
+
+
+</div>
