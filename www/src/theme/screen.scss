@@ -19,9 +19,7 @@ body,html{
 	background-color: #141414;
 }
 
-#freqToggler {
-	display: inline-flex;
-}
+
 #spectrogram {
 	position: fixed;
 	top: 0;
@@ -42,22 +40,7 @@ canvas {
 	opacity: 0.5;
 	z-index: 98;
 }
-#freqSample {
-	color: $buttonIconColor;
-	font-size: large;
-	padding: 5%;
-}
 
-#type-label {
-	font-size: medium;
-	padding-right: 5%;
-}
-#waveform {
-	font-size: medium;
-	display: block;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-}
 #controlPanel {
   margin-top: .5rem;
   margin-bottom: 4rem;
@@ -159,91 +142,8 @@ canvas {
 	}
 }
 
-.music-box__buttons__toggle {
-	background-color: $buttonColor;
-	color: $buttonIconColor;
 
-	width: 4rem;
-	height: 4rem;
-	display: inline-flex;
-	border-radius: 30rem;
-	//overflow: hidden;
-	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-	margin-right: 1.1rem;
-	position: relative;
-	text-align: center;
-	//vertical-align: middle;
 
-	&.selected  {
-		background-color: $buttonHoverColor;
-	}
-	&:active, &:visited {
-		background-color: $buttonColor;
-	}
-	.icon {
-		vertical-align: middle;
-		display:inline-flex;
-		font-size: 3rem;
-		line-height: 125%;
-		margin-left: .4rem;
-		transform: rotate(90deg);
-	}
-	img {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		width: 80%;
-		height: 80%;
-		margin: auto;
-		pointer-events: none;
-		display:none;
-	}
-}
-
-.music-box__buttons__sampler {
-	background-color: $buttonColor;
-	color: $buttonIconColor;
-
-	width: 4rem;
-	height: 4rem;
-	display: inline-flex;
-	border-radius: 30rem;
-	//overflow: hidden;
-	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-	margin-right: 1.1rem;
-	position: relative;
-	text-align: center;
-	//vertical-align: middle;
-
-	&.selected  {
-		background-color: $buttonHoverColor;
-	}
-	&:active, &:visited {
-		background-color: $buttonColor;
-	}
-	.icon {
-		vertical-align: middle;
-		display:inline-flex;
-		font-size: 3rem;
-        margin-left: .8rem;
-        margin-top: .25rem;
-		line-height: 125%;
-		transform: rotate(0deg);
-
-	}
-	img {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		width: 80%;
-		height: 80%;
-		margin: auto;
-		pointer-events: none;
-		display:none;
-	}
-}
 
 .music-box__buttons__record {
   background-color: $buttonColor;
@@ -495,77 +395,77 @@ input:checked + .slider:before {
 
 
 
-.icon-bird:before, .icon-down-arrow:before, .icon-draw:before, .icon-grid1:before, .icon-grid:before, .icon-menu:before, .icon-mic:before, .icon-pause-sign:before, .icon-play-button:before, .icon-rec:before, .icon-rotate-arrows:before, .icon-stop-button:before, .icon-stoprecord:before, .icon-up-arrow:before, .icon-wave:before, .icon-wine:before {
-  font-family: icons;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none
-}
-
-.icon-bird:before {
-  content: ""
-}
-
-.icon-down-arrow:before {
-  content: ""
-}
-
-.icon-draw:before {
-  content: ""
-}
-
-.icon-grid:before {
-  content: ""
-}
-
-.icon-grid1:before {
-  content: ""
-}
-
-.icon-menu:before {
-  content: ""
-}
-
-.icon-mic:before {
-  content: ""
-}
-
-.icon-pause-sign:before {
-  content: ""
-}
-
-.icon-play-button:before {
-  content: ""
-}
-
-.icon-rec:before {
-  content: ""
-}
-
-.icon-rotate-arrows:before {
-  content: ""
-}
-
-.icon-stop-button:before {
-  content: ""
-}
-
-.icon-stoprecord:before {
-  content: ""
-}
-
-.icon-up-arrow:before {
-  content: ""
-}
-
-.icon-wave:before {
-  content: ""
-}
-
-.icon-wine:before {
-  content: ""
-}
+//.icon-bird:before, .icon-down-arrow:before, .icon-draw:before, .icon-grid1:before, .icon-grid:before, .icon-menu:before, .icon-mic:before, .icon-pause-sign:before, .icon-play-button:before, .icon-rec:before, .icon-rotate-arrows:before, .icon-stop-button:before, .icon-stoprecord:before, .icon-up-arrow:before, .icon-wave:before, .icon-wine:before {
+//  font-family: icons;
+//  -webkit-font-smoothing: antialiased;
+//  -moz-osx-font-smoothing: grayscale;
+//  font-style: normal;
+//  font-variant: normal;
+//  font-weight: 400;
+//  text-decoration: none;
+//  text-transform: none
+//}
+//
+//.icon-bird:before {
+//  content: ""
+//}
+//
+//.icon-down-arrow:before {
+//  content: ""
+//}
+//
+//.icon-draw:before {
+//  content: ""
+//}
+//
+//.icon-grid:before {
+//  content: ""
+//}
+//
+//.icon-grid1:before {
+//  content: ""
+//}
+//
+//.icon-menu:before {
+//  content: ""
+//}
+//
+//.icon-mic:before {
+//  content: ""
+//}
+//
+//.icon-pause-sign:before {
+//  content: ""
+//}
+//
+//.icon-play-button:before {
+//  content: ""
+//}
+//
+//.icon-rec:before {
+//  content: ""
+//}
+//
+//.icon-rotate-arrows:before {
+//  content: ""
+//}
+//
+//.icon-stop-button:before {
+//  content: ""
+//}
+//
+//.icon-stoprecord:before {
+//  content: ""
+//}
+//
+//.icon-up-arrow:before {
+//  content: ""
+//}
+//
+//.icon-wave:before {
+//  content: ""
+//}
+//
+//.icon-wine:before {
+//  content: ""
+//}

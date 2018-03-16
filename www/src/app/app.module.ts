@@ -10,17 +10,18 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import {environment} from "../environments/environment";
 
-
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AppRoutingModule,
-    SpectrogramModule
+    SpectrogramModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

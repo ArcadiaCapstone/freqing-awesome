@@ -4,7 +4,6 @@ import { SpectrumComponent } from './spectrum/spectrum.component';
 import { SpectrogramComponent } from './spectrogram.component';
 import { CoreModule } from './core/core.module';
 import {ToggleComponent} from "./toggle/toggle.component";
-import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -15,8 +14,7 @@ import { MenuComponent } from './menu/menu.component';
   declarations: [
     SpectrumComponent,
     SpectrogramComponent,
-    ToggleComponent,
-    MenuComponent
+    ToggleComponent
   ]
 })
 export class SpectrogramModule { }

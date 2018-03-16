@@ -5,7 +5,6 @@ import {
 } from "../toolkit";
 
 import Player from "./player"
-import {notes} from "./notes";
 
 const Toolkit:any = {};
 
@@ -98,6 +97,7 @@ Toolkit.spectrogram = (function() {
 
     stop: function() {
       spec3D.player.stop();
+      console.log("STOP");
     },
 
     isPlaying: function() {
@@ -230,16 +230,16 @@ Toolkit.spectrogram = (function() {
     freqEnd: 20000,
     padding: 30,
     yToFreq: function(y) {
-      var padding = spec3D.padding;
-      var height = $('#spectrogram').height();
+      let padding = spec3D.padding;
+      let height = $('#spectrogram').height();
 
       if (height < 2*padding || // The spectrogram isn't tall enough
         y < padding || // Y is out of bounds on top.
         y > height - padding) { // Y is out of bounds on the bottom.
         return null;
       }
-      var percentFromBottom = 1 - (y - padding) / (height - padding);
-      var freq = spec3D.freqStart + (spec3D.freqEnd - spec3D.freqStart)* percentFromBottom;
+      let percentFromBottom = 1 - (y - padding) / (height - padding);
+      let freq = spec3D.freqStart + (spec3D.freqEnd - spec3D.freqStart)* percentFromBottom;
       return Util.lin2log(freq);
     },
 
@@ -302,7 +302,7 @@ Toolkit.main = (function() {
     let clickCount = 0;
 
     $('#spectrogram')[0].ondblclick = function () {
-      console.log("Dble")
+      console.log("Dble");
       clickCount++;
 
       const controller:any = camera;
