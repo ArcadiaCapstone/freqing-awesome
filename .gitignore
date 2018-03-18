@@ -4,4 +4,8 @@
 www/node_modules
 www/yarn-error.log
 
+**/**.log
+
+**/dist/**
+
 **/.idea/**
