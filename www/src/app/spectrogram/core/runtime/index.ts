@@ -4,42 +4,44 @@ import {
   AnalyserView
 } from "../toolkit";
 
-import Player from "./player"
+import Player from "./player";
 
 
-const Toolkit:any = {};
+const Toolkit: any = {};
 
-declare const $:any;
-declare const window:any;
+declare const $: any;
+declare const window: any;
 
 
 Toolkit.spectrogram = (function() {
 
-  let spec3D:any = {
+  let spec3D: any = {
     cxRot: 90,
     drawingMode: false,
     prevX: 0,
     dataPoints: [],
 
     handleTrack: function(e) {
-      switch(e.type){
+      switch (e.type) {
         case 'mousedown':
         case 'touchstart':
           // START: MOUSEDOWN ---------------------------------------------
           spec3D.prevX = Number(e.pageX) || Number(e.originalEvent.touches[0].pageX);
 
-          $(e.currentTarget).on('mousemove',spec3D.handleTrack);
-          $(e.currentTarget).on('touchmove',spec3D.handleTrack);
+          $(e.currentTarget).on('mousemove', spec3D.handleTrack);
+          $(e.currentTarget).on('touchmove', spec3D.handleTrack);
 
-          if (spec3D.drawingMode === false)
+          if (spec3D.drawingMode === false) {
             break;
+          }
 
           let freq = spec3D.yToFreq(Number(e.pageY) || Number(e.originalEvent.touches[0].pageY));
 
-          if (spec3D.isPlaying())
+          if (spec3D.isPlaying()) {
             spec3D.player.setBandpassFrequency(freq);
-          else
+          } else {
             spec3D.player.playTone(freq);
+          }
 
           break;
 
@@ -48,25 +50,27 @@ Toolkit.spectrogram = (function() {
           // TRACK --------------------------------------------------------
           let ddx = (Number(e.pageX) || Number(e.originalEvent.touches[0].pageX)) - spec3D.prevX;
           spec3D.prevX = Number(e.pageX) || Number(e.originalEvent.touches[0].pageX);
-
-          if(spec3D.drawingMode){
+// debugger;
+          if (spec3D.drawingMode) {
 
             let y = Number(e.pageY) || Number(e.originalEvent.touches[0].pageY);
             let freq1 = spec3D.yToFreq(y);
             // console.log('%f px maps to %f Hz', y, freq);
 
-            if (spec3D.isPlaying())
+            if (spec3D.isPlaying()) {
               spec3D.player.setBandpassFrequency(freq1);
-            else
+            } else {
               spec3D.player.playTone(freq1);
+            }
 
           } else if (spec3D.isPlaying()) {
             spec3D.cxRot += (ddx * .2);
 
-            if (spec3D.cxRot < 0)
+            if (spec3D.cxRot < 0) {
               spec3D.cxRot = 0;
-            else if ( spec3D.cxRot > 90)
+            } else if ( spec3D.cxRot > 90) {
               spec3D.cxRot = 90;
+                 }
 
             // spec3D.analyserView.cameraController.yRot = spec3D.easeInOutCubic(spec3D.cxRot / 90, 180 , 90 , 1);
             // spec3D.analyserView.cameraController.zT = spec3D.easeInOutCubic(spec3D.cxRot / 90,-2,-1,1);
@@ -77,14 +81,16 @@ Toolkit.spectrogram = (function() {
         case 'mouseup' :
         case 'touchend':
           // END: MOUSEUP -------------------------------------------------
-          $(e.currentTarget).off('mousemove',spec3D.handleTrack)
-          $(e.currentTarget).off('touchmove',spec3D.handleTrack)
-          if (spec3D.drawingMode === false)
+          $(e.currentTarget).off('mousemove', spec3D.handleTrack);
+          $(e.currentTarget).off('touchmove', spec3D.handleTrack);
+          if (spec3D.drawingMode === false) {
             return false;
-          if (spec3D.isPlaying())
+          }
+          if (spec3D.isPlaying()) {
             spec3D.player.setBandpassFrequency(null);
-          else
+          } else {
             spec3D.player.stopTone();
+          }
           return false;
       }
     },
@@ -151,10 +157,10 @@ Toolkit.spectrogram = (function() {
       spec3D.analyserView = analyserView;
       $('.componentContainer').hide();
       $('#spectrogram')
-        .on('mousedown',this.handleTrack)
-        .on('touchstart',this.handleTrack)
-        .on('mouseup',this.handleTrack)
-        .on('touchend',this.handleTrack)
+        .on('mousedown', this.handleTrack)
+        .on('touchstart', this.handleTrack)
+        .on('mouseup', this.handleTrack)
+        .on('touchend', this.handleTrack);
     },
 
     onResize_: function() {
@@ -209,7 +215,7 @@ Toolkit.spectrogram = (function() {
         ctx.lineTo(bw + p, 0.5 + dy + p);
       }
 
-      ctx.strokeStyle="magenta";
+      ctx.strokeStyle = "magenta";
       ctx.stroke();
 
       let x = canvas.width - 10;
@@ -240,13 +246,13 @@ Toolkit.spectrogram = (function() {
       let padding = spec3D.padding;
       let height = $('#spectrogram').height();
 
-      if (height < 2*padding || // The spectrogram isn't tall enough
+      if (height < 2 * padding || // The spectrogram isn't tall enough
         y < padding || // Y is out of bounds on top.
         y > height - padding) { // Y is out of bounds on the bottom.
         return null;
       }
       let percentFromBottom = 1 - (y - padding) / (height - padding);
-      let freq = spec3D.freqStart + (spec3D.freqEnd - spec3D.freqStart)* percentFromBottom;
+      let freq = spec3D.freqStart + (spec3D.freqEnd - spec3D.freqStart) * percentFromBottom;
       return Util.lin2log(freq);
     },
 
@@ -259,7 +265,7 @@ Toolkit.spectrogram = (function() {
       // Get the frequency percentage.
       let percent = (freq - spec3D.freqStart) / (spec3D.freqEnd - spec3D.freqStart);
       // Apply padding, etc.
-      return spec3D.padding + percent * (height - 2*padding);
+      return spec3D.padding + percent * (height - 2 * padding);
     },
 
     // easeInOutCubic: function (t, b, c, d) {
@@ -295,7 +301,7 @@ Toolkit.main = (function() {
   window.isMobile = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) );
   window.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-  function pollyFillRequestAnimFrame( callback ){
+  function pollyFillRequestAnimFrame( callback ) {
     window.setTimeout(callback, 1000 / 60);
   }
 
@@ -308,33 +314,9 @@ Toolkit.main = (function() {
   Toolkit.startScript = () => {
     let clickCount = 0;
 
-    $('#spectrogram')[0].ondblclick = function () {
-      console.log("Dble");
-      clickCount++;
-
-      const controller:any = camera;
-
-      if (clickCount === 1) {
-        controller.xRot = -180;
-        controller.yRot = 180;
-        controller.zRot = 180;
-      }
-      if (clickCount === 2) {
-        controller.xRot = -90;
-        controller.yRot = 270;
-        controller.zRot = 90;
-      }
-      if (clickCount === 3) {
-        controller.xRot = -180;
-        controller.yRot = 270;
-        controller.zRot = 90;
-        clickCount = 0;
-      }
-    };
-
     let parseQueryString = function() {
       let q = window.location.search.slice(1).split('&');
-      for(let i=0; i < q.length; ++i){
+      for (let i = 0; i < q.length; ++i) {
         let qi = q[i].split('=');
         q[i] = {};
         q[i][qi[0]] = qi[1];
@@ -344,8 +326,8 @@ Toolkit.main = (function() {
     let getLocalization = function() {
       let q = parseQueryString();
       let lang = 'en';
-      for(let i=0; i < q.length; i++){
-        if(q[i].ln !== undefined){
+      for (let i = 0; i < q.length; i++) {
+        if (q[i].ln !== undefined) {
           lang = q[i].ln;
         }
       }
@@ -372,7 +354,7 @@ Toolkit.main = (function() {
     let startup = function() {
       // --------------------------------------------//
       getLocalization();
-      window.parent.postMessage('ready','*');
+      window.parent.postMessage('ready', '*');
       Toolkit.spectrogram.attached();
       // --------------------------------------------//
       let $menuItem = $('.menu-item');
@@ -390,7 +372,7 @@ Toolkit.main = (function() {
           $('nav.sidebar ul li').removeClass('active');
           $('.componentContainer').hide();
           $(this).addClass('active');
-          $("[id*="+ linkedContainer + "]").show();
+          $("[id*=" + linkedContainer + "]").show();
         }
       });
 
@@ -414,26 +396,24 @@ Toolkit.main = (function() {
         let wasPlaying = Toolkit.spectrogram.isPlaying();
         Toolkit.spectrogram.stop();
         Toolkit.spectrogram.drawingMode = false;
-        if($(this).hasClass('selected')){
+        if ($(this).hasClass('selected')) {
           $specialButton.removeClass('selected');
           Toolkit.spectrogram.stop();
-        }
-        else{
+        } else {
           $specialButton.removeClass('selected');
           $(this).addClass('selected');
           if ($(this)[0].id === 'micButton') {
-            if(window.isIOS){
-              window.parent.postMessage('error2','*');
+            if (window.isIOS) {
+              window.parent.postMessage('error2', '*');
               $(this).removeClass('selected');
-            }else{
+            } else {
               // Show Record Modal Screen *******************************
               $('#record').fadeIn().delay(2000).fadeOut();
               // Start Recording ****************************************
               Toolkit.spectrogram.live();
             }
             // Check for Start drawing data instruction  **********************
-          }
-          else if ($(this)[0].id === 'drawButton') {
+          } else if ($(this)[0].id === 'drawButton') {
             Toolkit.spectrogram.drawingMode = true;
             $('#drawAnywhere').fadeIn().delay(2000).fadeOut();
           }
@@ -449,15 +429,15 @@ Toolkit.main = (function() {
     };
 
     let elm = $('#iosButton');
-    if(!window.isIOS){
+    if (!window.isIOS) {
       startup();
       elm.addClass('hide');
-    }else{
-      window.parent.postMessage('loaded','*');
+    } else {
+      window.parent.postMessage('loaded', '*');
       elm[0].addEventListener('touchend', function(e) {
         elm.addClass('hide');
         startup();
-      },false);
+      }, false);
     }
   };
 
