@@ -3,3 +3,5 @@
 
 www/node_modules
 www/yarn-error.log
+
+**/.idea/**
