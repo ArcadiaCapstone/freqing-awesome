@@ -43,11 +43,8 @@ canvas {
 
 .components {
   margin-left: 6rem;
+}
 
-}
-.componentContainer {
-  z-index: 0;
-}
 .menu-button {
   background-color: $buttonColor;
   color: $buttonIconColor;
@@ -105,7 +102,7 @@ canvas {
 	//overflow-x: scroll;
 }
 
-.music-box__buttons__button {
+.special-button {
 	background-color: $buttonColor;
 	color: $buttonIconColor;
 
@@ -385,11 +382,19 @@ nav.sidebar ul li a.expandable span.expanded-element {
   position: relative;
   bottom: 2px; }
 nav.sidebar ul li.active {
-  background: none repeat scroll 0 0 black;
+  background: none repeat scroll 0 0 #222;
   border-radius: 4px;
   text-align: center;
   margin-left: -4px;
   padding: 4px; }
+nav.sidebar a#logout-icon {
+  outline: 0;
+  color: white;
+  font-size: 24px;
+  font-style: normal;
+  position: absolute;
+  bottom: 10px;
+  left: 10px; }
 nav.sidebar ul li.active a.expandable {
   color: white !important; }
 nav.sidebar ul li.active a.expandable:hover {

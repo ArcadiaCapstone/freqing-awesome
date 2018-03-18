@@ -9,6 +9,8 @@ import {SettingsComponent} from "./settings/settings.component";
 import '../../polyfills';
 import {CdkTableModule} from '@angular/cdk/table';
 import { MenuTogglerComponent } from './menu-toggler/menu-toggler.component';
+import { SpecialsComponent } from './specials/specials.component';
+import { FilesComponent } from './files/files.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { MenuTogglerComponent } from './menu-toggler/menu-toggler.component';
     DataExportComponent,
     SettingsComponent,
     MenuTogglerComponent,
+    SpecialsComponent,
+    FilesComponent,
   ],
 })
 export class SpectrogramModule { }
