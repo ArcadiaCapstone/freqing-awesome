@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class DataExportComponent implements OnInit {
 
   constructor() { }
-
+begin() {
+}
   ngOnInit() {
   }
 
