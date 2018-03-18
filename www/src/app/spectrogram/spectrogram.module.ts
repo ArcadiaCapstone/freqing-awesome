@@ -8,9 +8,9 @@ import {DataExportComponent} from "./data-export/data-export.component";
 import {SettingsComponent} from "./settings/settings.component";
 import '../../polyfills';
 import {CdkTableModule} from '@angular/cdk/table';
-import { MenuTogglerComponent } from './menu-toggler/menu-toggler.component';
 import { SpecialsComponent } from './specials/specials.component';
 import { FilesComponent } from './files/files.component';
+import {NavMenuComponent} from "./nav-menu/nav-menu.component";
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { FilesComponent } from './files/files.component';
     ToggleComponent,
     DataExportComponent,
     SettingsComponent,
-    MenuTogglerComponent,
+    NavMenuComponent,
     SpecialsComponent,
     FilesComponent,
   ],
