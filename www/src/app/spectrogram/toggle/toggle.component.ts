@@ -47,20 +47,20 @@ export class ToggleComponent implements OnInit {
     this.loop = e.target.checked;
   }
 
-  playSample() {
+  playSample(which=null) {
     (!this.loop) ? Toolkit.spectrogram.stop() : null;
     Toolkit.spectrogram.drawingMode = false;
     Toolkit.spectrogram.startRender();
     Toolkit.spectrogram.play(this.src);
   }
 
-  pauseSample() {
+  pauseSample(which=null) {
     Toolkit.spectrogram.stop();
     Toolkit.spectrogram.stopRender();
 
   }
 
-  stopSample() {
+  stopSample(which=null) {
     Toolkit.spectrogram.startRender();
     Toolkit.spectrogram.stop();
   }

@@ -1,7 +1,11 @@
-node_modules
+**/node_modules/**
 
-.idea
+*.log
 
-www/node_modules
-www/.idea
-www/yarn-error.log
+**/dist/**
+
+**/.idea/**
+
+functions/lib/**
+
+*.error
