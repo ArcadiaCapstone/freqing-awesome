@@ -5,7 +5,7 @@ import {
 } from "../toolkit";
 
 import Player from "./player"
-import {settings} from "cluster";
+import {settings} from 'cluster';
 
 const Toolkit:any = {};
 
@@ -369,94 +369,83 @@ Toolkit.main = (function() {
       // });
     };
 
-    let expandMyMenu = function() {
-      $("nav.sidebar").removeClass("sidebar-menu-collapsed").addClass("sidebar-menu-expanded");
-      $('.components').css({left: '5rem'});
-    };
-    let collapseMyMenu = function() {
-      $("nav.sidebar").removeClass("sidebar-menu-expanded").addClass("sidebar-menu-collapsed");
-      $('.components').css({left: '0rem'});
-    };
-    let showMenuTexts = function() {
-      $("nav.sidebar ul a span.expanded-element").show();
-    };
-    let hideMenuTexts = function() {
-      $("nav.sidebar ul a span.expanded-element").hide();
-    };
-
     let startup = function() {
+      // --------------------------------------------//
       getLocalization();
       window.parent.postMessage('ready','*');
-      let $music_bbb = $('.music-box__buttons__button');
-      let sp = Toolkit.spectrogram;
-      sp.attached();
-
+      Toolkit.spectrogram.attached();
       // --------------------------------------------//
-      $music_bbb.click(function(e) {
-        sp.startRender();
-        let wasPlaying = sp.isPlaying();
-        sp.stop();
-        sp.drawingMode = false;
+      let $menuItem = $('.menu-item');
+      let $menuButton = $('#menuButton');
+      let $specialButton = $('.special-button');
+      // --------------------------------------------//
+      $menuItem.click(function() {
+
+        let linkedContainer = $(this)[0].id.substring(5) + "Container";
+
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active');
+          $("[id*=" + linkedContainer + "]").hide();
+        } else {
+          $('nav.sidebar ul li').removeClass('active');
+          $('.componentContainer').hide();
+          $(this).addClass('active');
+          $("[id*="+ linkedContainer + "]").show();
+        }
+      });
+
+      $menuButton.click(function() {
+
+        let menuToggle = function(remove, add, margin, view, color) {
+          let $element = $("nav.sidebar ul a span.expanded-element");
+          view ? $element.show() : $element.hide();
+          $("nav.sidebar").removeClass("sidebar-menu-" + remove).addClass("sidebar-menu-" + add);
+          $('.components').css({left: margin});
+          $menuButton.css({color: color});
+        };
+
+        let collapsed = $(this).parent("nav.sidebar").hasClass("sidebar-menu-collapsed");
+        collapsed ? menuToggle("collapsed", "expanded", '6rem', true, "#111") :
+          menuToggle("expanded", "collapsed", '0rem', false, "#FFF");
+      });
+
+      $specialButton.click(function() {
+        Toolkit.spectrogram.startRender();
+        let wasPlaying = Toolkit.spectrogram.isPlaying();
+        Toolkit.spectrogram.stop();
+        Toolkit.spectrogram.drawingMode = false;
         if($(this).hasClass('selected')){
-          $music_bbb.removeClass('selected');
-          sp.stop();
+          $specialButton.removeClass('selected');
+          Toolkit.spectrogram.stop();
         }
         else{
-          $music_bbb.removeClass('selected');
+          $specialButton.removeClass('selected');
           $(this).addClass('selected');
-          // check for start recoding data instruction **********************
-          if ($(this).attr('data-mic')!== undefined) {
+          if ($(this)[0].id === 'micButton') {
             if(window.isIOS){
-              // Throw Microphone Error *********************************
               window.parent.postMessage('error2','*');
-              // Remove Selection ***************************************
               $(this).removeClass('selected');
             }else{
               // Show Record Modal Screen *******************************
               $('#record').fadeIn().delay(2000).fadeOut();
               // Start Recording ****************************************
-              sp.live();
+              Toolkit.spectrogram.live();
             }
             // Check for Start drawing data instruction  **********************
-          }else if ($(this).attr('data-draw') !== undefined) {
-            sp.drawingMode = true;
-            $('#drawAnywhere').fadeIn().delay(2000).fadeOut();
-            // Check for play audio data instruction **************************
-          }else if ($(this).attr('data-src') !== undefined) {
-            sp.loopChanged( true );
-            $('#loadingMessage').text($(this).attr('data-name'));
-            sp.play($(this).attr('data-src'));
           }
+          else if ($(this)[0].id === 'drawButton') {
+            Toolkit.spectrogram.drawingMode = true;
+            $('#drawAnywhere').fadeIn().delay(2000).fadeOut();
+          }
+            // Check for play audio data instruction **************************
+          // else if ($(this).attr('data-src') !== undefined) {
+          //   Toolkit.spectrogram.loopChanged( true );
+          //   $('#loadingMessage').text($(this).attr('data-name'));
+          //   Toolkit.spectrogram.play($(this).attr('data-src'));
+          // }
         }
       });
       // --------------------------------------------//
-      $("#menuButton").click(function(e) {
-        if ($(this).parent("nav.sidebar").hasClass("sidebar-menu-collapsed")) {
-          expandMyMenu();
-          showMenuTexts();
-          $(this).css({ color: "#000" });
-        } else if ($(this).parent("nav.sidebar").hasClass("sidebar-menu-expanded")) {
-          collapseMyMenu();
-          hideMenuTexts();
-          $(this).css({color: "#FFF"});
-        }
-
-      });
-      // --------------------------------------------
-      $('.menu-item').click(function() {
-
-        let active = $(this).hasClass('active');
-
-        active ? $(this).removeClass('active') :
-          $('nav.sidebar ul li').removeClass('active');
-          $('.componentContainer').hide();
-          $(this).addClass('active');
-
-        $(this)[0].id === 'toggleComponentLink' ? !active ? $('#togglerContainer').show() : $('#togglerContainer').hide() : null;
-
-        $(this)[0].id === 'settingsComponentLink' ? !active ? $('#settingsContainer').show() : $('#settingsContainer').hide() : null;
-
-      });
     };
 
     let elm = $('#iosButton');
