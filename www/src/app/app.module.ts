@@ -12,29 +12,19 @@ import {environment} from "../environments/environment";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {DemoMaterialModule} from "../main";
 import {MatNativeDateModule} from "@angular/material";
-import {NavMenuComponent} from "./spectrogram/nav-menu/nav-menu.component";
+import {DataService} from "./spectrogram/data.service";
 
-
-@NgModule({
-  imports: [
-
-  ],
-
-})
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    DemoMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -43,11 +33,11 @@ import {NavMenuComponent} from "./spectrogram/nav-menu/nav-menu.component";
     SpectrogramModule,
 
   ],
-  // entryComponents: [NavMenuComponent],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [
     AppComponent,
-    NavMenuComponent
   ]
 
 })

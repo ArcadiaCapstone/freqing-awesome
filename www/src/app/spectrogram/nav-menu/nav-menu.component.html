@@ -40,15 +40,22 @@
         <!--</a>-->
     <!--</ul>-->
   <!--</nav>-->
-  <mat-sidenav-container
-    class="example-container" (backdropClick)="close('backdrop')">
-    <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
-      <p><button mat-button (click)="close('toggle button')">Toggle</button></p>
-    </mat-sidenav>
 
-    <mat-sidenav-content>
-      <p><button mat-button (click)="sidenav.open()">Open</button></p>
-      <p>Closed due to: {{reason}}</p>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+    <div class="mat-app-background basic-container">
+      <mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')">
+        <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
+          <p id="innerMenu"><button mat-button (click)="close()"><i class="material-icons">menu</i></button></p>
+          <p class=".menu-item"><button mat-button (click)="close('toggle')"><i class="material-icons">music_note</i></button></p>
+          <p class=".menu-item"><button mat-button (click)="close('playlist')"><i class="material-icons">playlist_play</i></button></p>
+          <p class=".menu-item"><button mat-button (click)="close('specials')"><i class="material-icons">star</i></button></p>
+          <p class=".menu-item"><button mat-button (click)="close('settings')"><i class="material-icons">settings</i></button></p>
+          <p class=".menu-item" id="acct-icon"><button mat-button (click)="close('account')"><i class="material-icons">account_box</i></button></p>
+          <p class=".menu-item" id="powr-icon"><button mat-button (click)="close()"><i class="material-icons">power_settings_new</i></button></p>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+          <p><button id="outter-menu" mat-button (click)="sidenav.open()"><i class="material-icons">menu</i></button></p>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+  </div>

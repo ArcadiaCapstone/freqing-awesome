@@ -155,7 +155,6 @@ Toolkit.spectrogram = (function() {
       // impliment!!
       spec3D.player = player;
       spec3D.analyserView = analyserView;
-      $('.componentContainer').hide();
       $('#spectrogram')
         .on('mousedown', this.handleTrack)
         .on('touchstart', this.handleTrack)
@@ -190,7 +189,12 @@ Toolkit.spectrogram = (function() {
       // console.log(data);
       requestAnimationFrame(spec3D.draw_.bind(spec3D));
     },
-
+    hideMe(elemId) {
+      $("[id*=" + elemId + "]").hide();
+    },
+    showMe(elemId) {
+      $("[id*=" + elemId + "]").show();
+    },
     hideGrid: function() {
       $('#legend').hide();
     },
@@ -312,9 +316,9 @@ Toolkit.main = (function() {
 
 
   Toolkit.startScript = () => {
-    let clickCount = 0;
 
     let parseQueryString = function() {
+      $('.componentContainer').hide();
       let q = window.location.search.slice(1).split('&');
       for (let i = 0; i < q.length; ++i) {
         let qi = q[i].split('=');
@@ -331,24 +335,7 @@ Toolkit.main = (function() {
           lang = q[i].ln;
         }
       }
-      // var url = "https://gweb-musiclab-site.appspot.com/static/locales/" + lang + "/locale-music-lab.json";
-      // $.ajax({
-      // 	url: url,
-      // 	dataType: "json",
-      // 	async: true,
-      // 	success: function( response ) {
-      // 		$.each(response,function(key,value){
-      // 			var item = $("[data-name='"+ key +"']");
-      // 			if(item.length > 0){
-      // 				console.log('value.message',value.message);
-      // 				item.attr('data-name',value.message);
-      // 			}
-      // 		});
-      // 	},
-      // 	error: function(err){
-      // 		console.warn(err);
-      // 	}
-      // });
+
     };
 
     let startup = function() {
@@ -358,38 +345,22 @@ Toolkit.main = (function() {
       Toolkit.spectrogram.attached();
       // --------------------------------------------//
       let $menuItem = $('.menu-item');
-      let $menuButton = $('#menuButton');
       let $specialButton = $('.special-button');
       // --------------------------------------------//
-      $menuItem.click(function() {
-
-        let linkedContainer = $(this)[0].id.substring(5) + "Container";
-
-        if ($(this).hasClass('active')) {
-          $(this).removeClass('active');
-          $("[id*=" + linkedContainer + "]").hide();
-        } else {
-          $('nav.sidebar ul li').removeClass('active');
-          $('.componentContainer').hide();
-          $(this).addClass('active');
-          $("[id*=" + linkedContainer + "]").show();
-        }
-      });
-
-      $menuButton.click(function() {
-
-        let menuToggle = function(remove, add, margin, view, color) {
-          let $element = $("nav.sidebar ul a span.expanded-element");
-          view ? $element.show() : $element.hide();
-          $("nav.sidebar").removeClass("sidebar-menu-" + remove).addClass("sidebar-menu-" + add);
-          $('.components').css({left: margin});
-          $menuButton.css({color: color});
-        };
-
-        let collapsed = $(this).parent("nav.sidebar").hasClass("sidebar-menu-collapsed");
-        collapsed ? menuToggle("collapsed", "expanded", '6rem', true, "#111") :
-          menuToggle("expanded", "collapsed", '0rem', false, "#FFF");
-      });
+      // $menuItem.click(function() {
+      //
+      //   let linkedContainer = $(this)[0].id.substring(5) + "Container";
+      //
+      //   if ($(this).hasClass('active')) {
+      //     $(this).removeClass('active');
+      //     $("[id*=" + linkedContainer + "]").hide();
+      //   } else {
+      //     $('nav.sidebar ul li').removeClass('active');
+      //     $('.componentContainer').hide();
+      //     $(this).addClass('active');
+      //     $("[id*=" + linkedContainer + "]").show();
+      //   }
+      // });
 
       $specialButton.click(function() {
         Toolkit.spectrogram.startRender();
@@ -420,7 +391,7 @@ Toolkit.main = (function() {
             // Check for play audio data instruction **************************
           // else if ($(this).attr('data-src') !== undefined) {
           //   Toolkit.spectrogram.loopChanged( true );
-          //   $('#loadingMessage').text($(this).attr('data-name'));
+          //   $('#loadingMessage').text($(this).attr('data-component'));
           //   Toolkit.spectrogram.play($(this).attr('data-src'));
           // }
         }
