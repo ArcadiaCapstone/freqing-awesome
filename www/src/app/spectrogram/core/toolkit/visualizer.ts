@@ -92,6 +92,7 @@ export const AnalyserView:any = function(canvas) {
 	this.canvas = canvas;
   AnalyserView.cameraController = new Camera(this.canvas);
 	this.initGL();
+	this.data = [];
 
 };
 
@@ -282,6 +283,7 @@ AnalyserView.prototype.initByteBuffer = function() {
 
 AnalyserView.prototype.setAnalysisType = function(type) {
 	// Check for read textures in vertex shaders.
+    // be sure to uncomment the botto
 	if (!this.has3DVisualizer && type === ANALYSISTYPE_3D_SONOGRAM)
 		return;
 
@@ -303,15 +305,16 @@ AnalyserView.prototype.doFrequencyAnalysis = function(event) {
 		break;
 
 	case ANALYSISTYPE_SONOGRAM:
-	case ANALYSISTYPE_3D_SONOGRAM:
+    case ANALYSISTYPE_3D_SONOGRAM:
 	this.analyser.smoothingTimeConstant = 0.1;
 	this.analyser.getByteFrequencyData(freqByteData);
+	// console.log(freqByteData);
 	for (let i = 0; i < freqByteData.length; i++) {
 		if (freqByteData[i] !== 0) {
-            datapoints.push("i: " + i + ", " + freqByteData[i]);
+            datapoints.push(freqByteData[i]);
 		}
 	}
-	break;
+  break;
 
 	case ANALYSISTYPE_WAVEFORM:
 		this.analyser.smoothingTimeConstant = 0.1;
@@ -321,10 +324,8 @@ AnalyserView.prototype.doFrequencyAnalysis = function(event) {
 	}
 
 	this.drawGL();
-};
+	return datapoints;
 
-AnalyserView.prototype.getDataPoints = function() {
-    return datapoints;
 };
 
 AnalyserView.prototype.drawGL = function() {

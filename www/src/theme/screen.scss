@@ -41,9 +41,12 @@ canvas {
 	z-index: 98;
 }
 
-#controlPanel {
-  margin-top: .5rem;
-  margin-bottom: 4rem;
+.components {
+  margin-left: 6rem;
+
+}
+.componentContainer {
+  z-index: 0;
 }
 .menu-button {
   background-color: $buttonColor;
@@ -95,7 +98,7 @@ canvas {
 	//padding-left: 2rem;
 	padding-top: 1.3rem;
 	padding-bottom: 1.3rem;
-	width: 25em;
+	width: 30rem;
 	height: 100%;
 	text-align: center;
 	//text-decoration-color: #EEEEEE;
@@ -141,9 +144,6 @@ canvas {
 		display:none;
 	}
 }
-
-
-
 
 .music-box__buttons__record {
   background-color: $buttonColor;
@@ -335,137 +335,64 @@ canvas {
   color: white;
 }
 //---------------------------------------------------------------
-.switch {
+
+@import url('https://getbootstrap.com/dist/css/bootstrap.css');
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+
+#menuContainer {
+  background: none repeat scroll 0 0 transparent;
+  //z-index: 100000000;
+}
+
+nav.sidebar-menu-collapsed {
+  width: 50px; }
+nav.sidebar-menu-expanded {
+  width: 106px;
+  margin-right: auto; }
+nav.sidebar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  background: none repeat scroll 0 0 rebeccapurple;
+  color: white;
+  padding: 20px 10px; }
+nav.sidebar a#menuButton {
+  outline: 0;
+  color: white;
+  font-size: 24px;
+  font-style: normal;
+  width: 50px; }
+
+nav.sidebar ul {
+  padding: 0;
+  margin-top: 7.5rem; }
+nav.sidebar ul li {
+  padding: 0;
+  margin-top: 3rem;
+  list-style-type: none; }
+nav.sidebar ul li a.expandable {
+  outline: 0;
+  color: white;
+  text-decoration: none;
+  font-size: 20px; }
+nav.sidebar ul li a.expandable:hover {
+  color: #bbbbbb; }
+nav.sidebar ul li a.expandable span.expanded-element {
+  margin-left: 2px;
+  display: none;
+  font-size: 11px;
   position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {display:none;}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
+  bottom: 2px; }
+nav.sidebar ul li.active {
+  background: none repeat scroll 0 0 black;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: -4px;
+  padding: 4px; }
+nav.sidebar ul li.active a.expandable {
+  color: white !important; }
+nav.sidebar ul li.active a.expandable:hover {
+  color: white !important; }
 
 
-
-//.icon-bird:before, .icon-down-arrow:before, .icon-draw:before, .icon-grid1:before, .icon-grid:before, .icon-menu:before, .icon-mic:before, .icon-pause-sign:before, .icon-play-button:before, .icon-rec:before, .icon-rotate-arrows:before, .icon-stop-button:before, .icon-stoprecord:before, .icon-up-arrow:before, .icon-wave:before, .icon-wine:before {
-//  font-family: icons;
-//  -webkit-font-smoothing: antialiased;
-//  -moz-osx-font-smoothing: grayscale;
-//  font-style: normal;
-//  font-variant: normal;
-//  font-weight: 400;
-//  text-decoration: none;
-//  text-transform: none
-//}
-//
-//.icon-bird:before {
-//  content: ""
-//}
-//
-//.icon-down-arrow:before {
-//  content: ""
-//}
-//
-//.icon-draw:before {
-//  content: ""
-//}
-//
-//.icon-grid:before {
-//  content: ""
-//}
-//
-//.icon-grid1:before {
-//  content: ""
-//}
-//
-//.icon-menu:before {
-//  content: ""
-//}
-//
-//.icon-mic:before {
-//  content: ""
-//}
-//
-//.icon-pause-sign:before {
-//  content: ""
-//}
-//
-//.icon-play-button:before {
-//  content: ""
-//}
-//
-//.icon-rec:before {
-//  content: ""
-//}
-//
-//.icon-rotate-arrows:before {
-//  content: ""
-//}
-//
-//.icon-stop-button:before {
-//  content: ""
-//}
-//
-//.icon-stoprecord:before {
-//  content: ""
-//}
-//
-//.icon-up-arrow:before {
-//  content: ""
-//}
-//
-//.icon-wave:before {
-//  content: ""
-//}
-//
-//.icon-wine:before {
-//  content: ""
-//}

@@ -5,6 +5,7 @@ import {
 } from "../toolkit";
 
 import Player from "./player"
+import {settings} from "cluster";
 
 const Toolkit:any = {};
 
@@ -18,6 +19,7 @@ Toolkit.spectrogram = (function() {
     cxRot: 90,
     drawingMode: false,
     prevX: 0,
+    dataPoints: [],
 
     handleTrack: function(e) {
       switch(e.type){
@@ -125,12 +127,15 @@ Toolkit.spectrogram = (function() {
       spec3D.src = src;
       spec3D.player.playSrc(src);
     },
+    recordRaw: function() {
+
+    },
 
     live: function() {
       spec3D.player.live();
     },
 
-    init_: function() {
+    init_: function(n) {
       // Initialize everything.
       let player = new Player();
       let analyserNode = player.getAnalyserNode();
@@ -138,10 +143,13 @@ Toolkit.spectrogram = (function() {
       let analyserView = new AnalyserView(this.canvas);
       analyserView.setAnalyserNode(analyserNode);
       analyserView.initByteBuffer();
-      // spec3D.setdraw_();
+      n !== undefined ? analyserView.setAnalysisType(n) : null;
 
+      // spec3D.setdraw_();
+      // impliment!!
       spec3D.player = player;
       spec3D.analyserView = analyserView;
+      $('.componentContainer').hide();
       $('#spectrogram')
         .on('mousedown',this.handleTrack)
         .on('touchstart',this.handleTrack)
@@ -171,17 +179,18 @@ Toolkit.spectrogram = (function() {
         console.log('stopped draw_');
         return;
       }
-      spec3D.analyserView.doFrequencyAnalysis();
+      // spec3D.analyserView.doFrequencyAnalysis();
+      let data = spec3D.analyserView.doFrequencyAnalysis();
+      // console.log(data);
       requestAnimationFrame(spec3D.draw_.bind(spec3D));
     },
 
     hideGrid: function() {
       $('#legend').hide();
     },
-    // showGrid: function() {
-    //     $('#spectrogram').css("z-index", "0");
-    //     console.log("SHOW GRID");
-    // },
+    showGrid: function() {
+      $('#legend').show();
+    },
 
     drawLegend_: function() {
       let canvas = $('#legend')[0];
@@ -209,16 +218,14 @@ Toolkit.spectrogram = (function() {
       ctx.font = '14px Roboto';
       ctx.textAlign = 'right';
       ctx.textBaseline = 'middle';
-      ctx.fillText('20,000 Hz -', x, canvas.height - spec3D.freqToY(10000));
-      ctx.fillText('300 Hz -', x, canvas.height - spec3D.freqToY(75));
-      ctx.fillText('200 Hz -', x, canvas.height - spec3D.freqToY(35));
-      ctx.fillText('100 Hz -', x, canvas.height - spec3D.freqToY(15));
+      ctx.fillText('- 10 kHz', x, canvas.height - spec3D.freqToY(6000));
+      ctx.fillText('- 8 kHz', x, canvas.height - spec3D.freqToY(3000));
+      ctx.fillText('- 3.5 kHz', x, canvas.height - spec3D.freqToY(1000));
+      ctx.fillText('- 300 Hz', x, canvas.height - spec3D.freqToY(75));
+      ctx.fillText('- 200 Hz', x, canvas.height - spec3D.freqToY(35));
+      ctx.fillText('- 100 Hz', x, canvas.height - spec3D.freqToY(20));
 
     },
-
-    // updateDetails: function(details) {
-    //   $('#freqSample').text(details[0].toString() + " " + details[1].toString() + "Hz");
-    // },
 
     /**
      * Convert between frequency and the offset on the canvas (in screen space).
@@ -255,24 +262,24 @@ Toolkit.spectrogram = (function() {
       return spec3D.padding + percent * (height - 2*padding);
     },
 
-    easeInOutCubic: function (t, b, c, d) {
-      if ((t/=d/2) < 1) return c/2*t*t*t + b;
-      return c/2*((t-=2)*t*t + 2) + b;
-    },
-    easeInOutQuad: function (t, b, c, d) {
-      if ((t/=d/2) < 1) return c/2*t*t + b;
-      return -c/2 * ((--t)*(t-2) - 1) + b;
-    },
-    easeInOutQuint: function (t, b, c, d) {
-      if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
-      return c/2*((t-=2)*t*t*t*t + 2) + b;
-    },
-    easeInOutExpo: function (t, b, c, d) {
-      if (t===0) return b;
-      if (t===d) return b+c;
-      if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
-      return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
-    }
+    // easeInOutCubic: function (t, b, c, d) {
+    //   if ((t/=d/2) < 1) return c/2*t*t*t + b;
+    //   return c/2*((t-=2)*t*t + 2) + b;
+    // },
+    // easeInOutQuad: function (t, b, c, d) {
+    //   if ((t/=d/2) < 1) return c/2*t*t + b;
+    //   return -c/2 * ((--t)*(t-2) - 1) + b;
+    // },
+    // easeInOutQuint: function (t, b, c, d) {
+    //   if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+    //   return c/2*((t-=2)*t*t*t*t + 2) + b;
+    // },
+    // easeInOutExpo: function (t, b, c, d) {
+    //   if (t===0) return b;
+    //   if (t===d) return b+c;
+    //   if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+    //   return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+    // }
   };
 
   return spec3D;
@@ -334,7 +341,6 @@ Toolkit.main = (function() {
       }
       return q;
     };
-
     let getLocalization = function() {
       let q = parseQueryString();
       let lang = 'en';
@@ -363,83 +369,29 @@ Toolkit.main = (function() {
       // });
     };
 
-    let loadUploads = function() {
-      let uploadList = $('.uploads');
-
-      $.getJSON('/api/directory', function (data) {
-        console.log(data);
-
-        let items = [];
-        for (let i = 0; i < data.length; i++) {
-          items.push(data[i].fileName);
-        }
-        console.log(items);
-
-        uploadList.empty();
-
-        if (items.length) {
-          let content = '<li>' + items.join('</li><li>') + '</li>';
-          let list = $('<ul />').html(content);
-          uploadList.append(list);
-        }
-      });
-
-      uploadList.text('Loading the JSON file.');
+    let expandMyMenu = function() {
+      $("nav.sidebar").removeClass("sidebar-menu-collapsed").addClass("sidebar-menu-expanded");
+      $('.components').css({left: '5rem'});
+    };
+    let collapseMyMenu = function() {
+      $("nav.sidebar").removeClass("sidebar-menu-expanded").addClass("sidebar-menu-collapsed");
+      $('.components').css({left: '0rem'});
+    };
+    let showMenuTexts = function() {
+      $("nav.sidebar ul a span.expanded-element").show();
+    };
+    let hideMenuTexts = function() {
+      $("nav.sidebar ul a span.expanded-element").hide();
     };
 
     let startup = function() {
-      // let i = 0;
-      // loadUploads();
       getLocalization();
       window.parent.postMessage('ready','*');
-
+      let $music_bbb = $('.music-box__buttons__button');
       let sp = Toolkit.spectrogram;
-      // sp.updateDetails(notes[i].split(':'));
       sp.attached();
 
-      // --------------------------------------------
-      // let $playButton = $('.music-box__buttons__sampler');
-      // $playButton.click(function(e) {
-      //   if ($(this).hasClass('selected')) {
-      //     $playButton.removeClass('selected');
-      //     sp.stop();
-      //   }
-      //   else {
-      //     $playButton.removeClass('selected');
-      //     $(this).addClass('selected');
-      //     let src = "bin/snd/";
-      //     let info = notes[i].split(':');
-      //     src += info[1];
-      //     sp.startRender();
-      //     sp.drawingMode = false;
-      //     let waveType = $('#wavetype').val();
-      //     console.log(waveType);
-      //     if (waveType !== 'sin')
-      //       src += waveType;
-      //     $(this).prop('data-src', src + ".wav");
-      //     console.log($(this).prop('data-src'));
-      //     if ($(this).prop('data-src') !== undefined) {
-      //       sp.play($(this).prop('data-src'));
-      //       // if(!sp.isPlaying())
-      //       //     $(this).removeClass('selected');
-      //     }
-      //     console.log(sp.isPlaying());
-      //
-      //
-      //   }
-      // });
-      // --------------------------------------------
-      // let $toggle = $('.music-box__buttons__toggle');
-      // $toggle.click(function(e) {
-      //   if ($(this).attr('data-name') === 'up')
-      //     i === notes.length ? i = 0 : i++;
-      //   if ($(this).attr('data-name') === 'down')
-      //     i === 0 ? i = notes.length : i--;
-      //   sp.updateDetails(notes[i].split(':'));
-      //
-      // });
-      // --------------------------------------------
-      let $music_bbb = $('.music-box__buttons__button');
+      // --------------------------------------------//
       $music_bbb.click(function(e) {
         sp.startRender();
         let wasPlaying = sp.isPlaying();
@@ -477,13 +429,34 @@ Toolkit.main = (function() {
           }
         }
       });
-      // --------------------------------------------
-      let $record = $('.music-box__buttons__record');
-      $record.click(function(e) {
-        sp.hideGrid();
+      // --------------------------------------------//
+      $("#menuButton").click(function(e) {
+        if ($(this).parent("nav.sidebar").hasClass("sidebar-menu-collapsed")) {
+          expandMyMenu();
+          showMenuTexts();
+          $(this).css({ color: "#000" });
+        } else if ($(this).parent("nav.sidebar").hasClass("sidebar-menu-expanded")) {
+          collapseMyMenu();
+          hideMenuTexts();
+          $(this).css({color: "#FFF"});
+        }
+
       });
+      // --------------------------------------------
+      $('.menu-item').click(function() {
 
+        let active = $(this).hasClass('active');
 
+        active ? $(this).removeClass('active') :
+          $('nav.sidebar ul li').removeClass('active');
+          $('.componentContainer').hide();
+          $(this).addClass('active');
+
+        $(this)[0].id === 'toggleComponentLink' ? !active ? $('#togglerContainer').show() : $('#togglerContainer').hide() : null;
+
+        $(this)[0].id === 'settingsComponentLink' ? !active ? $('#settingsContainer').show() : $('#settingsContainer').hide() : null;
+
+      });
     };
 
     let elm = $('#iosButton');

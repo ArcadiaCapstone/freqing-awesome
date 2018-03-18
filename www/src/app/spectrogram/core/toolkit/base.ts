@@ -31,7 +31,7 @@
 
 
 /**
- * @fileoverview Base for all o3d sample utilties.
+ * @fileoverview Base for all o3d note utilties.
  *    For more information about o3d see
  *    http://code.google.com/p/o3d.
  *
@@ -554,8 +554,8 @@ o3djs.base.snapshotProvidedNamespaces = function()  {
 };
 
 /**
- * Initializes the o3djs.sample library in a v8 instance. This should be called
- * for every V8 instance that uses the sample library. It is automatically
+ * Initializes the o3djs.note library in a v8 instance. This should be called
+ * for every V8 instance that uses the note library. It is automatically
  * called by o3djs.util.makeClients.
  * @param {!o3d.plugin} clientObject O3D.Plugin Object.
  */
@@ -586,7 +586,7 @@ o3djs.base.initV8 = function(clientObject)  {
 };
 
 /**
- * Initializes the o3djs.sample library.
+ * Initializes the o3djs.note library.
  * Basically all it does is record the o3djs.namespace object which is used by
  * other functions to look up o3d constants.
  *

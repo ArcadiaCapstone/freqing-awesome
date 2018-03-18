@@ -11,6 +11,9 @@ export class SpectrumComponent implements OnInit,AfterViewInit {
   constructor() { }
 
   ngOnInit() {
+
+
+
   }
 
   ngAfterViewInit(): void {

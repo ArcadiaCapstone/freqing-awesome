@@ -93,7 +93,7 @@
  * These functions multiply matrices implicitly and internally choose the
  * multiplication order to get the right result.  That way, utilities which use
  * o3djs.math work in either major mode.  Note that this does not necessarily
- * mean all sample code will work even if a line is added which switches major
+ * mean all note code will work even if a line is added which switches major
  * modes, but it does mean that calls to o3djs still do what they are supposed
  * to.
  *

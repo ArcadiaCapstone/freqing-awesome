@@ -1,11 +1,11 @@
 <div id="toggler" class="col">
-  <div id="freqToggler" class="row">
+  <div id="freqInfo" class="row">
 
     <div class="toggle" (click)="toggleDown()">
       <div class="icon icon-down-arrow"></div>
     </div>
 
-    <h3 class="freqSample">{{sample}}<span><img id="typeIcon" src="../bin/icons/{{typeIcon}}.svg"></span></h3>
+    <h3 class="freqSample">{{note}}<span><img id="typeIcon" src="{{typeIcon}}"></span></h3>
 
     <div class="toggle" (click)="toggleUP()">
       <div class="icon icon-up-arrow"></div>
@@ -28,15 +28,15 @@
     </label>
   </div>
 
-  <div class="row controlPanel">
-    <div class="control">
-      <div class="playButton icon icon-play-button" (click)="playSample(this)"></div>
+  <div class="row playerContainer">
+    <div class="control" (click)="playSample(this)">
+      <div class="playButton icon icon-play-button"></div>
     </div>
-    <div class="control">
-      <div class="pauseButton icon icon-pause-sign" (click)="pauseSample(this)"></div>
+    <div class="control" (click)="pauseSample(this)">
+      <div class="pauseButton icon icon-pause-sign"></div>
     </div>
-    <div class="control">
-      <div class="stopButton icon icon-stop-button" (click)="stopSample(this)"></div>
+    <div class="control" (click)="stopSample(this)">
+      <div class="stopButton icon icon-stop-button"></div>
     </div>
   </div>
 

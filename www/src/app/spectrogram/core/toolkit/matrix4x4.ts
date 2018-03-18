@@ -26,7 +26,7 @@
  */
 
 /*
- * Based on sample code from the OpenGL(R) ES 2.0 Programming Guide, which carriers
+ * Based on note code from the OpenGL(R) ES 2.0 Programming Guide, which carriers
  * the following header:
  *
  * Book:      OpenGL(R) ES 2.0 Programming Guide

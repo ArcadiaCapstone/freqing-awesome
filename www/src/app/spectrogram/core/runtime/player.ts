@@ -1,4 +1,4 @@
-import {Util} from "../toolkit";
+import {AnalyserView, Util} from "../toolkit";
 
 
 declare const window:any;
@@ -143,7 +143,6 @@ Player.prototype.stop = function() {
     this.input = null;
 
   }
-  // console.log(AnalyserView.prototype.getDataPoints());
 };
 
 Player.prototype.getAnalyserNode = function() {

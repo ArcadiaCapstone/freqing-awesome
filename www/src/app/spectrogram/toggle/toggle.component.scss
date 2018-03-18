@@ -1,11 +1,12 @@
 
-#freqToggler {
+#freqInfo {
   display: inline-flex;
 }
 .freqSample {
   font-size: large;
   width: 10rem;
-  padding: .5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   color: whitesmoke;
 
 }
@@ -25,7 +26,7 @@ select#waveType {
   color: whitesmoke;
 }
 .toggle {
-  background-color: #333333;
+  background-color: transparent;
   color: whitesmoke;
   width: 4rem;
   height: 4rem;
@@ -53,7 +54,7 @@ select#waveType {
 }
 
 .control {
-    background-color: #333333;
+    background-color: transparent;
     color: whitesmoke;
     width: 4rem;
     height: 4rem;
@@ -81,8 +82,9 @@ select#waveType {
       //transform: rotate(90deg);
     }
 }
-.controlPanel {
+.playerContainer {
   margin-top: 1rem;
+  margin-left: 1rem;
 }
 .switch {
   position: relative;
@@ -120,11 +122,11 @@ select#waveType {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #7a42f4;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #7a42f4;
 }
 
 input:checked + .slider:before {
