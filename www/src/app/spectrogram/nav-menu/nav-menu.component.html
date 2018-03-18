@@ -1,43 +1,54 @@
 <script type='text/javascript' src='//code.jquery.com/jquery-1.10.1.js'></script>
 <div id="menuContainer">
-  <nav id='navbar' class='sidebar sidebar-menu-collapsed'>
-    <a id='menuButton'>
-      <span class='glyphicon glyphicon-align-justify'></span>
-    </a>
-    <ul>
-      <li class='menu-item' id="link-files">
-        <a class='expandable' title='Files'>
-          <span class='glyphicon glyphicon-folder-open collapsed-element'></span>
-          <span class='expanded-element'>Files</span>
-        </a>
-      </li>
-      <li class='menu-item' id="link-toggle">
-        <a class='expandable' title='Notes'>
-          <span class='glyphicon glyphicon-music collapsed-element'></span>
-          <span class='expanded-element'>Notes</span>
-        </a>
-      </li>
-      <li class='menu-item' id="link-specials">
-        <a class='expandable' title='Specials'>
-          <span class='glyphicon glyphicon-star collapsed-element'></span>
-          <span class='expanded-element'>Special</span>
-        </a>
-      </li>
-      <li class='menu-item' id="link-settings">
-        <a class='expandable' title='Settings'>
-          <span class='glyphicon glyphicon-cog collapsed-element'></span>
-          <span class='expanded-element'>Settings</span>
-        </a>
-      </li>
-      <li class='menu-item' id="link-account">
-        <a class='expandable' href='#' title='Account'>
-          <span class='glyphicon glyphicon-user collapsed-element'></span>
-          <span class='expanded-element'>Account</span>
-        </a>
-      </li>
-        <a href='#' id='logout-icon' title='Logout'>
-          <span class='glyphicon glyphicon-off'></span>
-        </a>
-    </ul>
-  </nav>
+  <!--<nav id='navbar' class='sidebar sidebar-menu-collapsed'>-->
+    <!--<a id='menuButton'>-->
+      <!--<span class='glyphicon glyphicon-align-justify'></span>-->
+    <!--</a>-->
+    <!--<ul>-->
+      <!--<li class='menu-item' id="link-files">-->
+        <!--<a class='expandable' title='Files'>-->
+          <!--<span class='glyphicon glyphicon-folder-open collapsed-element'></span>-->
+          <!--<span class='expanded-element'>Files</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class='menu-item' id="link-toggle">-->
+        <!--<a class='expandable' title='Notes'>-->
+          <!--<span class='glyphicon glyphicon-music collapsed-element'></span>-->
+          <!--<span class='expanded-element'>Notes</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class='menu-item' id="link-specials">-->
+        <!--<a class='expandable' title='Specials'>-->
+          <!--<span class='glyphicon glyphicon-star collapsed-element'></span>-->
+          <!--<span class='expanded-element'>Special</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class='menu-item' id="link-settings">-->
+        <!--<a class='expandable' title='Settings'>-->
+          <!--<span class='glyphicon glyphicon-cog collapsed-element'></span>-->
+          <!--<span class='expanded-element'>Settings</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class='menu-item' id="link-account">-->
+        <!--<a class='expandable' href='#' title='Account'>-->
+          <!--<span class='glyphicon glyphicon-user collapsed-element'></span>-->
+          <!--<span class='expanded-element'>Account</span>-->
+        <!--</a>-->
+      <!--</li>-->
+        <!--<a href='#' id='logout-icon' title='Logout'>-->
+          <!--<span class='glyphicon glyphicon-off'></span>-->
+        <!--</a>-->
+    <!--</ul>-->
+  <!--</nav>-->
+  <mat-sidenav-container
+    class="example-container" (backdropClick)="close('backdrop')">
+    <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+      <p><button mat-button (click)="close('toggle button')">Toggle</button></p>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <p><button mat-button (click)="sidenav.open()">Open</button></p>
+      <p>Closed due to: {{reason}}</p>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
