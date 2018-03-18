@@ -5,7 +5,7 @@ import {
 } from "../toolkit";
 
 import Player from "./player"
-import {settings} from 'cluster';
+
 
 const Toolkit:any = {};
 
