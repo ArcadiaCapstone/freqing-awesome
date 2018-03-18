@@ -54,9 +54,9 @@ o3djs.shader = o3djs.shader || {};
  * additional syntax like per-line quotation marks.
  * @param {!WebGLRenderingContext} gl The WebGLRenderingContext
  *     into which the shader will be loaded.
- * @param {!string} vertexScriptName The name of the HTML Script node
+ * @param {!string} vertexScriptName The component of the HTML Script node
  *     containing the vertex program.
- * @param {!string} fragmentScriptName The name of the HTML Script node
+ * @param {!string} fragmentScriptName The component of the HTML Script node
  *     containing the fragment program.
  */
 o3djs.shader.loadFromScriptNodes = function(gl,

@@ -55,8 +55,8 @@ var goog = goog || {};
 /**
  * A macro for defining composite types.
  *
- * By assigning goog.typedef to a name, this tells Google internal JSCompiler
- * that this is not the name of a class, but rather it's the name of a composite
+ * By assigning goog.typedef to a component, this tells Google internal JSCompiler
+ * that this is not the component of a class, but rather it's the component of a composite
  * type.
  *
  * For example,
@@ -91,7 +91,7 @@ o3djs.provided_ = [];
  * Creates object stubs for a namespace. When present in a file,
  * o3djs.provide also indicates that the file defines the indicated
  * object.
- * @param {string} name name of the object that this file defines.
+ * @param {string} name component of the object that this file defines.
  */
 o3djs.provide = function(name) {
   // Ensure that the same namespace isn't provided twice.
@@ -126,7 +126,7 @@ o3djs.implicitNamespaces_ = {};
  * example:
  * "a.b.c" -> a = {};a.b={};a.b.c={};
  * Used by o3djs.provide and o3djs.exportSymbol.
- * @param {string} name name of the object that this file defines.
+ * @param {string} name component of the object that this file defines.
  * @param {Object} opt_object the object to expose at the end of the path.
  * @param {Object} opt_objectToExportTo The object to add the path to; default
  *     is |o3djs.global|.
@@ -159,11 +159,11 @@ o3djs.exportPath_ = function(name, opt_object, opt_objectToExportTo) {
 
 
 /**
- * Returns an object based on its fully qualified external name.  If you are
+ * Returns an object based on its fully qualified external component.  If you are
  * using a compilation pass that renames property names beware that using this
  * function will not find renamed properties.
  *
- * @param {string} name The fully qualified name.
+ * @param {string} name The fully qualified component.
  * @param {Object} opt_obj The object within which to look; default is
  *     |o3djs.global|.
  * @return {Object} The object or, if not found, null.
@@ -381,8 +381,8 @@ o3djs.isDef = function(val) {
  *                        Foo.prototype.myMethod);
  *     new public.path.Foo().myMethod();
  *
- * @param {string} publicPath Unobfuscated name to export.
- * @param {Object} object Object the name should point to.
+ * @param {string} publicPath Unobfuscated component to export.
+ * @param {Object} object Object the component should point to.
  * @param {Object} opt_objectToExportTo The object to add the path to; default
  *     is |o3djs.global|.
  */
@@ -472,10 +472,10 @@ o3djs.valueToString_ = function(value) {
 };
 
 /**
- * Given an object holding a namespace and the name of that namespace,
+ * Given an object holding a namespace and the component of that namespace,
  * generates a string that when evaluated will populate the namespace.
  * @param {!Object} namespaceObject An object holding a namespace.
- * @param {string} namespaceName The name of the namespace.
+ * @param {string} namespaceName The component of the namespace.
  * @param {!Array.<Object>} opt_args An array of objects that will be used
  *     together with the initializer string to populate a namespace. The args
  *     may be referenced from initializer code as args_[i] where i is the index
@@ -644,7 +644,7 @@ o3djs.base.ready = function() {
  * A stub for later optionally converting obfuscated names
  * @private
  * @param {string} name Name to un-obfuscate.
- * @return {string} un-obfuscated name.
+ * @return {string} un-obfuscated component.
  */
 o3djs.base.maybeDeobfuscateFunctionName_ = function(name) {
   return name;
@@ -712,10 +712,10 @@ o3djs.base.parseErrorStack = function(excp) {
 };
 
 /**
- * Gets a function name from a function object.
+ * Gets a function component from a function object.
  * @param {!function(...): *} aFunction The function object to try to get a
- *      name from.
- * @return {string} function name or 'anonymous' if not found.
+ *      component from.
+ * @return {string} function component or 'anonymous' if not found.
  */
 o3djs.base.getFunctionName = function(aFunction) {
   var regexpResult = aFunction.toString().match(/function(\s*)(\w*)/);

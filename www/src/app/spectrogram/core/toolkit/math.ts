@@ -53,7 +53,7 @@
  * - A matrix M transforms a vector v by multiplying in the order M*v.
  *
  * When a function in o3djs.math requires separate row-major and
- * column-major versions, a function with the same name gets added to each of
+ * column-major versions, a function with the same component gets added to each of
  * the namespaces o3djs.math.rowMajor and o3djs.math.columnMajor. The
  * function installRowMajorFunctions() or the function
  * installColumnMajorFunctions() should get called during initialization to
