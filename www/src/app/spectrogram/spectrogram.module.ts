@@ -8,7 +8,7 @@ import {DataExportComponent} from "./data-export/data-export.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {CdkTableModule} from '@angular/cdk/table';
 import { SpecialsComponent } from './specials/specials.component';
-import { FilesComponent } from './files/files.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 import {NavMenuComponent} from "./nav-menu/nav-menu.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {
@@ -94,7 +94,7 @@ import '../../polyfills';
     SettingsComponent,
     NavMenuComponent,
     SpecialsComponent,
-    FilesComponent,
+    PlaylistComponent,
   ],
   bootstrap: [
     NavMenuComponent
