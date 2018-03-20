@@ -1,19 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import {SpectrogramModule} from "./spectrogram/spectrogram.module";
+import { SpectrogramModule } from "./spectrogram/spectrogram.module";
+import { AuthService} from "../services/auth.service";
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
-import {environment} from "../environments/environment";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
-import {MatNativeDateModule} from "@angular/material";
-import {DataService} from "./spectrogram/data.service";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { environment } from "../environments/environment";
+
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { MatNativeDateModule,} from "@angular/material";
 
 
 @NgModule({
@@ -29,16 +31,12 @@ import {DataService} from "./spectrogram/data.service";
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    AngularFireAuthModule,
     AppRoutingModule,
-    SpectrogramModule,
-
+    SpectrogramModule
   ],
-  providers: [
-    DataService
-  ],
-  bootstrap: [
-    AppComponent,
-  ]
+  providers: [AuthService],
+  bootstrap: [AppComponent]
 
 })
 export class AppModule { }
