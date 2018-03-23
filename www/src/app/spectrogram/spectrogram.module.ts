@@ -46,6 +46,7 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import '../../polyfills';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -95,6 +96,7 @@ import '../../polyfills';
     NavMenuComponent,
     SpecialsComponent,
     PlaylistComponent,
+    LoginComponent,
   ],
   bootstrap: [
     NavMenuComponent

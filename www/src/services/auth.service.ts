@@ -9,7 +9,9 @@ export class AuthService {
 
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
-  private provider = new firebase.auth.GoogleAuthProvider();
+  private photo: string;
+  // private provider = new firebase.auth.GoogleAuthProvider();
+
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
@@ -29,26 +31,20 @@ export class AuthService {
     // });
   }
 
-  signInWithTwitter() {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.TwitterAuthProvider()
-    )
-  }
-
-  signInWithFacebook() {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.FacebookAuthProvider()
-    )
-  }
-
   signInWithGoogle() {
     return this._firebaseAuth.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
     )
   }
 
-  googAuth() {
-    return this._firebaseAuth.auth.signInWithRedirect(this.provider)
+  getUserDetails() {
+    return firebase.auth().currentUser.providerData.forEach((profile) => {
+      this.photo = profile.photoURL;
+    });
+  }
+
+  getUserPhoto() {
+    return this.photo
   }
 
   isLoggedIn() {

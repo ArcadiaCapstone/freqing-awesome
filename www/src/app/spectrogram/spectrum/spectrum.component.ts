@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { NavMenuComponent} from "../nav-menu/nav-menu.component";
 import Toolkit from "../core/runtime";
 
 

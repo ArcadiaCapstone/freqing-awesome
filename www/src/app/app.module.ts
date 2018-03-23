@@ -16,6 +16,8 @@ import { environment } from "../environments/environment";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatNativeDateModule,} from "@angular/material";
+import {NavMenuComponent} from "./spectrogram/nav-menu/nav-menu.component";
+import {SpectrumComponent} from "./spectrogram/spectrum/spectrum.component";
 
 
 @NgModule({
@@ -35,7 +37,7 @@ import { MatNativeDateModule,} from "@angular/material";
     AppRoutingModule,
     SpectrogramModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, SpectrumComponent],
   bootstrap: [AppComponent]
 
 })

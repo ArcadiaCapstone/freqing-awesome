@@ -195,11 +195,18 @@ Toolkit.spectrogram = (function() {
     showMe(elemId) {
       $("[id*=" + elemId + "]").show();
     },
+    switchComponent(elemId) {
+      $('.componentContainer').hide();
+      $("[id*=" + elemId + "]").show();
+      spec3D.stop();
+    },
     hideGrid: function() {
       $('#legend').hide();
+      $('#spectrogram').css("opacity: 0");
     },
     showGrid: function() {
       $('#legend').show();
+      $('#spectrogram').css("opacity: 0.4");
     },
 
     drawLegend_: function() {
@@ -219,12 +226,12 @@ Toolkit.spectrogram = (function() {
         ctx.lineTo(bw + p, 0.5 + dy + p);
       }
 
-      ctx.strokeStyle = "magenta";
+      ctx.strokeStyle = "whitesmoke";
       ctx.stroke();
 
       let x = canvas.width - 10;
 
-      ctx.fillStyle = 'magenta';
+      ctx.fillStyle = 'whitesmoke';
       ctx.font = '14px Roboto';
       ctx.textAlign = 'right';
       ctx.textBaseline = 'middle';
@@ -295,12 +302,11 @@ Toolkit.spectrogram = (function() {
   return spec3D;
 
 })();
+
 Toolkit.startScript = null;
 
 
-
 Toolkit.main = (function() {
-
 
   window.isMobile = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) );
   window.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -344,24 +350,8 @@ Toolkit.main = (function() {
       window.parent.postMessage('ready', '*');
       Toolkit.spectrogram.attached();
       // --------------------------------------------//
-      let $menuItem = $('.menu-item');
       let $specialButton = $('.special-button');
       // --------------------------------------------//
-      // $menuItem.click(function() {
-      //
-      //   let linkedContainer = $(this)[0].id.substring(5) + "Container";
-      //
-      //   if ($(this).hasClass('active')) {
-      //     $(this).removeClass('active');
-      //     $("[id*=" + linkedContainer + "]").hide();
-      //   } else {
-      //     $('nav.sidebar ul li').removeClass('active');
-      //     $('.componentContainer').hide();
-      //     $(this).addClass('active');
-      //     $("[id*=" + linkedContainer + "]").show();
-      //   }
-      // });
-
       $specialButton.click(function() {
         Toolkit.spectrogram.startRender();
         let wasPlaying = Toolkit.spectrogram.isPlaying();
@@ -388,15 +378,9 @@ Toolkit.main = (function() {
             Toolkit.spectrogram.drawingMode = true;
             $('#drawAnywhere').fadeIn().delay(2000).fadeOut();
           }
-            // Check for play audio data instruction **************************
-          // else if ($(this).attr('data-src') !== undefined) {
-          //   Toolkit.spectrogram.loopChanged( true );
-          //   $('#loadingMessage').text($(this).attr('data-component'));
-          //   Toolkit.spectrogram.play($(this).attr('data-src'));
-          // }
+
         }
       });
-      // --------------------------------------------//
     };
 
     let elm = $('#iosButton');

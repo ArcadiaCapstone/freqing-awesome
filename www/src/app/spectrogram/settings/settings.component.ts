@@ -20,8 +20,8 @@ export class SettingsComponent implements OnInit {
     this.update();
   }
   setFreqAnalysisType() {
-    // Toolkit.spectrogram.stop();
-    // Toolkit.spectrogram.init_(0);
+    Toolkit.spectrogram.stop();
+    Toolkit.spectrogram.init(0);
   }
   update() {
     this.grid ? Toolkit.spectrogram.showGrid() : Toolkit.spectrogram.hideGrid();
