@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {notes} from "../core/runtime/notes";
-import Toolkit from "../core/runtime/index";
+import {notes} from "../../core/runtime/notes";
+import Toolkit from "../../core/runtime/index";
 
 
 @Component({
@@ -47,20 +47,19 @@ export class ToggleComponent implements OnInit {
     this.loop = e.target.checked;
   }
 
-  playSample(which=null) {
+  playSample() {
     (!this.loop) ? Toolkit.spectrogram.stop() : null;
     Toolkit.spectrogram.drawingMode = false;
     Toolkit.spectrogram.startRender();
     Toolkit.spectrogram.play(this.src);
   }
 
-  pauseSample(which=null) {
+  pauseSample() {
     Toolkit.spectrogram.stop();
     Toolkit.spectrogram.stopRender();
-
   }
 
-  stopSample(which=null) {
+  stopSample() {
     Toolkit.spectrogram.startRender();
     Toolkit.spectrogram.stop();
   }

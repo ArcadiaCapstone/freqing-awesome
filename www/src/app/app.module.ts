@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SpectrogramModule } from "./spectrogram/spectrogram.module";
@@ -16,13 +16,14 @@ import { environment } from "../environments/environment";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatNativeDateModule,} from "@angular/material";
-import {NavMenuComponent} from "./spectrogram/nav-menu/nav-menu.component";
-import {SpectrumComponent} from "./spectrogram/spectrum/spectrum.component";
+import {SpectrogramComponent} from "./spectrogram/spectrogram.component";
+import {NavMenuComponent} from "./spectrogram/spectrum/nav-menu/nav-menu.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SpectrogramComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +36,9 @@ import {SpectrumComponent} from "./spectrogram/spectrum/spectrum.component";
     AngularFireStorageModule,
     AngularFireAuthModule,
     AppRoutingModule,
-    SpectrogramModule
+    SpectrogramModule,
   ],
-  providers: [AuthService, SpectrumComponent],
+  providers: [AuthService, NavMenuComponent],
   bootstrap: [AppComponent]
 
 })

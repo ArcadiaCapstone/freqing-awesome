@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Toolkit from "../core/runtime";
+import Toolkit from "../../core/runtime/index";
 
 @Component({
   selector: 'app-settings',
@@ -19,9 +19,9 @@ export class SettingsComponent implements OnInit {
     this.grid = e.target.checked;
     this.update();
   }
-  setFreqAnalysisType() {
+  switchAnalysisType(n) {
     Toolkit.spectrogram.stop();
-    Toolkit.spectrogram.init(0);
+    Toolkit.spectrogram.init(n);
   }
   update() {
     this.grid ? Toolkit.spectrogram.showGrid() : Toolkit.spectrogram.hideGrid();

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import { NavMenuComponent} from "../nav-menu/nav-menu.component";
 import Toolkit from "../core/runtime";
+import {NavMenuComponent} from "./nav-menu/nav-menu.component";
 
 
 @Component({
@@ -10,16 +10,12 @@ import Toolkit from "../core/runtime";
 })
 export class SpectrumComponent implements OnInit,AfterViewInit {
 
-  nestedSelector: string;
+  constructor(public nav: NavMenuComponent) { }
 
-  constructor() { }
-
-  ngOnInit() {
-    console.log('nestedSelector: ' + this.nestedSelector);
-  }
+  ngOnInit() { }
 
   ngAfterViewInit(): void {
     Toolkit.startScript();
-  }
 
+  }
 }

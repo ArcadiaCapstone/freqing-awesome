@@ -36,7 +36,7 @@ Toolkit.spectrogram = (function() {
           }
 
           let freq = spec3D.yToFreq(Number(e.pageY) || Number(e.originalEvent.touches[0].pageY));
-
+          console.log('isPlaying()= ' + spec3D.isPlaying());
           if (spec3D.isPlaying()) {
             spec3D.player.setBandpassFrequency(freq);
           } else {
@@ -105,7 +105,7 @@ Toolkit.spectrogram = (function() {
 
     stop: function() {
       spec3D.player.stop();
-      console.log("STOP");
+      // console.log("STOP");
     },
 
     isPlaying: function() {
@@ -132,6 +132,7 @@ Toolkit.spectrogram = (function() {
     play: function(src) {
       spec3D.src = src;
       spec3D.player.playSrc(src);
+      console.log('isPlaying()= ' + spec3D.isPlaying());
     },
     recordRaw: function() {
 
@@ -155,6 +156,7 @@ Toolkit.spectrogram = (function() {
       // impliment!!
       spec3D.player = player;
       spec3D.analyserView = analyserView;
+      $('.componentContainer').hide();
       $('#spectrogram')
         .on('mousedown', this.handleTrack)
         .on('touchstart', this.handleTrack)

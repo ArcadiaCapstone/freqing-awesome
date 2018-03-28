@@ -1,15 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpectrumComponent } from './spectrum/spectrum.component';
-import { SpectrogramComponent } from './spectrogram.component';
 import { CoreModule } from './core/core.module';
-import {ToggleComponent} from "./toggle/toggle.component";
-import {DataExportComponent} from "./data-export/data-export.component";
-import {SettingsComponent} from "./settings/settings.component";
 import {CdkTableModule} from '@angular/cdk/table';
-import { SpecialsComponent } from './specials/specials.component';
-import { PlaylistComponent } from './playlist/playlist.component';
-import {NavMenuComponent} from "./nav-menu/nav-menu.component";
+import {NavMenuComponent} from "./spectrum/nav-menu/nav-menu.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {
   MatAutocompleteModule,
@@ -46,7 +40,12 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import '../../polyfills';
-import { LoginComponent } from './login/login.component';
+import {AppRoutingModule, routingComponents} from "../app-routing.module";
+import {ToggleComponent} from "./spectrum/toggle/toggle.component";
+import {LoginComponent} from "./spectrum/login/login.component";
+import {SpecialsComponent} from "./spectrum/specials/specials.component";
+import {SettingsComponent} from "./spectrum/settings/settings.component";
+import {PlaylistComponent} from "./spectrum/playlist/playlist.component";
 
 @NgModule({
   imports: [
@@ -85,23 +84,20 @@ import { LoginComponent } from './login/login.component';
     MatToolbarModule,
     MatTooltipModule,
     MatButtonModule,
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+
   ],
   declarations: [
     SpectrumComponent,
-    SpectrogramComponent,
     ToggleComponent,
-    DataExportComponent,
-    SettingsComponent,
-    NavMenuComponent,
-    SpecialsComponent,
     PlaylistComponent,
     LoginComponent,
+    SpecialsComponent,
+    SettingsComponent,
+    NavMenuComponent,
   ],
-  bootstrap: [
-    NavMenuComponent
-  ],
-
+  bootstrap: [],
 
 })
 export class SpectrogramModule { }
