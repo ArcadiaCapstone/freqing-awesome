@@ -16,12 +16,6 @@ export class NavMenuComponent implements OnInit {
   logged: boolean;
   photo: string;
 
-  public toggle: boolean;
-  public playlist: boolean;
-  public settings: boolean;
-  public specials: boolean;
-  public authcomp: boolean;
-
 
   constructor(auth: AuthService) {
     this.logged = auth.isLoggedIn();
@@ -29,11 +23,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.toggle = false;
-    this.playlist = false;
-    this.settings = false;
-    this.specials = false;
-    this.authcomp = false;
+
   }
 
   close(val) {

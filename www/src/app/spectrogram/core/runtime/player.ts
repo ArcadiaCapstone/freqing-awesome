@@ -10,7 +10,7 @@ function Player() {
   let context = new AudioContext();
 
   let analyser = context.createAnalyser();
-  analyser.fftSize = 2048 * 2 * 2
+  analyser.fftSize = 2048 * 2 * 2;
   analyser.fftSize = (window.isMobile)? 2048 : 8192;
   analyser.fftSize = (window.isMobile)?1024 : 2048;
   analyser.smoothingTimeConstant = 0;

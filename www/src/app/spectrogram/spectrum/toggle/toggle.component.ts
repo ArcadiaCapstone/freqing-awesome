@@ -13,10 +13,13 @@ export class ToggleComponent implements OnInit {
 
   i: number;
   note: string;
-  src: string = "";
+  sampleSrc: string = "";
   selectedType: string;
   typeIcon: string;
   loop: boolean;
+  dx: number = -180;
+  dy: number = 170;
+  dz: number = 90;
 
   constructor() { }
 
@@ -29,7 +32,9 @@ export class ToggleComponent implements OnInit {
   }
 
   toggleDown() {
+    this.dx++;
     this.i === 0 ? this.i = notes.length : this.i--;
+    Toolkit.spectrogram.rotateX(this.dx);
     this.update();
   }
 
@@ -50,8 +55,10 @@ export class ToggleComponent implements OnInit {
   playSample() {
     (!this.loop) ? Toolkit.spectrogram.stop() : null;
     Toolkit.spectrogram.drawingMode = false;
+    Toolkit.spectrogram.play(this.sampleSrc);
     Toolkit.spectrogram.startRender();
-    Toolkit.spectrogram.play(this.src);
+    console.log('playingSample: ' + this.sampleSrc);
+
   }
 
   pauseSample() {
@@ -64,7 +71,7 @@ export class ToggleComponent implements OnInit {
     Toolkit.spectrogram.stop();
   }
   update() {
-    this.src = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.selectedType + '.wav';
+    this.sampleSrc = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.selectedType + '.wav';
     this.selectedType === '' ? this.typeIcon = '../bin/icons/sin.svg' : this.typeIcon = "../bin/icons/" + this.selectedType + ".svg";
     this.note = notes[this.i].split(':')[0].toString() + " " +
                   notes[this.i].split(':')[1].toString() + "Hz";

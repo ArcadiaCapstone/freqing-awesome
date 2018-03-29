@@ -22,7 +22,6 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-  margin-bottom: 4vh;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -57,25 +56,39 @@
   background: transparent;
   p {
     position: absolute;
-    margin-top: 1rem;
+
   }
 }
 .mat-button {
   color: #222;
   outline: none;
 }
-.mat-button#outter-menu {
-  color: #AAAAAA;
-}
+
+
 .mat-button :hover {
   color: #FFFFFF;
 }
 .inner-menu {
-  margin-top: 1rem;
-  margin-bottom: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+}
+.menu-item {
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+  //color: #FFFFFF;
+}
+.menu-item :hover {
+    //color: #222;
+}
+
+#outter-menu {
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+  color: #AAAAAA;
+
 }
 
 #acct-icon {
-  position: absolute;
+  //position: absolute;
   margin-top: 35vh;
 }

@@ -1,10 +1,11 @@
 import {
-  camera,
+  // Camera,
   Util,
   AnalyserView
 } from "../toolkit";
 
 import Player from "./player";
+import {Camera} from "../toolkit/camera";
 
 
 const Toolkit: any = {};
@@ -114,6 +115,7 @@ Toolkit.spectrogram = (function() {
 
     stopRender: function() {
       spec3D.isRendering = false;
+
     },
 
     startRender: function() {
@@ -129,11 +131,17 @@ Toolkit.spectrogram = (function() {
       // spec3D.player.setLoop(loop);
     },
 
-    play: function(src) {
+    play: function(src)
+    {
       spec3D.src = src;
       spec3D.player.playSrc(src);
       console.log('isPlaying()= ' + spec3D.isPlaying());
+
+
+
+
     },
+
     recordRaw: function() {
 
     },
@@ -162,6 +170,13 @@ Toolkit.spectrogram = (function() {
         .on('touchstart', this.handleTrack)
         .on('mouseup', this.handleTrack)
         .on('touchend', this.handleTrack);
+    },
+
+    rotateX(dx) {
+      spec3D.analyserView.cameraController.xRot = dx;
+      // spec3D.analyserView.cameraController.yRot = dy;
+      // spec3D.analyserView.cameraController.zRot = dz;
+      // console.log("dx: " + dx + ", " + "dy: " + dy + ", " + "dx")
     },
 
     onResize_: function() {
@@ -197,15 +212,18 @@ Toolkit.spectrogram = (function() {
     showMe(elemId) {
       $("[id*=" + elemId + "]").show();
     },
+
     switchComponent(elemId) {
       $('.componentContainer').hide();
       $("[id*=" + elemId + "]").show();
       spec3D.stop();
     },
+
     hideGrid: function() {
       $('#legend').hide();
       $('#spectrogram').css("opacity: 0");
     },
+
     showGrid: function() {
       $('#legend').show();
       $('#spectrogram').css("opacity: 0.4");

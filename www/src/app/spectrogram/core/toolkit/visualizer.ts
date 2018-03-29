@@ -108,6 +108,13 @@ AnalyserView.prototype.getAvailableContext = function(canvas, contextList) {
 	}
 	return null;
 };
+// AnalyserView.protoype.rotation = function(dx,dy,dz) {
+//   let cam =AnalyserView.cameraController;
+//   cam.xRot = -180;
+//   cam.yRot = 270;
+//   cam.zRot = 90;
+//
+// };
 
 AnalyserView.prototype.initGL = function() {
 	model 		= new Matrix4x4();
