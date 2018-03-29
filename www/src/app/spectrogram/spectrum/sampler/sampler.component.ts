@@ -4,11 +4,11 @@ import Toolkit from "../../core/runtime/index";
 
 
 @Component({
-  selector: 'app-toggle',
-  templateUrl: './toggle.component.html',
-  styleUrls: ['./toggle.component.scss']
+  selector: 'app-sampler',
+  templateUrl: './sampler.component.html',
+  styleUrls: ['./sampler.component.scss']
 })
-export class ToggleComponent implements OnInit {
+export class SamplerComponent implements OnInit {
 
 
   i: number;

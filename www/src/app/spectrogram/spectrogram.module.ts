@@ -41,7 +41,7 @@ import {
 } from '@angular/material';
 import '../../polyfills';
 import {AppRoutingModule, routingComponents} from "../app-routing.module";
-import {ToggleComponent} from "./spectrum/toggle/toggle.component";
+import {SamplerComponent} from "./spectrum/sampler/sampler.component";
 import {LoginComponent} from "./spectrum/login/login.component";
 import {SpecialsComponent} from "./spectrum/specials/specials.component";
 import {SettingsComponent} from "./spectrum/settings/settings.component";
@@ -90,7 +90,7 @@ import {PlaylistComponent} from "./spectrum/playlist/playlist.component";
   ],
   declarations: [
     SpectrumComponent,
-    ToggleComponent,
+    SamplerComponent,
     PlaylistComponent,
     LoginComponent,
     SpecialsComponent,
