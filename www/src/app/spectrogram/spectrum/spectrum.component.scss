@@ -1,4 +1,39 @@
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(98%);
+}
+#spectrogram {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 95%;
+  z-index: 98;
+  //opacity: 0.5;
+}
+#grid {
+  opacity: 0.5;
+  z-index: 99;
+}
+.music-box__buttons {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  //white-space: nowrap;
+  background-color: transparent;
+  //padding-left: 2rem;
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  width: 30rem;
+  height: 100%;
+  text-align: center;
+  //text-decoration-color: #EEEEEE;
+  //overflow-x: scroll;
+}
 .components {
-  margin-left: 5rem;
-  z-index: 5;
+  margin-left: 9rem;
+  z-index: 101;
 }

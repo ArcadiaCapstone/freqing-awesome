@@ -12,7 +12,9 @@ export class SpectrumComponent implements OnInit,AfterViewInit {
 
   constructor(public nav: NavMenuComponent) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    Toolkit.spectrogram.toggleGrid(false);
+  }
 
   ngAfterViewInit(): void {
     Toolkit.startScript();

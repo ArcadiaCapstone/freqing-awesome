@@ -43,7 +43,6 @@ Toolkit.spectrogram = (function() {
           } else {
             spec3D.player.playTone(freq);
           }
-
           break;
 
         case 'mousemove' :
@@ -51,9 +50,7 @@ Toolkit.spectrogram = (function() {
           // TRACK --------------------------------------------------------
           let ddx = (Number(e.pageX) || Number(e.originalEvent.touches[0].pageX)) - spec3D.prevX;
           spec3D.prevX = Number(e.pageX) || Number(e.originalEvent.touches[0].pageX);
-// debugger;
           if (spec3D.drawingMode) {
-
             let y = Number(e.pageY) || Number(e.originalEvent.touches[0].pageY);
             let freq1 = spec3D.yToFreq(y);
             // console.log('%f px maps to %f Hz', y, freq);
@@ -72,11 +69,6 @@ Toolkit.spectrogram = (function() {
             } else if ( spec3D.cxRot > 90) {
               spec3D.cxRot = 90;
                  }
-
-            // spec3D.analyserView.cameraController.yRot = spec3D.easeInOutCubic(spec3D.cxRot / 90, 180 , 90 , 1);
-            // spec3D.analyserView.cameraController.zT = spec3D.easeInOutCubic(spec3D.cxRot / 90,-2,-1,1);
-            // console.log(spec3D.cxRot / 90);
-            // spec3D.analyserView.cameraController.zT = -6 + ((spec3D.cxRot / 90) * 4);
           }
           break;
         case 'mouseup' :
@@ -104,18 +96,25 @@ Toolkit.spectrogram = (function() {
       window.addEventListener('resize', spec3D.onResize_.bind(spec3D));
     },
 
+    play: function(src) {
+      spec3D.src = src;
+      spec3D.player.playSrc(src);
+      console.log('play');
+    },
+
     stop: function() {
       spec3D.player.stop();
       // console.log("STOP");
     },
 
     isPlaying: function() {
+      console.log('Playing?: ' + !!this.player.source);
       return !!this.player.source;
     },
 
     stopRender: function() {
       spec3D.isRendering = false;
-
+      console.log('stopRander');
     },
 
     startRender: function() {
@@ -124,22 +123,6 @@ Toolkit.spectrogram = (function() {
       }
       spec3D.isRendering = true;
       spec3D.draw_();
-    },
-
-    loopChanged: function(loop) {
-      console.log('loopChanged', loop);
-      // spec3D.player.setLoop(loop);
-    },
-
-    play: function(src)
-    {
-      spec3D.src = src;
-      spec3D.player.playSrc(src);
-      console.log('isPlaying()= ' + spec3D.isPlaying());
-
-
-
-
     },
 
     recordRaw: function() {
@@ -164,7 +147,6 @@ Toolkit.spectrogram = (function() {
       // impliment!!
       spec3D.player = player;
       spec3D.analyserView = analyserView;
-      $('.componentContainer').hide();
       $('#spectrogram')
         .on('mousedown', this.handleTrack)
         .on('touchstart', this.handleTrack)
@@ -174,9 +156,15 @@ Toolkit.spectrogram = (function() {
 
     rotateX(dx) {
       spec3D.analyserView.cameraController.xRot = dx;
-      // spec3D.analyserView.cameraController.yRot = dy;
-      // spec3D.analyserView.cameraController.zRot = dz;
-      // console.log("dx: " + dx + ", " + "dy: " + dy + ", " + "dx")
+      console.log("dx: " + dx);
+    },
+    rotateY(dy) {
+      spec3D.analyserView.cameraController.yRot = dy;
+      console.log("dy: " + dy);
+    },
+    rotateZ(dz) {
+      spec3D.analyserView.cameraController.zRot = dz;
+      console.log("dz: " + dz)
     },
 
     onResize_: function() {
@@ -188,12 +176,12 @@ Toolkit.spectrogram = (function() {
       canvas.width = $(window).width();
       canvas.height = $(window).height();
 
-      // Also size the legend canvas.
-      let legend = $('#legend')[0];
+      // Also resize the grid canvas.
+      let legend = $('#grid')[0];
       legend.width = $(window).width();
       legend.height = $(window).height() - 158;
 
-      spec3D.drawLegend_();
+      spec3D.drawGrid();
     },
 
     draw_: function() {
@@ -206,31 +194,23 @@ Toolkit.spectrogram = (function() {
       // console.log(data);
       requestAnimationFrame(spec3D.draw_.bind(spec3D));
     },
-    hideMe(elemId) {
-      $("[id*=" + elemId + "]").hide();
-    },
-    showMe(elemId) {
-      $("[id*=" + elemId + "]").show();
-    },
 
     switchComponent(elemId) {
+      spec3D.stop();
       $('.componentContainer').hide();
       $("[id*=" + elemId + "]").show();
-      spec3D.stop();
+    },
+    toggleGrid(active) {
+      let $grid = $('#grid');
+      active ? $grid.show() : $grid.hide();
+    },
+    toggleElem(elemId, active) {
+      let $e = $("[id*=" + elemId + "]");
+      active ? $e.show() : $e.hide();
     },
 
-    hideGrid: function() {
-      $('#legend').hide();
-      $('#spectrogram').css("opacity: 0");
-    },
-
-    showGrid: function() {
-      $('#legend').show();
-      $('#spectrogram').css("opacity: 0.4");
-    },
-
-    drawLegend_: function() {
-      let canvas = $('#legend')[0];
+    drawGrid: function() {
+      let canvas = $('#grid')[0];
       let ctx = canvas.getContext('2d');
 
       let p = 10;
@@ -246,7 +226,7 @@ Toolkit.spectrogram = (function() {
         ctx.lineTo(bw + p, 0.5 + dy + p);
       }
 
-      ctx.strokeStyle = "whitesmoke";
+      ctx.strokeStyle = "#777";
       ctx.stroke();
 
       let x = canvas.width - 10;
@@ -299,24 +279,10 @@ Toolkit.spectrogram = (function() {
       return spec3D.padding + percent * (height - 2 * padding);
     },
 
-    // easeInOutCubic: function (t, b, c, d) {
-    //   if ((t/=d/2) < 1) return c/2*t*t*t + b;
-    //   return c/2*((t-=2)*t*t + 2) + b;
-    // },
-    // easeInOutQuad: function (t, b, c, d) {
-    //   if ((t/=d/2) < 1) return c/2*t*t + b;
-    //   return -c/2 * ((--t)*(t-2) - 1) + b;
-    // },
-    // easeInOutQuint: function (t, b, c, d) {
-    //   if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
-    //   return c/2*((t-=2)*t*t*t*t + 2) + b;
-    // },
-    // easeInOutExpo: function (t, b, c, d) {
-    //   if (t===0) return b;
-    //   if (t===d) return b+c;
-    //   if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
-    //   return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
-    // }
+    loop: function(loop) {
+      console.log('loop', loop);
+      spec3D.player.setLoop(loop);
+    },
   };
 
   return spec3D;
@@ -361,7 +327,6 @@ Toolkit.main = (function() {
           lang = q[i].ln;
         }
       }
-
     };
 
     let startup = function() {
@@ -380,7 +345,8 @@ Toolkit.main = (function() {
         if ($(this).hasClass('selected')) {
           $specialButton.removeClass('selected');
           Toolkit.spectrogram.stop();
-        } else {
+        }
+        else {
           $specialButton.removeClass('selected');
           $(this).addClass('selected');
           if ($(this)[0].id === 'micButton') {
@@ -394,11 +360,11 @@ Toolkit.main = (function() {
               Toolkit.spectrogram.live();
             }
             // Check for Start drawing data instruction  **********************
-          } else if ($(this)[0].id === 'drawButton') {
+          }
+          else if ($(this)[0].id === 'drawButton') {
             Toolkit.spectrogram.drawingMode = true;
             $('#drawAnywhere').fadeIn().delay(2000).fadeOut();
           }
-
         }
       });
     };

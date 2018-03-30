@@ -1,8 +1,11 @@
+import '../../polyfills';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { SpectrumComponent } from './spectrum/spectrum.component';
 import { CoreModule } from './core/core.module';
 import {CdkTableModule} from '@angular/cdk/table';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NavMenuComponent} from "./spectrum/nav-menu/nav-menu.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {
@@ -39,7 +42,8 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import '../../polyfills';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule, routingComponents} from "../app-routing.module";
 import {SamplerComponent} from "./spectrum/sampler/sampler.component";
 import {LoginComponent} from "./spectrum/login/login.component";
@@ -49,15 +53,22 @@ import {PlaylistComponent} from "./spectrum/playlist/playlist.component";
 
 @NgModule({
   imports: [
-    CommonModule,
-    CoreModule,
+
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     CdkTableModule,
     MatAutocompleteModule,
+    MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatStepperModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+    CoreModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
@@ -79,14 +90,11 @@ import {PlaylistComponent} from "./spectrum/playlist/playlist.component";
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
+    MatStepperModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatButtonModule,
-    BrowserModule,
-    AppRoutingModule,
-
   ],
   declarations: [
     SpectrumComponent,

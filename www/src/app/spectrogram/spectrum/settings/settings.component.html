@@ -1,39 +1,110 @@
-<div class="settings">
-  <div class="AnalysisContainer">
+<div class="analysisContainer">
+  <mat-card>
+    <mat-card-content>
+      <section class="example-section">
+        <!--<mat-selection-list>-->
+          <mat-select>3D</mat-select>
+          <mat-select>Amp/Freq</mat-select>
+          <mat-select>Waveform</mat-select>
+        <!--</mat-selection-list>-->
+      </section>
+    </mat-card-content>
+  </mat-card>
+  <!--<p>Graph Type</p>-->
+  <!--<ul>-->
+    <!--<li>-->
+      <!--<input type="radio" id="f-option" name="selector" checked (select)="switchAnalysisType()">-->
+      <!--<label for="f-option">3D</label>-->
 
-    <p class="typeTitle">Analysis Type</p>
+      <!--<div class="check"></div>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<input type="radio" id="s-option" name="selector">-->
+      <!--<label for="s-option">Amp/Frequency</label>-->
 
-    <ul>
-      <li>
-        <input type="radio" id="f-option" name="selector" aria-selected="true" (select)="switchAnalysisType()">
-        <label for="f-option">3D Spectrogram</label>
+      <!--<div class="check"></div>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<input type="radio" id="t-option" name="selector">-->
+      <!--<label for="t-option">WaveForm</label>-->
 
-        <div class="check"></div>
-      </li>
-
-      <li>
-        <input type="radio" id="s-option" name="selector">
-        <label for="s-option">Frequency</label>
-
-        <div class="check"><div class="inside"></div></div>
-      </li>
-
-      <li>
-        <input type="radio" id="t-option" name="selector">
-        <label for="t-option">WaveForm</label>
-
-        <div class="check"><div class="inside"></div></div>
-      </li>
-    </ul>
-  </div>
-  <div class="switchContainer">
-    <h3 class="gridsetlabel">Grid</h3>
-    <div id="setgrid">
-      <label class="switch">
-        <input type="checkbox" (change)="setGrid($event)">
-        <span class="slider round"></span>
-      </label>
-    </div>
-  </div>
-
+      <!--<div class="check"></div>-->
+    <!--</li>-->
+  <!--</ul>-->
 </div>
+<!--ONLY SHOW THIS WHEN ITS 3D-->
+<div class="rotationToggler">
+  <mat-card>
+    <mat-card-content>
+      <h2 class="rotTitle">Rotation</h2>
+
+      <section class="example-section">
+        <mat-form-field class="example-margin">
+          <input matInput type="number" placeholder="Step size" [(ngModel)]="step">
+        </mat-form-field>
+      </section>
+
+      <!--<section class="example-section">-->
+        <!--<mat-checkbox class="example-margin" [(ngModel)]="showTicks">Show ticks</mat-checkbox>-->
+        <!--<mat-checkbox class="example-margin" [(ngModel)]="autoTicks" *ngIf="showTicks">-->
+          <!--Auto ticks-->
+        <!--</mat-checkbox>-->
+        <!--<mat-form-field class="example-margin" *ngIf="showTicks && !autoTicks">-->
+          <!--<input matInput type="number" placeholder="Tick interval" [(ngModel)]="tickInterval">-->
+        <!--</mat-form-field>-->
+      <!--</section>-->
+
+      <section class="example-section">
+        <mat-checkbox class="example-margin" [(ngModel)]="thumbLabel">Show thumb label</mat-checkbox>
+      </section>
+
+      <section class="example-section">
+        <mat-checkbox class="example-margin" [(ngModel)]="vertical">Vertical</mat-checkbox>
+        <mat-checkbox class="example-margin" [(ngModel)]="invert">Inverted</mat-checkbox>
+      </section>
+
+      <section class="example-section">
+        <mat-checkbox class="example-margin" [(ngModel)]="disabled">Disabled</mat-checkbox>
+      </section>
+
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="result">
+    <mat-card-content>
+      <h2 class="example-h2">Result</h2>
+
+      <mat-slider
+        class="example-margin"
+        [disabled]="disabled"
+        [invert]="invert"
+        [max]=360
+        [min]=360
+        [step]="step"
+        [thumb-label]="thumbLabel"
+        [tick-interval]="tickInterval"
+        [(ngModel)]="value"
+        [vertical]="vertical">
+      </mat-slider>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div>
+  <mat-card>
+    <mat-card-content>
+      <section class="example-section">
+        <mat-slide-toggle></mat-slide-toggle>
+        <mat-spinner></mat-spinner>
+        <mat-checkbox class="example-margin" [(ngModel)]="grid" (change)="toggleGrid()">Grid</mat-checkbox>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!--<h3 class="switchLabel">Grid</h3>-->
+<!--<div>-->
+  <!--<label class="switch">-->
+    <!--<input type="checkbox" (change)="toggleGrid($event)">-->
+    <!--<span class="slider round"></span>-->
+  <!--</label>-->
+<!--</div>-->
+

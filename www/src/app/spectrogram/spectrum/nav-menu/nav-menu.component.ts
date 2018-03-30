@@ -12,10 +12,8 @@ export class NavMenuComponent implements OnInit {
 
   @ViewChild('sidenav') private sidenav: MatSidenav;
 
-  elemId: string;
   logged: boolean;
   photo: string;
-
 
   constructor(auth: AuthService) {
     this.logged = auth.isLoggedIn();
@@ -26,11 +24,13 @@ export class NavMenuComponent implements OnInit {
 
   }
 
-  close(val) {
+  close(elem) {
+    if(elem !== null) {
+      elem += 'Container';
+      Toolkit.spectrogram.switchComponent(elem);
+      // Toolkit.spectrogram.toggleElem(elem);
+    }
     this.sidenav.close().then();
-    val !== null ? this.elemId = val + 'Container' : null;
-    Toolkit.spectrogram.switchComponent(this.elemId);
-
   }
 
 

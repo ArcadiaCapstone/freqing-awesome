@@ -1,0 +1,46 @@
+$black: #000;
+$buttonColor: #333333;
+$buttonHoverColor: #7a42f4;
+$buttonIconColor: #EEEEEE;
+$buttonContainerBackground: #111;
+
+.special-button {
+  background-color: $buttonColor;
+  color: $buttonIconColor;
+
+  width: 7rem;
+  height: 7rem;
+  display: inline-block;
+  border-radius: 30rem;
+  //overflow: hidden;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  margin-right: 1.1rem;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 100;
+
+  &.selected  {
+    background-color: $buttonHoverColor;
+  }
+  &:active, &:visited {
+    background-color: $buttonColor;
+  }
+  .icon {
+    vertical-align: middle;
+    display:inline-block;
+    font-size: 5rem;
+    line-height: 125%;
+  }
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    pointer-events: none;
+    display:none;
+  }
+}
