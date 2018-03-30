@@ -15,7 +15,8 @@ export class SamplerComponent implements OnInit {
   sampleSrc: string = "";
   selectedType: string;
   typeIcon: string;
-  loop: false;
+  loop = false;
+  playing = false;
 
   constructor() { }
 
@@ -23,7 +24,6 @@ export class SamplerComponent implements OnInit {
     this.i = 0;
     this.selectedType = '';
     this.typeIcon = '"../bin/icons/sin.svg"';
-    this.loop = false;
     this.update();
 
   }
@@ -32,28 +32,31 @@ export class SamplerComponent implements OnInit {
   }
 
   prevSample() {
+    this.playing = false;
     this.i === 0 ? this.i = notes.length : this.i--;
     this.update();
   }
 
   playSample() {
-    (!this.loop) ? Toolkit.spectrogram.stop() : null;
-    Toolkit.spectrogram.drawingMode = false;
+    this.playing = true;
+    // Toolkit.spectrogram.drawingMode = false;
     Toolkit.spectrogram.play(this.sampleSrc);
     Toolkit.spectrogram.startRender();
-    console.log('sampleSrc: ' + this.sampleSrc);
   }
   nextSample() {
+    this.playing = false;
     this.i === notes.length ? this.i = 0 : this.i++;
     this.update();
   }
 
   pauseSample() {
+    this.playing = false;
     Toolkit.spectrogram.stop();
     Toolkit.spectrogram.stopRender();
   }
 
   stopSample() {
+    this.playing = false;
     Toolkit.spectrogram.startRender();
     Toolkit.spectrogram.stop();
   }

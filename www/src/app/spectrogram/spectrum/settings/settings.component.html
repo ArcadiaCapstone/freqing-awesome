@@ -1,130 +1,91 @@
-<!--<div class="analysisContainer">-->
-  <!--&lt;!&ndash;<mat-card>&ndash;&gt;-->
-    <!--&lt;!&ndash;<mat-card-content>&ndash;&gt;-->
-      <!--&lt;!&ndash;<section class="example-section">&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;<mat-selection-list>&ndash;&gt;&ndash;&gt;-->
-          <!--&lt;!&ndash;<mat-select>3D</mat-select>&ndash;&gt;-->
-          <!--&lt;!&ndash;<mat-select>Amp/Freq</mat-select>&ndash;&gt;-->
-          <!--&lt;!&ndash;<mat-select>Waveform</mat-select>&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;</mat-selection-list>&ndash;&gt;&ndash;&gt;-->
-      <!--&lt;!&ndash;</section>&ndash;&gt;-->
-    <!--&lt;!&ndash;</mat-card-content>&ndash;&gt;-->
-  <!--&lt;!&ndash;</mat-card>&ndash;&gt;-->
-  <!--&lt;!&ndash;<p>Graph Type</p>&ndash;&gt;-->
-  <!--&lt;!&ndash;<ul>&ndash;&gt;-->
-    <!--&lt;!&ndash;<li>&ndash;&gt;-->
-      <!--&lt;!&ndash;<input type="radio" id="f-option" name="selector" checked (select)="switchAnalysisType()">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label for="f-option">3D</label>&ndash;&gt;-->
+<div class="analysisContainer">
+  <!--<mat-radio-group class="example-radio-group" [(ngModel)]="analysisType">-->
+    <!--<mat-radio-button class="example-radio-button" [value]="analysisType">-->
+      <!--<label>WaveForm</label>-->
+      <!--<div></div>-->
+    <!--</mat-radio-button>-->
+    <!--<mat-radio-button class="example-radio-button" [value]="analysisType">-->
+      <!--<label>Amp/Freq</label>-->
+      <!--<div></div>-->
+    <!--</mat-radio-button>-->
+    <!--<mat-radio-button class="example-radio-button" [value]="analysisType">-->
+      <!--<label>3D!</label>-->
+      <!--<div></div>-->
+    <!--</mat-radio-button>-->
+  <!--</mat-radio-group>-->
+  <ul>
+    <li><input type="radio" id="t-option" name="selector">
+      <label for="t-option">WaveForm</label><div class="check"></div>
+    </li>
+    <li><input type="radio" id="s-option" name="selector">
+      <label for="s-option">Amp/Freq</label><div class="check"></div>
+    </li>
+    <li><input type="radio" id="f-option" name="selector" checked>
+      <label for="f-option">3D!</label><div class="check"></div>
+    </li>
+  </ul>
+</div>
+<mat-card class="clear">
+  <mat-card-content>
+    <section class="setting-section">
+      <mat-slide-toggle class="setting-margin" [(ngModel)]="grid" (change)="toggleGrid()">Grid</mat-slide-toggle>
+    </section>
+  </mat-card-content>
+</mat-card>
 
-      <!--&lt;!&ndash;<div class="check"></div>&ndash;&gt;-->
-    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-    <!--&lt;!&ndash;<li>&ndash;&gt;-->
-      <!--&lt;!&ndash;<input type="radio" id="s-option" name="selector">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label for="s-option">Amp/Frequency</label>&ndash;&gt;-->
-
-      <!--&lt;!&ndash;<div class="check"></div>&ndash;&gt;-->
-    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-    <!--&lt;!&ndash;<li>&ndash;&gt;-->
-      <!--&lt;!&ndash;<input type="radio" id="t-option" name="selector">&ndash;&gt;-->
-      <!--&lt;!&ndash;<label for="t-option">WaveForm</label>&ndash;&gt;-->
-
-      <!--&lt;!&ndash;<div class="check"></div>&ndash;&gt;-->
-    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-  <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-<!--</div>-->
 <!--ONLY SHOW THIS WHEN ITS 3D-->
-<h2 id="setTitle">Settings</h2>
-  <mat-card>
-    <mat-card-content>
-      <h2 class="rotTitle">Rotation</h2>
+<mat-card class="result">
+  <div class="labels">
+    <h2>X</h2>
+    <h2>Y</h2>
+    <h2>Z</h2>
+  </div>
 
-      <!--<section class="setting-section">-->
-        <!--<mat-form-field class="setting-margin">-->
-          <!--<input matInput type="number" placeholder="Step size" [(ngModel)]="step">-->
-        <!--</mat-form-field>-->
-      <!--</section>-->
+  <mat-card-content class="rotationControl">
 
-      <section class="setting-section">
-        <mat-checkbox class="setting-margin" [(ngModel)]="showTicks">Show ticks</mat-checkbox>
-        <mat-checkbox class="setting-margin" [(ngModel)]="autoTicks" *ngIf="showTicks">Auto ticks</mat-checkbox>
-        <mat-form-field class="example-margin" *ngIf="showTicks && !autoTicks">
-          <input matInput type="number" placeholder="Tick interval" [(ngModel)]="tickInterval">
-        </mat-form-field>
-      </section>
+    <mat-slider
+      class="sliders x-slider"
+      [disabled]="disabled"
+      [invert]="invert"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [thumb-label]="thumbLabel"
+      [tick-interval]="tickInterval"
+      [(ngModel)]="dx"
+      [vertical]="vertical">
+    </mat-slider>
 
-      <section class="setting-section">
-        <mat-checkbox class="setting-margin" [(ngModel)]="thumbLabel">Show thumb label</mat-checkbox>
-      </section>
+    <mat-slider
+      class="sliders y-slider"
+      [disabled]="disabled"
+      [invert]="invert"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [thumb-label]="thumbLabel"
+      [tick-interval]="tickInterval"
+      [(ngModel)]="dy"
+      [vertical]="vertical">
+    </mat-slider>
 
-      <section class="setting-section">
-        <!--<mat-checkbox class="setting-margin" [(ngModel)]="vertical">Vertical</mat-checkbox>-->
-        <mat-checkbox class="setting-margin" [(ngModel)]="invert">Inverted</mat-checkbox>
-      </section>
+    <mat-slider
+      class="sliders z-slider"
+      [disabled]="disabled"
+      [invert]="invert"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [thumb-label]="thumbLabel"
+      [tick-interval]="tickInterval"
+      [(ngModel)]="dz"
+      [vertical]="vertical">
+    </mat-slider>
 
-      <section class="setting-section">
-        <!--<mat-checkbox class="setting-margin" [(ngModel)]="disabled">Disabled</mat-checkbox>-->
-      </section>
+  </mat-card-content>
+</mat-card>
 
-    </mat-card-content>
-  </mat-card>
 
-  <mat-card class="result">
-    <div class="labels">
-      <h2>X</h2>
-      <h2>Y</h2>
-      <h2>Z</h2>
-    </div>
 
-    <mat-card-content style="display: flex">
-
-      <mat-slider
-        class="sliders x-slider"
-        [disabled]="disabled"
-        [invert]="invert"
-        [max]="max"
-        [min]="min"
-        [step]="step"
-        [thumb-label]="thumbLabel"
-        [tick-interval]="tickInterval"
-        [(ngModel)]="dx"
-        [vertical]="vertical">
-      </mat-slider>
-
-      <mat-slider
-        class="sliders y-slider"
-        [disabled]="disabled"
-        [invert]="invert"
-        [max]="max"
-        [min]=170
-        [step]="step"
-        [thumb-label]="thumbLabel"
-        [tick-interval]="tickInterval"
-        [(ngModel)]="dy"
-        [vertical]="vertical">
-      </mat-slider>
-
-      <mat-slider
-        class="sliders z-slider"
-        [disabled]="disabled"
-        [invert]="invert"
-        [max]=360
-        [min]=360
-        [step]="step"
-        [thumb-label]="thumbLabel"
-        [tick-interval]="tickInterval"
-        [(ngModel)]="dz"
-        [vertical]="vertical">
-      </mat-slider>
-
-    </mat-card-content>
-  </mat-card>
-
-  <!--<mat-card>-->
-    <!--<mat-card-content>-->
-      <!--<section class="setting-section">-->
-        <!--<mat-checkbox class="setting-margin" [(ngModel)]="grid" (change)="toggleGrid()">Grid</mat-checkbox>-->
-      <!--</section>-->
-    <!--</mat-card-content>-->
-  <!--</mat-card>-->
 
 

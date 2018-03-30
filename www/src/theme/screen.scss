@@ -2,6 +2,7 @@
 @import "util/animation";
 @import "util/spinner";
 @import "fonts/icons";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url(https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,400italic,500italic);
 
 @font-face {
@@ -29,7 +30,9 @@ body,html{
 	from {transform:rotate(0deg);}
 	to {transform:rotate(360deg);}
 }
-
+//.mat-card {
+//  padding:2rem;
+//}
 //.music-box__buttons__record {
 //  background-color: $buttonColor;
 //

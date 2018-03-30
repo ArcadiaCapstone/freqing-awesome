@@ -1,9 +1,10 @@
-
+//
 .analysisContainer {
   position: relative;
-  margin: auto;
+  margin-top: 2rem;
   height: auto;
-  width: 20rem;
+  width: 21rem;
+  background: #444;
   p {
     color: #FFFFFF;
     font-size: medium;
@@ -19,7 +20,7 @@
       position: relative;
       float: left;
       width: 100%;
-      height: 100px;
+      //height: 100px;
       border-bottom: 1px solid #333;
 
       input[type=radio] {
@@ -74,36 +75,44 @@
       .check { border: 5px solid #7a42f4; }
     }
   }
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .example-selected-value {
+    margin: 15px 0;
+  }
+
 }
 //-------------------------------------------------------------------------------------------------------------------//
-#setTitle {
-  font-size: large;
-  color: #FFFFFF;
+
+.mat-card.clear {
+  background: #555;
 }
-.rotTitle {
-  font-size: medium;
-  color: #FFFFFF;
-}
+
 .setting-section {
-  color: #FFFFFF;
-  display: flex;
+  //display: flex;
   align-content: center;
   align-items: center;
-  height: 60px;
+  height: 30px;
 }
 
 .setting-margin {
+  align-content: center;
+  align-items: center;
   margin: 10px;
-  color: #FFFFFF;
   z-index: 1;
 }
-
-//-------------------------------------------------------------------------------------------------------------------//
 
 .result.mat-card {
   color: #FFFFFF;
   z-index: 1;
-  background-color: #333;
+  background-color: #222;
   opacity: .5;
   width: 16.25rem;
   height: 30rem;
@@ -126,10 +135,25 @@
     }
   }
 }
-.mat-slider-ticks-container {
-  background: #7a42f4;
+.mat-card-content.rotationControl {
+  display: flex;
 }
 
 
 //-------------------------------------------------------------------------------------------------------------------//
 
+//.option-section {
+//  color: #FFFFFF;
+//  display: flex;
+//  align-content: center;
+//  align-items: center;
+//  height: 60px;
+//  z-index: 5;
+//}
+//.option-margin {
+//  color: #FFFFFF;
+//  align-content: center;
+//  align-items: center;
+//  margin: 10px;
+//  z-index: 5;
+//}

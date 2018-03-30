@@ -42,7 +42,6 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule, routingComponents} from "../app-routing.module";
 import {SamplerComponent} from "./spectrum/sampler/sampler.component";
@@ -50,6 +49,7 @@ import {LoginComponent} from "./spectrum/login/login.component";
 import {SpecialsComponent} from "./spectrum/specials/specials.component";
 import {SettingsComponent} from "./spectrum/settings/settings.component";
 import {PlaylistComponent} from "./spectrum/playlist/playlist.component";
+import {DataExportComponent} from "./spectrum/data-export/data-export.component";
 
 @NgModule({
   imports: [
@@ -104,6 +104,7 @@ import {PlaylistComponent} from "./spectrum/playlist/playlist.component";
     SpecialsComponent,
     SettingsComponent,
     NavMenuComponent,
+    DataExportComponent
   ],
   bootstrap: [],
 

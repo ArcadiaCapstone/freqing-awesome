@@ -14,19 +14,23 @@ import {
 })
 export class SettingsComponent implements OnInit {
 
-  disabled: false;
-  invert: false;
-  showTicks: true;
-  thumbLabel: true;
-  vertical: false;
-  autoTicks: false;
+  analysisType: number;
+
+  types = [0, 1, 2, 3, 4];
+
+  grid = false;
+  disabled = false;
+  invert = false;
+  showTicks = true;
+  thumbLabel = true;
+  vertical = false;
+  autoTicks = false;
   step: 1;
   dx: 0;
   dy: 0;
   dz: 0;
-  max: 360;
+  max: 60;
   min: 0;
-  grid: false;
 
   constructor() { }
 
@@ -34,10 +38,10 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  switchAnalysisType(n) {
-    Toolkit.spectrogram.stop();
-    Toolkit.spectrogram.init(n);
-  }
+  // switchAnalysisType(n) {
+  //   Toolkit.spectrogram.stop();
+  //   Toolkit.spectrogram.init(n);
+  // }
 
   get tickInterval(): number | 'auto' {
     return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;

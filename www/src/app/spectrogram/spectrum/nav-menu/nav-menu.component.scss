@@ -20,7 +20,7 @@
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
-.nav-container {
+.mat-sidenav-container {
   background: transparent;
   position: absolute;
   top: 0;
@@ -28,13 +28,8 @@
   left: 0;
   right: 0;
 }
-.mat-drawer-backdrop {
-  background-color: transparent;
-  display: none;
-}
-.mat-drawer-shown {
-  background-color: transparent;
-  display: none;
+.mat-drawer {
+  background: #EEEEEE;
 }
 
 p {
@@ -45,7 +40,7 @@ p :hover{
   color: darkviolet;
 }
 
-mat-sidenav {
+.mat-sidenav {
   p{
     padding-bottom: 2vh;
     padding-top: 3vh;
@@ -58,18 +53,12 @@ mat-sidenav {
     margin-top: 35vh;
   }
 }
-mat-sidenav-content {
+.mat-sidenav-content {
   p {
     position: absolute;
     padding-top: 1rem;
     padding-bottom: 6rem;
-    button {
-      i {
-        color: #AAAAAA;
-      }
-    }
-
-}
-
+    color: whitesmoke;
+  }
 }
 
