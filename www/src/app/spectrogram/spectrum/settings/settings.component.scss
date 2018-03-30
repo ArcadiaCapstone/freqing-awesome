@@ -76,11 +76,15 @@
   }
 }
 //-------------------------------------------------------------------------------------------------------------------//
+#setTitle {
+  font-size: large;
+  color: #FFFFFF;
+}
 .rotTitle {
   font-size: medium;
   color: #FFFFFF;
 }
-.example-section {
+.setting-section {
   color: #FFFFFF;
   display: flex;
   align-content: center;
@@ -88,66 +92,44 @@
   height: 60px;
 }
 
-.example-margin {
+.setting-margin {
   margin: 10px;
   color: #FFFFFF;
   z-index: 1;
 }
 
-.mat-slider-horizontal {
-  width: 300px;
-  color: #FFFFFF;
-}
-
-.mat-slider-vertical {
-  height: 300px;
-  color: #FFFFFF;
-}
-
-.result {
-  color: #FFFFFF;
-}
 //-------------------------------------------------------------------------------------------------------------------//
-.switchLabel {
-  font-size: small;
-  color:whitesmoke;
-}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+
+.result.mat-card {
+  color: #FFFFFF;
   z-index: 1;
+  background-color: #333;
+  opacity: .5;
+  width: 16.25rem;
+  height: 30rem;
+  .mat-card-content {
+    .mat-slider {
+      background: #222;
+      transform: rotate(90deg);
+      margin-top: 6rem;
+      margin-left: -5.5rem;
+      .mat-slider-wrapper {
+        background: #999;
+      }
+    }
+  }
+  .labels {
+    display: inline-flex;
+    margin-right: 20rem;
+    h2 {
+      margin-right: 7.25rem;
+    }
+  }
 }
-input[type=checkbox] {display: none;}
-input[type=checkbox]:checked + .slider {background-color: #7a42f4;}
-input[type=checkbox]:focus + .slider {box-shadow: 0 0 1px #7a42f4;}
-input[type=checkbox]:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+.mat-slider-ticks-container {
+  background: #7a42f4;
 }
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-.slider.round {border-radius: 34px;}
-.slider.round:before {border-radius: 50%;}
+
+
+//-------------------------------------------------------------------------------------------------------------------//
+

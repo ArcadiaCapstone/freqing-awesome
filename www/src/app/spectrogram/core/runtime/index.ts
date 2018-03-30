@@ -21,6 +21,9 @@ Toolkit.spectrogram = (function() {
     drawingMode: false,
     prevX: 0,
     dataPoints: [],
+    x: -180,
+    y: 170,
+    z: 90,
 
     handleTrack: function(e) {
       switch (e.type) {
@@ -96,6 +99,11 @@ Toolkit.spectrogram = (function() {
       window.addEventListener('resize', spec3D.onResize_.bind(spec3D));
     },
 
+    loop: function(loop) {
+      console.log('loop', loop);
+      spec3D.player.setLoop(loop);
+    },
+
     play: function(src) {
       spec3D.src = src;
       spec3D.player.playSrc(src);
@@ -104,7 +112,7 @@ Toolkit.spectrogram = (function() {
 
     stop: function() {
       spec3D.player.stop();
-      // console.log("STOP");
+      console.log("STOP");
     },
 
     isPlaying: function() {
@@ -114,7 +122,7 @@ Toolkit.spectrogram = (function() {
 
     stopRender: function() {
       spec3D.isRendering = false;
-      console.log('stopRander');
+      console.log('stopRender');
     },
 
     startRender: function() {
@@ -155,15 +163,15 @@ Toolkit.spectrogram = (function() {
     },
 
     rotateX(dx) {
-      spec3D.analyserView.cameraController.xRot = dx;
+      spec3D.analyserView.cameraController.xRot = dx + spec3D.x;
       console.log("dx: " + dx);
     },
     rotateY(dy) {
-      spec3D.analyserView.cameraController.yRot = dy;
+      spec3D.analyserView.cameraController.yRot = dy + spec3D.y;
       console.log("dy: " + dy);
     },
     rotateZ(dz) {
-      spec3D.analyserView.cameraController.zRot = dz;
+      spec3D.analyserView.cameraController.zRot = dz + spec3D.z;
       console.log("dz: " + dz)
     },
 
@@ -279,10 +287,7 @@ Toolkit.spectrogram = (function() {
       return spec3D.padding + percent * (height - 2 * padding);
     },
 
-    loop: function(loop) {
-      console.log('loop', loop);
-      spec3D.player.setLoop(loop);
-    },
+
   };
 
   return spec3D;

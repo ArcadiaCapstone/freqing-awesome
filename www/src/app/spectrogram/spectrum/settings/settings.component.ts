@@ -16,18 +16,17 @@ export class SettingsComponent implements OnInit {
 
   disabled: false;
   invert: false;
-  max: 100;
-  min: 0;
-  showTicks: false;
-  step: 1;
-  thumbLabel: false;
-  value: 0;
+  showTicks: true;
+  thumbLabel: true;
   vertical: false;
   autoTicks: false;
+  step: 1;
+  dx: 0;
+  dy: 0;
+  dz: 0;
+  max: 360;
+  min: 0;
   grid: false;
-  dx: -180;
-  dy: 170;
-  dz: 90;
 
   constructor() { }
 

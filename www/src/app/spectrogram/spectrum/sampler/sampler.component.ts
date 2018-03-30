@@ -25,6 +25,10 @@ export class SamplerComponent implements OnInit {
     this.typeIcon = '"../bin/icons/sin.svg"';
     this.loop = false;
     this.update();
+
+  }
+  ngAfterViewInit(): void {
+
   }
 
   prevSample() {
