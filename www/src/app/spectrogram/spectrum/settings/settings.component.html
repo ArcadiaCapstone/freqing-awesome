@@ -28,7 +28,7 @@
 <mat-card class="clear">
   <mat-card-content>
     <section class="setting-section">
-      <mat-slide-toggle class="setting-margin" [(ngModel)]="grid" (change)="toggleGrid()">Grid</mat-slide-toggle>
+      <mat-slide-toggle [color]="'primary'" class="setting-margin" [(ngModel)]="grid" (change)="toggleGrid()">Grid</mat-slide-toggle>
     </section>
   </mat-card-content>
 </mat-card>
@@ -45,6 +45,7 @@
 
     <mat-slider
       class="sliders x-slider"
+      [color]="'primary'"
       [disabled]="disabled"
       [invert]="invert"
       [max]="max"
@@ -58,6 +59,7 @@
 
     <mat-slider
       class="sliders y-slider"
+      [color]="'primary'"
       [disabled]="disabled"
       [invert]="invert"
       [max]="max"
@@ -71,6 +73,7 @@
 
     <mat-slider
       class="sliders z-slider"
+      [color]="'primary'"
       [disabled]="disabled"
       [invert]="invert"
       [max]="max"
@@ -81,6 +84,12 @@
       [(ngModel)]="dz"
       [vertical]="vertical">
     </mat-slider>
+
+    <section class="setting-section">
+      {{dx}}
+      {{dy}}
+      {{dz}}
+    </section>
 
   </mat-card-content>
 </mat-card>

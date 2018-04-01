@@ -1,4 +1,3 @@
-//
 .analysisContainer {
   position: relative;
   margin-top: 2rem;
@@ -115,13 +114,14 @@
   background-color: #222;
   opacity: .5;
   width: 16.25rem;
-  height: 30rem;
+  height: 45rem;
   .mat-card-content {
     .mat-slider {
       background: #222;
-      transform: rotate(90deg);
-      margin-top: 6rem;
-      margin-left: -5.5rem;
+      min-height: 40rem;
+      margin-top: 2rem;
+      padding-left: 3rem;
+      padding-right: 2.75rem;
       .mat-slider-wrapper {
         background: #999;
       }
@@ -131,29 +131,12 @@
     display: inline-flex;
     margin-right: 20rem;
     h2 {
-      margin-right: 7.25rem;
+      margin-right: 1.85em;
+      margin-left: 1.85rem;
+      font-size: medium;
     }
   }
 }
 .mat-card-content.rotationControl {
   display: flex;
 }
-
-
-//-------------------------------------------------------------------------------------------------------------------//
-
-//.option-section {
-//  color: #FFFFFF;
-//  display: flex;
-//  align-content: center;
-//  align-items: center;
-//  height: 60px;
-//  z-index: 5;
-//}
-//.option-margin {
-//  color: #FFFFFF;
-//  align-content: center;
-//  align-items: center;
-//  margin: 10px;
-//  z-index: 5;
-//}

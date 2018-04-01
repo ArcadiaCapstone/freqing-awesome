@@ -20,10 +20,10 @@ export class SettingsComponent implements OnInit {
 
   grid = false;
   disabled = false;
-  invert = false;
+  invert = true;
   showTicks = true;
   thumbLabel = true;
-  vertical = false;
+  vertical = true;
   autoTicks = false;
   step: 1;
   dx: 0;
