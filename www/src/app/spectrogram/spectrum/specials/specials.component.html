@@ -1,3 +1,9 @@
+<div class="controlPanel">
+  <div class="controls icon icon-play-button" *ngIf="!isPlaying" (click)="play()"></div>
+  <div class="controls icon icon-pause-sign" *ngIf="isPlaying" (click)="pause()"></div>
+  <div class="controls icon icon-stop-button" (click)="stop()"></div>
+</div>
+
 <div class="special-button" id="micButton">
   <div class="icon icon-mic"></div>
 </div>

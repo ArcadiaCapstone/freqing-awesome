@@ -296,31 +296,43 @@ AnalyserView.prototype.analysisType = function() {
 
 AnalyserView.prototype.doFrequencyAnalysis = function(event) {
     let freqByteData = this.freqByteData;
-    // console.log("ANALYSIS");
+    // console.log(freqByteData);
 	switch(this.analysisType) {
-	case ANALYSISTYPE_FREQUENCY:
-		this.analyser.smoothingTimeConstant = 0.75;
-		this.analyser.getByteFrequencyData(freqByteData);
-        console.log("FREQ");
-		break;
+    case ANALYSISTYPE_FREQUENCY:
+      this.analyser.smoothingTimeConstant = 0.75;
+      this.analyser.getByteFrequencyData(freqByteData);
+          console.log("FREQ");
+      for (let i = 0; i < freqByteData.length; i++) {
+        if (freqByteData[i] !== 0) {
+          datapoints.push(freqByteData[i]);
+          // console.log(datapoints);
+        }
+      }
+      break;
 
-	case ANALYSISTYPE_SONOGRAM:
+    case ANALYSISTYPE_SONOGRAM:
     case ANALYSISTYPE_3D_SONOGRAM:
-	this.analyser.smoothingTimeConstant = 0.1;
-	this.analyser.getByteFrequencyData(freqByteData);
-	// console.log(freqByteData);
-	for (let i = 0; i < freqByteData.length; i++) {
-		if (freqByteData[i] !== 0) {
-            datapoints.push(freqByteData[i]);
-		}
-	}
-  break;
+      this.analyser.smoothingTimeConstant = 0.1;
+      this.analyser.getByteFrequencyData(freqByteData);
+      for (let i = 0; i < freqByteData.length; i++) {
+        if (freqByteData[i] !== 0) {
+          datapoints.push(freqByteData[i]);
+          // console.log(datapoints);
+        }
+      }
 
-	case ANALYSISTYPE_WAVEFORM:
-		this.analyser.smoothingTimeConstant = 0.1;
-		this.analyser.getByteTimeDomainData(freqByteData);
-        console.log("Waveform");
-		break;
+      break;
+
+    case ANALYSISTYPE_WAVEFORM:
+      this.analyser.smoothingTimeConstant = 0.1;
+      this.analyser.getByteTimeDomainData(freqByteData);
+      for (let i = 0; i < freqByteData.length; i++) {
+        if (freqByteData[i] !== 0) {
+          datapoints.push(freqByteData[i]);
+          // console.log(datapoints);
+        }
+      }
+      break;
 	}
 
 	this.drawGL();

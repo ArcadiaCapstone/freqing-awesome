@@ -1,20 +1,33 @@
 <div class="controlPanel">
-  <div id="prev" class="arrow controls icon icon-down-arrow" (click)="prevSample()"></div>
-  <div *ngIf="!playing" class="controls icon icon-play-button" (click)="playSample()"></div>
-  <div *ngIf="playing" class="controls icon icon-pause-sign" (click)="pauseSample(this)"></div>
+  <div class="arrow controls icon icon-down-arrow" id="prev" (click)="prevSample()"></div>
+  <div class="controls icon icon-play-button" *ngIf="!playing" (click)="playSample()"></div>
+  <div class="controls icon icon-pause-sign" *ngIf="playing" (click)="pauseSample()"></div>
   <div class="controls icon icon-stop-button" (click)="stopSample()"></div>
-  <div id="next" class="arrow controls icon icon-up-arrow" (click)="nextSample()"></div>
+  <div class="arrow controls icon icon-up-arrow" id="next" (click)="nextSample()"></div>
 </div>
 
-<div id="sampleInfo"><h3>{{note}}<span><img src="{{typeIcon}}"></span></h3></div>
+<!--<div id="sampleInfo"><h3>{{note}}<span><img src="{{typeIcon}}"></span></h3></div>-->
+<div id="sampleInfo"><h3>{{note}}<span><img src="{{waveTypeIcon}}"></span></h3></div>
 
-<article>
-  <select id="waveType" aria-disabled="true" (change)="selectChangeHandler($event)">
-    <option id="sin" value="">Sin</option>
-    <option id="sqr" value="square">Square</option>
-    <option id="saw" value="saw">Sawtooth</option>
-    <option id="tri" value="tri">Triangle</option>
-  </select>
-</article>
+<div>
 
+  <mat-form-field id="wavetype-selector">
+    <mat-select [(ngModel)]="waveType" (change)="update()">
+      <mat-option value="">Sin</mat-option>
+      <mat-option value="square">Square</mat-option>
+      <mat-option value="saw">Sawtooth</mat-option>
+      <mat-option value="tri">Triangle</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!--<article>-->
+    <!--<select id="waveType" aria-disabled="true" (change)="selectChangeHandler($event)">-->
+      <!--<option id="sin" value="">Sin</option>-->
+      <!--<option id="sqr" value="square">Square</option>-->
+      <!--<option id="saw" value="saw">Sawtooth</option>-->
+      <!--<option id="tri" value="tri">Triangle</option>-->
+    <!--</select>-->
+  <!--</article>-->
+
+</div>
 

@@ -1,4 +1,5 @@
 .controlPanel {margin-top: .5rem;}
+.controls {cursor: pointer;}
 #prev {margin-left: 2rem;}
 #next {margin-right: 2rem;}
 .controls.icon.arrow {transform: rotate(90deg);}
@@ -32,12 +33,15 @@
     }
   }
 }
-select#waveType {
-  margin-bottom: 1rem;
-  background: black;
-  color: whitesmoke;
-  z-index: 5;
+#wavetype-selector {
+  z-index: 1;
 }
+//select#waveType {
+//  margin-bottom: 1rem;
+//  background: black;
+//  color: whitesmoke;
+//  z-index: 5;
+//}
 
 
 

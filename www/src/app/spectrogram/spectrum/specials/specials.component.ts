@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Toolkit from "../../core/runtime";
 
 @Component({
   selector: 'app-specials',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpecialsComponent implements OnInit {
 
+  isPlaying = true;
+
   constructor() { }
 
   ngOnInit() {
+  }
+  play() {
+    this.isPlaying = true;
+    Toolkit.spectrogram.startRender();
+  }
+
+  pause() {
+    this.isPlaying = false;
+    Toolkit.spectrogram.stopRender();
+  }
+
+  stop() {
+    this.isPlaying = false;
+    Toolkit.spectrogram.startRender();
+    Toolkit.spectrogram.stop();
   }
 
 }

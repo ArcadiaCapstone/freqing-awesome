@@ -1,14 +1,28 @@
 <div class="mat-app-background basic-container">
   <mat-sidenav-container class="nav-container" (backdropClick)="close('backdrop')">
 
-    <mat-sidenav #sidenav (keydown.escape)="close()" [disableClose]>
+    <mat-sidenav #sidenav (keydown.escape)="close(null, 0)" [disableClose]>
+      <!--<mat-nav-list>-->
+        <!--<p id="inner"><button mat-button (click)="close(null, 0)"><i class="material-icons">menu</i></button></p>-->
+        <!--<p><button mat-button (click)="close('sampler')"><i class="material-icons">music_note</i></button></p>-->
+        <!--<p><button mat-button (click)="close('playlist')"><i class="material-icons">playlist_play</i></button></p>-->
+        <!--<p><button mat-button (click)="close('specials')"><i class="material-icons">star</i></button></p>-->
+        <!--<p><button mat-button (click)="close('settings', 1)"><i class="material-icons">settings</i></button></p>-->
+        <!--<p id="acct"><button mat-button (click)="close('login')"><i class="material-icons">account_box</i></button></p>-->
+      <!--</mat-nav-list>-->
       <div class="menu-items">
-        <p id="inner"><button mat-button (click)="close()"><i class="material-icons">menu</i></button></p>
+        <p id="inner"><button mat-button (click)="close(null)"><i class="material-icons">menu</i></button></p>
         <p><button mat-button (click)="close('sampler')"><i class="material-icons">music_note</i></button></p>
         <p><button mat-button (click)="close('playlist')"><i class="material-icons">playlist_play</i></button></p>
         <p><button mat-button (click)="close('specials')"><i class="material-icons">star</i></button></p>
-        <p><button mat-button (click)="close('settings')"><i class="material-icons">settings</i></button></p>
-        <p id="acct"><button mat-button (click)="close('login')"><i class="material-icons">account_box</i></button></p>
+        <p><button mat-button (click)="toggleDataExport()"><i class="material-icons">timeline</i></button></p>
+        <p><button mat-button (click)="toggleSettings()"><i class="material-icons">settings</i></button></p>
+        <p id="acct">
+          <button mat-button (click)="close('login')">
+            <i *ngIf="!auth.isLoggedIn()" class="material-icons">account_box</i>
+            <img id="navatar" *ngIf="auth.isLoggedIn()" [src]="auth.userPhoto">
+          </button>
+        </p>
         <!--<p *ngIf="!logged" id="acct"><button mat-button (click)="close('login')"><i class="material-icons">account_box</i></button></p>-->
       </div>
     </mat-sidenav>

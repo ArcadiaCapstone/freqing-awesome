@@ -1,3 +1,3 @@
-<div class="music-box__buttons__record" (click)="begin()">
-  <div class="icon icon-rec"></div>
-</div>
+<button *ngIf="!isExporting" mat-button (click)="beginExport()"><i class="material-icons">timeline</i></button>
+<button *ngIf="isExporting" mat-button (click)="finishExport()"><i class="material-icons">file_download</i></button>
+

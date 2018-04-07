@@ -14,23 +14,20 @@ import {
 })
 export class SettingsComponent implements OnInit {
 
-  analysisType: number;
-
-  types = [0, 1, 2, 3, 4];
+  // 0 = 2D, 2 = 3D 3 = WaveForm
+  analysisType: number = 2;
 
   grid = false;
   disabled = false;
   invert = true;
-  showTicks = true;
+  showTicks = false;
   thumbLabel = true;
   vertical = true;
   autoTicks = false;
   step: 1;
-  dx: 0;
-  dy: 0;
-  dz: 0;
-  max: 60;
-  min: 0;
+  dx: number;
+  dy: number;
+  dz: number;
 
   constructor() { }
 
@@ -38,11 +35,33 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  // switchAnalysisType(n) {
-  //   Toolkit.spectrogram.stop();
-  //   Toolkit.spectrogram.init(n);
-  // }
-
+  changeType(n) {
+    Toolkit.spectrogram.stop();
+    this.analysisType = n;
+    if (n !== 2) {
+      this.grid = false;
+      this.toggleGrid();
+    }
+    Toolkit.spectrogram.switchAnalysisType(this.analysisType);
+  }
+  toggleGrid() {
+    Toolkit.spectrogram.toggleGrid(this.grid);
+  }
+  rotationX() {
+    Toolkit.spectrogram.rotateX(this.dx);
+    this.grid = false;
+    Toolkit.spectrogram.toggleGrid(this.grid);
+  }
+  rotationY() {
+    Toolkit.spectrogram.rotateY(this.dy);
+    this.grid = false;
+    Toolkit.spectrogram.toggleGrid(this.grid);
+  }
+  rotationZ() {
+    Toolkit.spectrogram.rotateZ(this.dz);
+    this.grid = false;
+    Toolkit.spectrogram.toggleGrid(this.grid);
+  }
   get tickInterval(): number | 'auto' {
     return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
   }
@@ -51,9 +70,7 @@ export class SettingsComponent implements OnInit {
   }
   private _tickInterval = 1;
 
-  toggleGrid() {
-    Toolkit.spectrogram.toggleGrid(this.grid);
-  }
+
 
 
 

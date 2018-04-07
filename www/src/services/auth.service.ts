@@ -9,7 +9,11 @@ export class AuthService {
 
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
-  private photo: string;
+  public userEmail: string | null;
+  public userName: string | null;
+  public userPhoto: string | null;
+
+
   // private provider = new firebase.auth.GoogleAuthProvider();
 
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
@@ -19,6 +23,9 @@ export class AuthService {
         if (user) {
           this.userDetails = user;
           console.log(this.userDetails);
+          this.userEmail = this.userDetails.email;
+          this.userName = this.userDetails.displayName;
+          this.userPhoto = this.userDetails.photoURL;
         }
         else {
           this.userDetails = null;
@@ -38,14 +45,15 @@ export class AuthService {
   }
 
   getUserDetails() {
-    return firebase.auth().currentUser.providerData.forEach((profile) => {
-      this.photo = profile.photoURL;
+    firebase.auth().currentUser.providerData.forEach((profile) => {
+      this.userEmail = profile.email;
+      this.userName = profile.displayName;
+      this.userPhoto = profile.photoURL;
     });
+
   }
 
-  getUserPhoto() {
-    return this.photo
-  }
+
 
   isLoggedIn() {
     return this.userDetails != null;

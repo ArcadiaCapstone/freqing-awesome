@@ -1,12 +1,9 @@
 import {
-  // Camera,
   Util,
   AnalyserView
 } from "../toolkit";
 
 import Player from "./player";
-import {Camera} from "../toolkit/camera";
-
 
 const Toolkit: any = {};
 
@@ -20,9 +17,10 @@ Toolkit.spectrogram = (function() {
     cxRot: 90,
     drawingMode: false,
     prevX: 0,
+    isExporting: false,
     dataPoints: [],
     x: -180,
-    y: 170,
+    y: -90,
     z: 90,
 
     handleTrack: function(e) {
@@ -133,15 +131,11 @@ Toolkit.spectrogram = (function() {
       spec3D.draw_();
     },
 
-    recordRaw: function() {
-
-    },
-
     live: function() {
       spec3D.player.live();
     },
 
-    init_: function(n) {
+    init_: function() {
       // Initialize everything.
       let player = new Player();
       let analyserNode = player.getAnalyserNode();
@@ -149,7 +143,7 @@ Toolkit.spectrogram = (function() {
       let analyserView = new AnalyserView(this.canvas);
       analyserView.setAnalyserNode(analyserNode);
       analyserView.initByteBuffer();
-      n !== undefined ? analyserView.setAnalysisType(n) : null;
+      analyserView.setAnalysisType(2);
 
       // spec3D.setdraw_();
       // impliment!!
@@ -162,17 +156,38 @@ Toolkit.spectrogram = (function() {
         .on('touchend', this.handleTrack);
     },
 
+    switchAnalysisType(n) {
+      let player = new Player();
+      let analyserNode = player.getAnalyserNode();
+
+      let analyserView = new AnalyserView(this.canvas);
+      analyserView.setAnalyserNode(analyserNode);
+      analyserView.initByteBuffer();
+      analyserView.setAnalysisType(n);
+      console.log("AnalysisType: " + n);
+      spec3D.player = player;
+      spec3D.analyserView = analyserView;
+      $('#spectrogram')
+        .on('mousedown', this.handleTrack)
+        .on('touchstart', this.handleTrack)
+        .on('mouseup', this.handleTrack)
+        .on('touchend', this.handleTrack);
+    },
+
     rotateX(dx) {
-      spec3D.analyserView.cameraController.xRot = dx + spec3D.x;
-      console.log("dx: " + dx);
+      let angle_x =  dx + spec3D.x;
+      spec3D.analyserView.cameraController.xRot = angle_x;
+      console.log("xRot: " + angle_x);
     },
     rotateY(dy) {
-      spec3D.analyserView.cameraController.yRot = dy + spec3D.y;
-      console.log("dy: " + dy);
+      let angle_y =  dy + spec3D.y;
+      spec3D.analyserView.cameraController.yRot = angle_y;
+      console.log("yRot: " + angle_y);
     },
     rotateZ(dz) {
-      spec3D.analyserView.cameraController.zRot = dz + spec3D.z;
-      console.log("dz: " + dz)
+      let angle_z =  dz + spec3D.z;
+      spec3D.analyserView.cameraController.zRot = angle_z;
+      console.log("zRot: " + angle_z);
     },
 
     onResize_: function() {
@@ -189,7 +204,7 @@ Toolkit.spectrogram = (function() {
       legend.width = $(window).width();
       legend.height = $(window).height() - 158;
 
-      spec3D.drawGrid();
+      spec3D.draw3DGrid();
     },
 
     draw_: function() {
@@ -197,15 +212,24 @@ Toolkit.spectrogram = (function() {
         console.log('stopped draw_');
         return;
       }
-      // spec3D.analyserView.doFrequencyAnalysis();
+
       let data = spec3D.analyserView.doFrequencyAnalysis();
-      // console.log(data);
+      if(spec3D.isExporting) {
+        spec3D.dataPoints = data;
+        console.log(data);
+      }
+      // spec3D.analyserView.doFrequencyAnalysis();
       requestAnimationFrame(spec3D.draw_.bind(spec3D));
+    },
+
+    recordRaw: function() {
+      spec3D.isExporting = false;
+      return spec3D.dataPoints;
     },
 
     switchComponent(elemId) {
       spec3D.stop();
-      $('.componentContainer').hide();
+      $('.switch').hide();
       $("[id*=" + elemId + "]").show();
     },
     toggleGrid(active) {
@@ -216,8 +240,7 @@ Toolkit.spectrogram = (function() {
       let $e = $("[id*=" + elemId + "]");
       active ? $e.show() : $e.hide();
     },
-
-    drawGrid: function() {
+    draw3DGrid: function() {
       let canvas = $('#grid')[0];
       let ctx = canvas.getContext('2d');
 
@@ -234,7 +257,7 @@ Toolkit.spectrogram = (function() {
         ctx.lineTo(bw + p, 0.5 + dy + p);
       }
 
-      ctx.strokeStyle = "#777";
+      ctx.strokeStyle = "#FFF";
       ctx.stroke();
 
       let x = canvas.width - 10;
@@ -249,6 +272,9 @@ Toolkit.spectrogram = (function() {
       ctx.fillText('- 300 Hz', x, canvas.height - spec3D.freqToY(75));
       ctx.fillText('- 200 Hz', x, canvas.height - spec3D.freqToY(35));
       ctx.fillText('- 100 Hz', x, canvas.height - spec3D.freqToY(20));
+
+    },
+    draw2DGrid: function() {
 
     },
 
@@ -286,7 +312,6 @@ Toolkit.spectrogram = (function() {
       // Apply padding, etc.
       return spec3D.padding + percent * (height - 2 * padding);
     },
-
 
   };
 

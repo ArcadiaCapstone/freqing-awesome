@@ -1,31 +1,4 @@
-<div class="analysisContainer">
-  <!--<mat-radio-group class="example-radio-group" [(ngModel)]="analysisType">-->
-    <!--<mat-radio-button class="example-radio-button" [value]="analysisType">-->
-      <!--<label>WaveForm</label>-->
-      <!--<div></div>-->
-    <!--</mat-radio-button>-->
-    <!--<mat-radio-button class="example-radio-button" [value]="analysisType">-->
-      <!--<label>Amp/Freq</label>-->
-      <!--<div></div>-->
-    <!--</mat-radio-button>-->
-    <!--<mat-radio-button class="example-radio-button" [value]="analysisType">-->
-      <!--<label>3D!</label>-->
-      <!--<div></div>-->
-    <!--</mat-radio-button>-->
-  <!--</mat-radio-group>-->
-  <ul>
-    <li><input type="radio" id="t-option" name="selector">
-      <label for="t-option">WaveForm</label><div class="check"></div>
-    </li>
-    <li><input type="radio" id="s-option" name="selector">
-      <label for="s-option">Amp/Freq</label><div class="check"></div>
-    </li>
-    <li><input type="radio" id="f-option" name="selector" checked>
-      <label for="f-option">3D!</label><div class="check"></div>
-    </li>
-  </ul>
-</div>
-<mat-card class="clear">
+<mat-card *ngIf="analysisType == 2" class="clear">
   <mat-card-content>
     <section class="setting-section">
       <mat-slide-toggle [color]="'primary'" class="setting-margin" [(ngModel)]="grid" (change)="toggleGrid()">Grid</mat-slide-toggle>
@@ -33,65 +6,87 @@
   </mat-card-content>
 </mat-card>
 
+<!--<mat-card>-->
+  <!--<mat-card-content>-->
+    <!--<mat-form-field id="analysisType-selector" (change)="changeType()">-->
+      <!--<mat-select [(ngModel)]="analysisType">-->
+        <!--<mat-option value="0">2D</mat-option>-->
+        <!--<mat-option value="2">3D </mat-option>-->
+        <!--<mat-option value="3">Waveform</mat-option>-->
+      <!--</mat-select>-->
+    <!--</mat-form-field>-->
+  <!--</mat-card-content>-->
+<!--</mat-card>-->
+
+<div class="analysisContainer">
+  <ul>
+    <li>
+      <input type="radio" id="t-option" name="selector" (click)="changeType(3)">
+      <div class="check"></div><label for="t-option">WaveForm</label>
+    </li>
+    <li>
+      <input type="radio" id="s-option" name="selector" (click)="changeType(0)">
+      <div class="check"></div><label for="s-option">Amp/Freq</label>
+    </li>
+    <li>
+      <input type="radio" id="f-option" name="selector" checked (click)="changeType(2)">
+      <div class="check"></div><label for="f-option">3D!</label>
+    </li>
+  </ul>
+</div>
+
+
 <!--ONLY SHOW THIS WHEN ITS 3D-->
-<mat-card class="result">
-  <div class="labels">
-    <h2>X</h2>
-    <h2>Y</h2>
-    <h2>Z</h2>
-  </div>
+<mat-card *ngIf="analysisType == 2" class="result">
+    <div class="labels">
+      <h2>X</h2>
+      <h2>Y</h2>
+      <h2>Z</h2>
+    </div>
+
 
   <mat-card-content class="rotationControl">
-
-    <mat-slider
+    <mat-slider (change)="rotationX()"
       class="sliders x-slider"
       [color]="'primary'"
       [disabled]="disabled"
       [invert]="invert"
-      [max]="max"
-      [min]="min"
+      [max]=360
+      [min]=0
       [step]="step"
       [thumb-label]="thumbLabel"
       [tick-interval]="tickInterval"
       [(ngModel)]="dx"
       [vertical]="vertical">
     </mat-slider>
-
-    <mat-slider
+    <mat-slider (change)="rotationY()"
       class="sliders y-slider"
       [color]="'primary'"
       [disabled]="disabled"
       [invert]="invert"
-      [max]="max"
-      [min]="min"
+      [max]=360
+      [min]=0
       [step]="step"
       [thumb-label]="thumbLabel"
       [tick-interval]="tickInterval"
       [(ngModel)]="dy"
       [vertical]="vertical">
     </mat-slider>
-
-    <mat-slider
+    <mat-slider (change)="rotationZ()"
       class="sliders z-slider"
       [color]="'primary'"
       [disabled]="disabled"
       [invert]="invert"
-      [max]="max"
-      [min]="min"
+      [max]=360
+      [min]=0
       [step]="step"
       [thumb-label]="thumbLabel"
       [tick-interval]="tickInterval"
       [(ngModel)]="dz"
       [vertical]="vertical">
     </mat-slider>
-
-    <section class="setting-section">
-      {{dx}}
-      {{dy}}
-      {{dz}}
-    </section>
-
   </mat-card-content>
+
 </mat-card>
 
 

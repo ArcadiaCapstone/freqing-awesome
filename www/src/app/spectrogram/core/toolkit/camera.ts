@@ -8,7 +8,6 @@ export class Camera {
               public xRot:number = 0,
               public yRot:number = 0,
               public zRot:number = 0) {
-    console.log('Camera');
 
   }
 }

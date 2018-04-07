@@ -18,7 +18,5 @@ export class SpectrumComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit(): void {
     Toolkit.startScript();
-    Toolkit.spectrogram.stop();
-    Toolkit.spectrogram.stopRender();
   }
 }

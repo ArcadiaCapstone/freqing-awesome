@@ -8,14 +8,11 @@ import {AuthService} from "../../../../services/auth.service";
 })
 export class LoginComponent implements OnInit {
 
-  photo:any;
-  profile: any;
   constructor(public auth: AuthService) {
-    this.profile = this.auth.getUserPhoto();
-    console.log(this.profile);
   }
 
   ngOnInit() {
+    console.log(this.auth.userPhoto)
   }
 
   onAuth() {

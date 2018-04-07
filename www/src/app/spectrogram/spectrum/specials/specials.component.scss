@@ -44,3 +44,21 @@ $buttonContainerBackground: #111;
     display:none;
   }
 }
+.controlPanel {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.controls {cursor: pointer;}
+.controls.selected  {background-color: #7a42f4;}
+.controls:active:visited {background-color: #333333;}
+.controls.icon {
+  margin-right: 1rem;
+  margin-left: 1rem;
+  position: relative;
+  text-align: center;
+  color: whitesmoke;
+  vertical-align: middle;
+  display:inline-flex;
+  font-size: 2.5rem;
+  z-index: 1;
+}

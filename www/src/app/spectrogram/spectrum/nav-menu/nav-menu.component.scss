@@ -1,5 +1,5 @@
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: 'Material Icons', serif;
   font-weight: normal;
   font-style: normal;
   font-size: 2.5em;
@@ -50,7 +50,14 @@ p :hover{
     padding-bottom: 5rem;
   }
   #acct {
-    margin-top: 35vh;
+    margin-top: 7.5vh;
+    button {
+      max-width: 5rem;
+      img {
+        border-radius: 50%;
+        width: 75%;
+      }
+    }
   }
 }
 .mat-sidenav-content {
@@ -61,4 +68,6 @@ p :hover{
     color: whitesmoke;
   }
 }
+
+
 

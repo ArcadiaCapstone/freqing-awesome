@@ -12,12 +12,11 @@ export class NavMenuComponent implements OnInit {
 
   @ViewChild('sidenav') private sidenav: MatSidenav;
 
-  logged: boolean;
   photo: string;
+  settings: boolean = false;
+  dataExport: boolean = false;
 
-  constructor(auth: AuthService) {
-    this.logged = auth.isLoggedIn();
-    this.photo = auth.getUserPhoto();
+  constructor(public auth: AuthService) {
   }
 
   ngOnInit() {
@@ -25,11 +24,22 @@ export class NavMenuComponent implements OnInit {
   }
 
   close(elem) {
-    if(elem !== null) {
-      elem += 'Container';
-      Toolkit.spectrogram.switchComponent(elem);
-      // Toolkit.spectrogram.toggleElem(elem);
+    if (elem != null) {
+      Toolkit.spectrogram.stop();
+      Toolkit.spectrogram.stopRender();
+      Toolkit.spectrogram.switchComponent(elem + 'Container');
     }
+    this.sidenav.close().then();
+  }
+
+  toggleSettings() {
+    this.settings = !this.settings;
+    Toolkit.spectrogram.toggleElem('settingsContainer', this.settings);
+    this.sidenav.close().then();
+  }
+  toggleDataExport() {
+    this.dataExport = !this.dataExport;
+    Toolkit.spectrogram.toggleElem('exportContainer', this.dataExport);
     this.sidenav.close().then();
   }
 

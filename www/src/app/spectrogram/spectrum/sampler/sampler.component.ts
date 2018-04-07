@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {notes} from "../../core/runtime/notes";
 import Toolkit from "../../core/runtime/index";
+import {FormControl} from "@angular/forms";
 
 
 @Component({
@@ -12,22 +13,21 @@ export class SamplerComponent implements OnInit {
 
   i: number;
   note: string;
-  sampleSrc: string = "";
-  selectedType: string;
-  typeIcon: string;
-  loop = false;
   playing = false;
+  sampleSrc: string = "";
+  // selectedType: string;
+  // typeIcon: string;
+  waveType = '';
+  waveTypeIcon = '../bin/icons/sin.svg';
+
 
   constructor() { }
 
   ngOnInit() {
     this.i = 0;
-    this.selectedType = '';
-    this.typeIcon = '"../bin/icons/sin.svg"';
+    // this.selectedType = '';
+    // this.typeIcon = '"../bin/icons/sin.svg"';
     this.update();
-
-  }
-  ngAfterViewInit(): void {
 
   }
 
@@ -51,8 +51,8 @@ export class SamplerComponent implements OnInit {
 
   pauseSample() {
     this.playing = false;
-    Toolkit.spectrogram.stop();
     Toolkit.spectrogram.stopRender();
+    Toolkit.spectrogram.stop();
   }
 
   stopSample() {
@@ -62,20 +62,18 @@ export class SamplerComponent implements OnInit {
   }
 
 
-  selectChangeHandler (event: any) {
-    this.selectedType = event.target.value;
-    this.update();
-  }
-
-  setLoop() {
-    Toolkit.spectrogram.loop(this.loop);
-  }
+  // selectChangeHandler (event: any) {
+  //   this.selectedType = event.target.value;
+  //   this.update();
+  // }
 
   update() {
-    this.sampleSrc = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.selectedType + '.wav';
-    this.selectedType === '' ? this.typeIcon = '../bin/icons/sin.svg' : this.typeIcon = "../bin/icons/" + this.selectedType + ".svg";
+    // this.sampleSrc = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.selectedType + '.wav';
+    // this.selectedType === '' ? this.typeIcon = '../bin/icons/sin.svg' : this.typeIcon = "../bin/icons/" + this.selectedType + ".svg";
+    this.waveType === '' ? this.waveTypeIcon = '../bin/icons/sin.svg' : this.waveTypeIcon = "../bin/icons/" + this.waveType + ".svg";
+    this.sampleSrc = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.waveType + '.wav';
     this.note = notes[this.i].split(':')[0].toString() + " " +
-                  notes[this.i].split(':')[1].toString() + "Hz";
+                notes[this.i].split(':')[1].toString() + "Hz";
   }
 
 }
