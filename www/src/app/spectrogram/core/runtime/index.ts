@@ -393,10 +393,11 @@ Toolkit.main = (function() {
           }
           else if ($(this)[0].id === 'drawButton') {
             Toolkit.spectrogram.drawingMode = true;
-            $('#drawAnywhere').fadeIn().delay(2000).fadeOut();
           }
         }
       });
+
+
     };
 
     let elm = $('#iosButton');

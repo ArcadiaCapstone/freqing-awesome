@@ -96,9 +96,12 @@
       left: -2px;
       min-height: 30rem;
       margin-top: 1rem;
-      .mat-slider-wrapper {
-        background: #999;
-      }
+    }
+    .mat-slider-wrapper {
+      background: #999;
+    }
+    .mat-slider-thumb {
+      background: whitesmoke;
     }
   }
 

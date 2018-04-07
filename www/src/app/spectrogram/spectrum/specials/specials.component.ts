@@ -22,6 +22,7 @@ export class SpecialsComponent implements OnInit {
   pause() {
     this.isPlaying = false;
     Toolkit.spectrogram.stopRender();
+    Toolkit.spectrogram.stop();
   }
 
   stop() {
@@ -29,5 +30,6 @@ export class SpecialsComponent implements OnInit {
     Toolkit.spectrogram.startRender();
     Toolkit.spectrogram.stop();
   }
+
 
 }
