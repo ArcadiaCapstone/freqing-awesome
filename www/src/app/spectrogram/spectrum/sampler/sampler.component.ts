@@ -15,8 +15,6 @@ export class SamplerComponent implements OnInit {
   note: string;
   playing = false;
   sampleSrc: string = "";
-  // selectedType: string;
-  // typeIcon: string;
   waveType = '';
   waveTypeIcon = '../bin/icons/sin.svg';
 
@@ -25,10 +23,7 @@ export class SamplerComponent implements OnInit {
 
   ngOnInit() {
     this.i = 0;
-    // this.selectedType = '';
-    // this.typeIcon = '"../bin/icons/sin.svg"';
     this.update();
-
   }
 
   prevSample() {
@@ -39,7 +34,6 @@ export class SamplerComponent implements OnInit {
 
   playSample() {
     this.playing = true;
-    // Toolkit.spectrogram.drawingMode = false;
     Toolkit.spectrogram.play(this.sampleSrc);
     Toolkit.spectrogram.startRender();
   }
@@ -61,15 +55,7 @@ export class SamplerComponent implements OnInit {
     Toolkit.spectrogram.stop();
   }
 
-
-  // selectChangeHandler (event: any) {
-  //   this.selectedType = event.target.value;
-  //   this.update();
-  // }
-
   update() {
-    // this.sampleSrc = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.selectedType + '.wav';
-    // this.selectedType === '' ? this.typeIcon = '../bin/icons/sin.svg' : this.typeIcon = "../bin/icons/" + this.selectedType + ".svg";
     this.waveType === '' ? this.waveTypeIcon = '../bin/icons/sin.svg' : this.waveTypeIcon = "../bin/icons/" + this.waveType + ".svg";
     this.sampleSrc = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.waveType + '.wav';
     this.note = notes[this.i].split(':')[0].toString() + " " +

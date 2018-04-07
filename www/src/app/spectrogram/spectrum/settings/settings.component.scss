@@ -1,33 +1,12 @@
-.mat-card.clear {
-  background: #555;
-  padding: 10px;
-  margin-top: 2rem;
-}
-.mat-slide-toggle-content {
-  color: #CCCCCC;
-}
-
-.setting-section {
-  display: inline;
-  align-content: center;
-  align-items: center;
-  height: 30px;
-}
-
-.setting-margin {
-  align-content: center;
-  align-items: center;
-  z-index: 1;
-}
-//-------------------------------------------------------------------------------------------------------------------//
-
+.setting-section { display: inline; }
+.mat-slide-toggle { color: #CCCCCC; }
 .analysisContainer {
-  z-index: 1;
+  margin-left: 2rem;
   position: relative;
   height: auto;
-  width: 21rem;
+  width: 11.25rem;
   background: #333;
-  opacity: .7;
+  opacity: .75;
   p {
     color: #FFFFFF;
     font-size: medium;
@@ -41,6 +20,7 @@
       position: relative;
       float: left;
       width: 100%;
+      text-align: center;
       border-bottom: 1px solid #111;
 
       input[type=radio] {
@@ -90,32 +70,32 @@
       .check { border: 5px solid #7a42f4; }
     }
   }
-
 }
-//-------------------------------------------------------------------------------------------------------------------//
 
-.result.mat-card {
+.rotationPanel {
   color: #FFFFFF;
   z-index: 1;
   background-color: #222;
-  opacity: .5;
+  opacity: .75;
+  margin-left: 2rem;
+  width: 8.25rem;
 
   .labels {
     display: inline-flex;
     h2 {
-      padding: 0 25px 0 24px;
-      font-size: 15px;
+      padding: 0 19px 0 18px;
+      font-size: 12px;
     }
   }
 
-  .mat-card-content {
+  .rotationControl {
     display: flex;
     .mat-slider {
       background: #222;
       width: 60px;
-      left: 5px;
-      min-height: 40rem;
-      margin-top: 2rem;
+      left: -2px;
+      min-height: 30rem;
+      margin-top: 1rem;
       .mat-slider-wrapper {
         background: #999;
       }

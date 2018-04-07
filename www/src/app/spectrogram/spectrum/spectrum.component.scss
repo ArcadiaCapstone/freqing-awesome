@@ -18,22 +18,8 @@ canvas {
   opacity: 0.5;
   z-index: 98;
 }
-.music-box__buttons {
-  position: fixed;
-  bottom: 0;
-  z-index: 100;
-  //white-space: nowrap;
-  background-color: transparent;
-  //padding-left: 2rem;
-  padding-top: 1.3rem;
-  padding-bottom: 1.3rem;
-  width: 30rem;
-  height: 100%;
-  text-align: center;
-  //text-decoration-color: #EEEEEE;
-  //overflow-x: scroll;
-}
 .components {
-  margin-left: 9rem;
+  margin-left: 5rem;
+  position: fixed;
   z-index: 101;
 }

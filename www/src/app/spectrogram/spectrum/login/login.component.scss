@@ -1,23 +1,24 @@
+
 .login-portal-section {
   button {
     z-index: 1;
-    background: #888;
-    i {
-      color: whitesmoke;
+    background: #333;
+    i#out {
+      color: #7a42f4;
+    }
+    i#in {
+      color: white;
     }
   }
 }
 
 .avatar {
   margin-bottom: 1rem;
+
   img {
     border-radius: 50%;
     width: 50%;
   }
 }
-.mat-card-title {
-  color: whitesmoke;
-}
-.mat-card-subtitle {
-  color: whitesmoke;
-}
+.mat-card-title { color: whitesmoke; }
+.mat-card-subtitle { color: whitesmoke; }

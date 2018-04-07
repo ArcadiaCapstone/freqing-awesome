@@ -6,18 +6,6 @@
   </mat-card-content>
 </mat-card>
 
-<!--<mat-card>-->
-  <!--<mat-card-content>-->
-    <!--<mat-form-field id="analysisType-selector" (change)="changeType()">-->
-      <!--<mat-select [(ngModel)]="analysisType">-->
-        <!--<mat-option value="0">2D</mat-option>-->
-        <!--<mat-option value="2">3D </mat-option>-->
-        <!--<mat-option value="3">Waveform</mat-option>-->
-      <!--</mat-select>-->
-    <!--</mat-form-field>-->
-  <!--</mat-card-content>-->
-<!--</mat-card>-->
-
 <div class="analysisContainer">
   <ul>
     <li>
@@ -37,13 +25,12 @@
 
 
 <!--ONLY SHOW THIS WHEN ITS 3D-->
-<mat-card *ngIf="analysisType == 2" class="result">
+<mat-card *ngIf="analysisType == 2" class="rotationPanel">
     <div class="labels">
       <h2>X</h2>
       <h2>Y</h2>
       <h2>Z</h2>
     </div>
-
 
   <mat-card-content class="rotationControl">
     <mat-slider (change)="rotationX()"

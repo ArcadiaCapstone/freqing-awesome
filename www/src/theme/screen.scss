@@ -5,6 +5,14 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url(https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,400italic,500italic);
 
+body,html{
+	width:100%;
+	height:100%;
+	color:#000;
+	font-family: 'Roboto', sans-serif;
+	background-color: #141414;
+}
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -16,174 +24,63 @@
   url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
   url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 }
+.material-icons {
+  font-family: 'Material Icons', serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2.5em;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
-html{font-size: 62.5%;}
-body,html{
-	width:100%;
-	height:100%;
-	color:#000;
-	font-family: 'Roboto', sans-serif;
-	background-color: #141414;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
-@keyframes rotate {
-	from {transform:rotate(0deg);}
-	to {transform:rotate(360deg);}
-}
 .mat-select-arrow { color: #EEEEEE; }
 .mat-form-field-underline { background: #EEEEEE; }
 .mat-select-content { background: #373735; }
 .mat-option { color: #EEEEEE; }
+.mat-card.clear {
+  background: #555;
+  padding: 10px;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  width: 10rem;
+  opacity: .9;
+  text-align: center;
+}
 .cdk-overlay-pane { opacity: 0.75; }
 
-//.mat-card {
-//  padding:2rem;
-//}
-//.music-box__buttons__record {
-//  background-color: $buttonColor;
-//
-//  width: 4rem;
-//  height: 4rem;
-//  display: inline-flex;
-//  border-radius: 30rem;
-//  //overflow: hidden;
-//  //box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-//  margin-right: 1.1rem;
-//  position: relative;
-//  text-align: center;
-//  //vertical-align: middle;
-//
-//  &.selected  {
-//  }
-//  &:active, &:visited {
-//    background-color: $buttonColor;
-//  }
-//  .icon {
-//    vertical-align: middle;
-//    display:inline-flex;
-//    font-size: 3.5rem;
-//    line-height: 125%;
-//    margin-left: .2rem;
-//    margin-top: -.15rem;
-//    transform: rotate(0deg);
-//
-//  }
-//  img {
-//    position: absolute;
-//    top: 50%;
-//    left: 50%;
-//    transform: translate(-50%,-50%);
-//    width: 80%;
-//    height: 80%;
-//    margin: auto;
-//    pointer-events: none;
-//    display:none;
-//  }
-//}
-
-//.music-box__modal {
-//	display: none;
-//	position: fixed;
-//	top: 0;
-//	left: 0;
-//	z-index: 200;
-//	width: 100%;
-//	height:100%;
-//	background-color: rgba(0,0,0,.8);
-//}
-
-
-//.music-box__modal__message {
-//
-//	position:fixed;
-//	top: 40%;
-//	left: 50%;
-//	width: 100%;
-//	transform: translate(-50%,-50%);
-//	// background-color: #fff;
-//	padding: 3rem;
-//	border-radius: 0.2rem;
-//	// box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-//	svg{
-//		display: block;
-//		margin-left: auto;
-//		margin-right: auto;
-//	}
-//	img{
-//		width: 10vw;
-//		height: 10vw;
-//		transform:rotate(0deg);
-//		animation: rotate 0.7s linear infinite;
-//	}
-//}
-//
-//.music-box__modal__message__text {
-//	color: #fff;
-//	font-size: 4rem;
-//	font-weight: 200;
-//	text-align: center;
-//	margin-bottom: 3.5rem;
-//	text-transform: capitalize;
-//}
-//
-//.music-box__modal__message__explainer {
-//	color: #fff;
-//	font-size: 2rem;
-//	font-weight: 200;
-//	text-align: center;
-//	margin-top: 3.5rem;
-//}
-//
-//.music-box__modal__icon {
-//	color: #fff;
-//	font-size: 7rem;
-//	position: absolute;
-//	left: 50%;
-//	top: 50%;
-//	transform: translate(-50%,-46%);
-//}
-//
-//.music-box__modal__record-rings{
-//	position: absolute;
-//	width: 20rem;
-//	height: 20rem;
-//	border: 0.1rem solid $buttonHoverColor;
-//	left: 50%;
-//	top: 50%;
-//	transform: translate(-50%,-50%);
-//	border-radius: 30rem;
-//	animation-component: sonar-animation;
-//	animation-duration: 2s;
-//	animation-iteration-count: infinite;
-//	animation-timing-function: ease-out;
-//	opacity: 0;
-//	 &:nth-child(1){
-//		animation-delay:0s
-//	}
-//	&:nth-child(2){
-//		animation-delay:.3s
-//	}
-//	&:nth-child(3){
-//		animation-delay:.6s
-//	}
-//	&:nth-child(4){
-//		animation-delay:.9s
-//	}
-//	&:nth-child(5){
-//		animation-delay:1.2s
-//	}
-//}
-//
-//#iosButton{
-//	display:block;
-//	position: fixed;
-//	//z-index: 5000;
-//	background-color: #fff;
-//	width: 100%;
-//	height: 100%;
-//	&.hide{
-//		display:none;
-//	}
-//}
-
-
+.controlPanel {
+  margin-top: 1.25rem;
+  div {
+    cursor: pointer;
+    z-index: 100;
+  }
+  div.icon {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    position: relative;
+    text-align: center;
+    color: whitesmoke;
+    vertical-align: middle;
+    display:inline-flex;
+    font-size: 2rem;
+  }
+  div.icon.arrow {
+    transform: rotate(90deg);
+  }
+  #prev {margin-left: 1.5rem;}
+  #next {margin-right: 2rem;}
+}

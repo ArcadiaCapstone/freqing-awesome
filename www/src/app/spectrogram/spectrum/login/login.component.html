@@ -3,12 +3,12 @@
   <mat-card *ngIf="!this.auth.isLoggedIn()" class="clear">
     <mat-card-content>
       <section class="login-portal-section">
-        <button mat-raised-button (click)="onAuth()"><i class="material-icons">account_circle</i></button>
+        <button mat-raised-button (click)="onAuth()"><i id="in" class="material-icons">account_circle</i></button>
       </section>
     </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="this.auth.isLoggedIn()" class="clear">
+  <mat-card *ngIf="this.auth.isLoggedIn()" class="clear profile">
       <div class="avatar">
         <img [src]="auth.userPhoto">
       </div>
@@ -16,7 +16,7 @@
     <mat-card-subtitle>{{auth.userEmail}}</mat-card-subtitle>
     <mat-card-content>
       <section class="login-portal-section">
-        <button mat-raised-button (click)="onLogOut()"><i class="material-icons">exit_to_app</i></button>
+        <button mat-raised-button (click)="onLogOut()"><i id="out" class="material-icons">exit_to_app</i></button>
       </section>
     </mat-card-content>
   </mat-card>

@@ -1,25 +1,10 @@
-.controlPanel {margin-top: .5rem;}
-.controls {cursor: pointer;}
-#prev {margin-left: 2rem;}
-#next {margin-right: 2rem;}
-.controls.icon.arrow {transform: rotate(90deg);}
-.controls.selected  {background-color: #7a42f4;}
-.controls:active:visited {background-color: #333333;}
-.controls.icon {
-  margin-right: 1rem;
-  margin-left: 1rem;
-  position: relative;
-  text-align: center;
-  color: whitesmoke;
-  vertical-align: middle;
-  display:inline-flex;
-  font-size: 2.5rem;
-  z-index: 1;
-}
+
 
 #sampleInfo {
   display: inline-flex;
+  z-index: 100;
   margin-top: 1rem;
+  margin-left: 5rem;
   h3 {
     font-size: large;
     width: 10rem;
@@ -29,19 +14,15 @@
     img {
       filter: invert(.9);
       width: 8rem;
-      margin-top: 2rem;
+      margin-left: -1.5rem;
+      margin-top: 1rem;
     }
   }
 }
 #wavetype-selector {
-  z-index: 1;
+  margin-left: 2rem;
+  z-index: 100;
 }
-//select#waveType {
-//  margin-bottom: 1rem;
-//  background: black;
-//  color: whitesmoke;
-//  z-index: 5;
-//}
 
 
 

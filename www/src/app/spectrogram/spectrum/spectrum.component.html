@@ -1,45 +1,27 @@
 <canvas id="spectrogram"></canvas>
 <canvas id="grid"></canvas>
 
-<!--<div id="iosButton"></div>-->
+<app-nav-menu></app-nav-menu>
 
-<!--<div class="music-box__modal" id="record">-->
-  <!--&lt;!&ndash;<div class="music-box__modal__message">&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="music-box__modal__record-rings"></div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="music-box__modal__record-rings"></div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="music-box__modal__icon icon-mic"></div>&ndash;&gt;-->
-  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--</div>-->
+<div class="components">
 
-<!--<div class="music-box__modal" id="drawAnywhere">-->
-  <!--<div class="music-box__modal__message"></div>-->
-<!--</div>-->
-
-<div class="music-box__buttons">
-
-  <app-nav-menu></app-nav-menu>
-
-  <div class="components">
-
-    <div id="samplerContainer" class="componentContainer switch">
-      <app-sampler></app-sampler>
-    </div>
-    <div id="specialsContainer" class="componentContainer switch">
-      <app-specials></app-specials>
-    </div>
-    <div id="filesContainer" class="componentContainer switch">
-      <app-playlist></app-playlist>
-    </div>
-    <div id="settingsContainer" class="componentContainer toggle">
-      <app-settings></app-settings>
-    </div>
-    <div id="exportContainer" class="componentContainer toggle">
-      <app-data-export></app-data-export>
-    </div>
-    <div id="loginContainer" class="componentContainer switch">
-      <app-login></app-login>
-    </div>
-
-
+  <div id="samplerContainer" class="componentContainer switch">
+    <app-sampler></app-sampler>
   </div>
+  <div id="specialsContainer" class="componentContainer switch">
+    <app-specials></app-specials>
+  </div>
+  <div id="filesContainer" class="componentContainer switch">
+    <app-playlist></app-playlist>
+  </div>
+  <div id="settingsContainer" class="componentContainer toggle">
+    <app-settings></app-settings>
+  </div>
+  <div id="exportContainer" class="componentContainer toggle">
+    <app-data-export></app-data-export>
+  </div>
+  <!--<div id="loginContainer" class="componentContainer switch">-->
+    <app-login></app-login>
+  <!--</div>-->
+
 </div>

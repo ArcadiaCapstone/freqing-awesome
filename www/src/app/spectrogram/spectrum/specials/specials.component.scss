@@ -1,64 +1,36 @@
-$black: #000;
-$buttonColor: #333333;
-$buttonHoverColor: #7a42f4;
-$buttonIconColor: #EEEEEE;
-$buttonContainerBackground: #111;
-
-.special-button {
-  background-color: $buttonColor;
-  color: $buttonIconColor;
-
-  width: 7rem;
-  height: 7rem;
-  display: inline-block;
-  border-radius: 30rem;
-  //overflow: hidden;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-  margin-right: 1.1rem;
-  position: relative;
-  text-align: center;
-  vertical-align: middle;
-  z-index: 100;
-
-  &.selected  {
-    background-color: $buttonHoverColor;
-  }
-  &:active, &:visited {
-    background-color: $buttonColor;
-  }
-  .icon {
+.special-controls {
+  margin-left: 4.5rem;
+  margin-bottom: 1rem;
+}
+.special-buttons {
+  margin-left: 2.5rem;
+  div {
+    background-color: #333333;
+    color: #EEEEEE;
+    cursor: pointer;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: inline-block;
+    border-radius: 30rem;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    margin-right: 1rem;
+    position: relative;
+    text-align: center;
     vertical-align: middle;
-    display:inline-block;
-    font-size: 5rem;
-    line-height: 125%;
+    z-index: 100;
+    i {
+      font-size: xx-large;
+      margin-top: 1rem;
+    }
+    &.selected  {
+      background-color: #7a42f4;
+    }
+    &:active, &:visited {
+      background-color: #333333;
+    }
+
   }
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 80%;
-    height: 80%;
-    margin: auto;
-    pointer-events: none;
-    display:none;
-  }
+
+
 }
-.controlPanel {
-  margin-top: .5rem;
-  margin-bottom: .5rem;
-}
-.controls {cursor: pointer;}
-.controls.selected  {background-color: #7a42f4;}
-.controls:active:visited {background-color: #333333;}
-.controls.icon {
-  margin-right: 1rem;
-  margin-left: 1rem;
-  position: relative;
-  text-align: center;
-  color: whitesmoke;
-  vertical-align: middle;
-  display:inline-flex;
-  font-size: 2.5rem;
-  z-index: 1;
-}
+

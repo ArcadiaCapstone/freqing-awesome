@@ -1,16 +1,14 @@
 <div class="controlPanel">
-  <div class="arrow controls icon icon-down-arrow" id="prev" (click)="prevSample()"></div>
-  <div class="controls icon icon-play-button" *ngIf="!playing" (click)="playSample()"></div>
-  <div class="controls icon icon-pause-sign" *ngIf="playing" (click)="pauseSample()"></div>
-  <div class="controls icon icon-stop-button" (click)="stopSample()"></div>
-  <div class="arrow controls icon icon-up-arrow" id="next" (click)="nextSample()"></div>
+  <div class="arrow icon icon-down-arrow" id="prev" (click)="prevSample()"></div>
+  <div class="icon icon-play-button" *ngIf="!playing" (click)="playSample()"></div>
+  <div class="icon icon-pause-sign" *ngIf="playing" (click)="pauseSample()"></div>
+  <div class="icon icon-stop-button" (click)="stopSample()"></div>
+  <div class="arrow icon icon-up-arrow" id="next" (click)="nextSample()"></div>
 </div>
 
-<!--<div id="sampleInfo"><h3>{{note}}<span><img src="{{typeIcon}}"></span></h3></div>-->
 <div id="sampleInfo"><h3>{{note}}<span><img src="{{waveTypeIcon}}"></span></h3></div>
 
 <div>
-
   <mat-form-field id="wavetype-selector">
     <mat-select [(ngModel)]="waveType" (change)="update()">
       <mat-option value="">Sin</mat-option>
@@ -19,15 +17,5 @@
       <mat-option value="tri">Triangle</mat-option>
     </mat-select>
   </mat-form-field>
-
-  <!--<article>-->
-    <!--<select id="waveType" aria-disabled="true" (change)="selectChangeHandler($event)">-->
-      <!--<option id="sin" value="">Sin</option>-->
-      <!--<option id="sqr" value="square">Square</option>-->
-      <!--<option id="saw" value="saw">Sawtooth</option>-->
-      <!--<option id="tri" value="tri">Triangle</option>-->
-    <!--</select>-->
-  <!--</article>-->
-
 </div>
 

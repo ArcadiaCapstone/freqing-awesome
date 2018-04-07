@@ -1,12 +1,13 @@
-<div class="controlPanel">
+<div class="controlPanel special-controls">
   <div class="controls icon icon-play-button" *ngIf="!isPlaying" (click)="play()"></div>
   <div class="controls icon icon-pause-sign" *ngIf="isPlaying" (click)="pause()"></div>
   <div class="controls icon icon-stop-button" (click)="stop()"></div>
 </div>
-
-<div class="special-button" id="micButton">
-  <div class="icon icon-mic"></div>
-</div>
-<div class="special-button" id="drawButton">
-  <div class="icon icon-draw"></div>
+<div class="special-buttons">
+  <div class="special-button" id="micButton">
+    <i class="material-icons">mic</i>
+  </div>
+  <div class="special-button" id="drawButton">
+    <i class="material-icons">edit</i>
+  </div>
 </div>
