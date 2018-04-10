@@ -8,18 +8,18 @@ canvas {
 #spectrogram {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -5rem;
   width: 150%;
   height: 100%;
   z-index: 99;
-  opacity: .7;
+  opacity: .8;
 }
 #grid {
   opacity: 0.5;
   z-index: 98;
 }
 .components {
-  margin-left: 5rem;
+  margin-left: 6rem;
   position: fixed;
   z-index: 101;
 }

@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   audioStorageStorageURL: "https://firebasestorage.googleapis.com/v0/b/fq-server-capstone.appspot.com/o/samples",
-  audioUploadsStorageURL: "https://firebasestorage.googleapis.com/v0/b/fq-server-capstone.appspot.com/o/samples/uploads",
+  uploadsStorageURL: "http://localhost:3000/music",
   firebase: {
     apiKey: "AIzaSyDg_lKU3tDABcZv1_F-MfrUlrbhbw3Pvkc",
     authDomain: "fq-server-capstone.firebaseapp.com",

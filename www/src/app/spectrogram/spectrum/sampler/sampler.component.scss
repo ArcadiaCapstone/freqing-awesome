@@ -1,29 +1,17 @@
+.sampler { text-align: center; }
 
+.samplerControls {
+  display: flex;
+  margin-bottom: 1rem;
+}
 
-#sampleInfo {
-  display: inline-flex;
-  z-index: 100;
-  margin-top: 1rem;
-  margin-left: 5rem;
-  h3 {
-    font-size: large;
+p:hover { color: darkviolet; }
+
+.info {
+  h1 {
+    font-size: x-large;
+  }
+  img {
     width: 10rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    color: whitesmoke;
-    img {
-      filter: invert(.9);
-      width: 8rem;
-      margin-left: -1.5rem;
-      margin-top: 1rem;
-    }
   }
 }
-#wavetype-selector {
-  margin-left: 2rem;
-  z-index: 100;
-}
-
-
-
-

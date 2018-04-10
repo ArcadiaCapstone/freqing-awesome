@@ -24,6 +24,8 @@ body,html{
   url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
   url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 }
+.cdk-overlay-pane { opacity: 0.75; }
+
 .material-icons {
   font-family: 'Material Icons', serif;
   font-weight: normal;
@@ -47,23 +49,23 @@ body,html{
   font-feature-settings: 'liga';
 }
 
-.mat-select-arrow { color: #EEEEEE; }
+.mat-select-arrow { color: #7a42f4; }
 .mat-form-field-underline { background: #EEEEEE; }
 .mat-select-content { background: #373735; }
 .mat-option { color: #EEEEEE; }
 .mat-card.clear {
   background: #555;
   padding: 10px;
-  margin-left: 2rem;
-  margin-top: 2rem;
-  width: 10rem;
+  //margin-left: 2rem;
+  //margin-top: 2rem;
+  //width: 10rem;
   opacity: .9;
   text-align: center;
 }
-.cdk-overlay-pane { opacity: 0.75; }
 
 .controlPanel {
   margin-top: 1.25rem;
+  display: flex;
   div {
     cursor: pointer;
     z-index: 100;
@@ -78,9 +80,4 @@ body,html{
     display:inline-flex;
     font-size: 2rem;
   }
-  div.icon.arrow {
-    transform: rotate(90deg);
-  }
-  #prev {margin-left: 1.5rem;}
-  #next {margin-right: 2rem;}
 }

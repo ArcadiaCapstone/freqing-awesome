@@ -1,68 +1,59 @@
-import { Component } from '@angular/core';
-import { Playlist, PlaylistService } from './playlist.service';
+import {Component, OnInit} from '@angular/core';
+import {PlaylistService } from './playlist.service';
+import {Song} from './song';
+import Toolkit from "../../core/runtime";
 
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
   providers: [ PlaylistService ],
-  styles: ['.error {color: red;}']
+  styleUrls: ['./playlist.component.scss']
 })
-export class PlaylistComponent {
-  error: any;
-  headers: string[];
-  playlist: Playlist;
 
-  constructor(private playlistService: PlaylistService) {}
+export class PlaylistComponent implements OnInit {
+  songs: Song[];
+  message: any;
 
-  clear() {
-    this.playlist = undefined;
-    this.error = undefined;
-    this.headers = ['mp3'];
+  constructor(private playlistService: PlaylistService) { }
+
+  ngOnInit() {
+    this.getPlaylist();
+    Toolkit.spectrogram.setPlaylistSrc();
   }
 
-  showPlaylist() {
-    this.playlistService.getPlaylist()
-      .subscribe(
-        data => this.playlist = { ...data }, // success path
-        error => this.error = error // error path
+  getPlaylist(): void {
+    this.playlistService.getSongs()
+      .subscribe(songs => this.songs = songs);
+  }
+
+  playSong(src) {
+    Toolkit.spectrogram.stop();
+    Toolkit.spectrogram.play(src);
+    console.log('Playlist Source = ', src);
+    Toolkit.spectrogram.startRender();
+  }
+  pauseSong() {
+    Toolkit.stop();
+    Toolkit.stopRender();
+  }
+
+  onPicked(input: HTMLInputElement) {
+    const file = input.files[0];
+    if (file) {
+      const formData: FormData = new FormData();
+
+      formData.append('file', file, file.name);
+
+      this.playlistService.upload(formData).subscribe(
+        msg => {
+          input.value = null;
+          this.message = msg;
+          this.getPlaylist();
+        },
       );
+    }
   }
 
-  showPlaylist_v1() {
-    this.playlistService.getPlaylist_1()
-      .subscribe(data => this.playlist = {
-        fileName: data['fileName']
-      });
-    console.log(this.playlist.fileName);
-  }
 
-  showPlaylist_v2() {
-    this.playlistService.getPlaylist()
-    // clone the data object, using its known Config shape
-      .subscribe(data => this.playlist = { ...data });
-  }
 
-  showPlaylistResponse() {
-    this.playlistService.getPlaylistResponse()
-    // resp is of type `HttpResponse<Config>`
-      .subscribe(resp => {
-        // display its headers
-        const keys = resp.headers.keys();
-        this.headers = keys.map(key =>
-          `${key}: ${resp.headers.get(key)}`);
-
-        // access the body directly, which is typed as `Config`.
-        this.playlist = { ... resp.body };
-      });
-  }
-  makeError() {
-    this.playlistService.makeIntentionalError().subscribe(null, error => this.error = error );
-  }
 }
-
-
-/*
-Copyright 2017-2018 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

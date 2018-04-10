@@ -18,6 +18,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatNativeDateModule,} from "@angular/material";
 import {SpectrogramComponent} from "./spectrogram/spectrogram.component";
 import {NavMenuComponent} from "./spectrogram/spectrum/nav-menu/nav-menu.component";
+import {HttpErrorHandler} from "../services/http-error-handler.service";
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import {NavMenuComponent} from "./spectrogram/spectrum/nav-menu/nav-menu.compone
     AppRoutingModule,
     SpectrogramModule,
   ],
-  providers: [AuthService, NavMenuComponent],
+  providers: [AuthService, NavMenuComponent, HttpErrorHandler],
   bootstrap: [AppComponent]
 
 })

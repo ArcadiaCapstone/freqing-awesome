@@ -33,6 +33,7 @@ export class SamplerComponent implements OnInit {
   }
 
   playSample() {
+    Toolkit.spectrogram.stop();
     this.playing = true;
     Toolkit.spectrogram.play(this.sampleSrc);
     Toolkit.spectrogram.startRender();
@@ -57,7 +58,7 @@ export class SamplerComponent implements OnInit {
 
   update() {
     this.waveType === '' ? this.waveTypeIcon = '../bin/icons/sin.svg' : this.waveTypeIcon = "../bin/icons/" + this.waveType + ".svg";
-    this.sampleSrc = 'bin/snd/' + notes[this.i].split(':')[1].toString() + this.waveType + '.wav';
+    this.sampleSrc = notes[this.i].split(':')[1].toString() + this.waveType + '.wav';
     this.note = notes[this.i].split(':')[0].toString() + " " +
                 notes[this.i].split(':')[1].toString() + "Hz";
   }

@@ -42,7 +42,7 @@ export class SettingsComponent implements OnInit {
       this.grid = false;
       this.toggleGrid();
     }
-    Toolkit.spectrogram.switchAnalysisType(this.analysisType);
+    Toolkit.spectrogram.switchAnalysisType(this.analysisType, 'bin/snd/empty.mp3');
   }
   toggleGrid() {
     Toolkit.spectrogram.toggleGrid(this.grid);

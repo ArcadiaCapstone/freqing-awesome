@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import Toolkit from "../core/runtime";
-import {NavMenuComponent} from "./nav-menu/nav-menu.component";
 
 
 @Component({
@@ -10,7 +9,7 @@ import {NavMenuComponent} from "./nav-menu/nav-menu.component";
 })
 export class SpectrumComponent implements OnInit,AfterViewInit {
 
-  constructor(public nav: NavMenuComponent) { }
+  constructor() { }
 
   ngOnInit() {
     Toolkit.spectrogram.toggleGrid(false);

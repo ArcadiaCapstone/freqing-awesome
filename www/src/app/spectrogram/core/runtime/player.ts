@@ -1,6 +1,5 @@
 import {AnalyserView, Util} from "../toolkit";
 
-
 declare const window:any;
 declare const navigator:any;
 
@@ -42,6 +41,7 @@ function Player() {
   // Connect an empty source node to the mix.
   Util.loadTrackSrc(this.context, 'bin/snd/empty.mp3', function(buffer) {
     let source = this.createSource_(buffer, true);
+    console.log('source: ', source);
     source.loop = false;
     source.start(0);
   }.bind(this));
@@ -62,13 +62,14 @@ Player.prototype.playSrc = function(src) {
     this.playHelper_(src);
     return;
   }
-
+  console.log('Player.prototype.playSrc = ', src);
   // $('#loadingSound').fadeIn(100);
   Util.loadTrackSrc(this.context, src, function(buffer) {
     this.buffers[src] = buffer;
     this.playHelper_(src);
     // $('#loadingSound').delay(500).fadeOut(500);
   }.bind(this));
+  console.log('Player.prototype.playSrc = ', src);
 };
 
 Player.prototype.playHelper_ = function(src) {

@@ -3,6 +3,7 @@
     "fs-extra": "latest",
     "guid": "0.0.12",
     "hammerjs": "^2.0.8",
+    "kcors": "^2.2.1",
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
     "koa-router": "^7.4.0",

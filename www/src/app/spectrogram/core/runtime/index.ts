@@ -105,7 +105,7 @@ Toolkit.spectrogram = (function() {
     play: function(src) {
       spec3D.src = src;
       spec3D.player.playSrc(src);
-      console.log('play');
+      console.log('play: ', src);
     },
 
     stop: function() {
@@ -165,6 +165,22 @@ Toolkit.spectrogram = (function() {
       analyserView.initByteBuffer();
       analyserView.setAnalysisType(n);
       console.log("AnalysisType: " + n);
+      spec3D.player = player;
+      spec3D.analyserView = analyserView;
+      $('#spectrogram')
+        .on('mousedown', this.handleTrack)
+        .on('touchstart', this.handleTrack)
+        .on('mouseup', this.handleTrack)
+        .on('touchend', this.handleTrack);
+    },
+    setSampleSrc() {
+      let player = new Player();
+      let analyserNode = player.getAnalyserNode();
+
+      let analyserView = new AnalyserView(this.canvas);
+      analyserView.setAnalyserNode(analyserNode);
+      analyserView.initByteBuffer();
+      analyserView.setAnalysisType(2);
       spec3D.player = player;
       spec3D.analyserView = analyserView;
       $('#spectrogram')
@@ -389,7 +405,7 @@ Toolkit.main = (function() {
               // Start Recording ****************************************
               Toolkit.spectrogram.live();
             }
-            // Check for Start drawing data instruction  **********************
+            // Check for Start drawing fileName instruction  **********************
           }
           else if ($(this)[0].id === 'drawButton') {
             Toolkit.spectrogram.drawingMode = true;

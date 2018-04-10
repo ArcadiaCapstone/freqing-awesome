@@ -1,80 +1,64 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, last, map, retry, tap } from 'rxjs/operators';
+import {Song} from "./song";
+import {HandleError, HttpErrorHandler} from "../../../../services/http-error-handler.service";
+import {of} from "rxjs/observable/of";
 
-export interface Playlist {
-  fileName: string;
-}
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
+
 
 @Injectable()
 export class PlaylistService {
 
-  songsUrl = 'http://localhost:3000/music/directory.json';
-  // songsUrl = 'C:/Arcadia_Fall_2017/Capstone/chrome-music-lab/spectrogram/backend/music/directory.json';
+  directory = 'http://localhost:3000/music/directory.json';
+  uploadUrl = 'http://localhost:3000/uploads/';
+  private handleError: HandleError;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    httpErrorHandler: HttpErrorHandler) {
+    this.handleError = httpErrorHandler.createHandleError('PlaylistService');
+  }
 
-  getPlaylist() {
-    return this.http.get<Playlist>(this.songsUrl)
+  getSongs (): Observable<Song[]> {
+    return this.http.get<Song[]>(this.directory)
       .pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
+        catchError(this.handleError('getSongs', []))
       );
   }
+  upload(file: any) {
+    if (!file) { return; }
 
-  getPlaylist_1() {
-    return this.http.get(this.songsUrl);
+    return this.http.post(this.uploadUrl, file).pipe(
+      last(), // return last (completed) message to caller
+      catchError(this.handleUploadError(file))
+    );
+  }
+  private handleUploadError(file: File) {
+    const userMessage = `${file.name} upload failed.`;
+
+    return (error: HttpErrorResponse) => {
+      console.error(error);
+
+      const message = (error.error instanceof Error) ?
+        error.error.message :
+        `server returned code ${error.status} with body "${error.error}"`;
+
+      console.log(`${userMessage} ${message}`);
+
+      return of(userMessage);
+    };
   }
 
-  getPlaylist_2() {
-    // now returns an Observable of Config
-    return this.http.get<Playlist>(this.songsUrl);
-  }
-
-  getPlaylist_3() {
-    return this.http.get<Playlist>(this.songsUrl)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  getPlaylistResponse(): Observable<HttpResponse<Playlist>> {
-    return this.http.get<Playlist>(
-      this.songsUrl, { observe: 'response' });
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an ErrorObservable with a user-facing error message
-    return new ErrorObservable(
-      'Something bad happened; please try again later.');
-  };
-
-  makeIntentionalError() {
-    return this.http.get('not/a/real/url')
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
 
 }
 
-
-/*
-Copyright 2017-2018 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

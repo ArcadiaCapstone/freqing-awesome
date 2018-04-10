@@ -140,7 +140,7 @@ AnalyserView.prototype.initGL = function() {
 
 	cameraController.xT = 0;
 	// Zoom level.
-	cameraController.yT = -2;
+	cameraController.yT = -4;
 	// Translation in the x axis.
 	cameraController.zT = -2;
 
@@ -374,7 +374,7 @@ AnalyserView.prototype.drawGL = function() {
 	}
 	let yoffset = this.yoffset;
 
-	// Point the frequency data texture at texture unit 0 (the default),
+	// Point the frequency fileName texture at texture unit 0 (the default),
 	// which is what we're using since we haven't called activeTexture
 	// in our program
 

@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 *********************************************************/
-import {getAudioURL} from '../';
+import {getAudioURL, getUploadsURL} from '../';
 
 export const Util:any = {};
 
@@ -24,7 +24,8 @@ Util.loadTrackSrc = function(context, src, callback, opt_progressCallback) {
     name
   } = Util.win32.parse(src);
 
-  src = getAudioURL(name, ext);
+  // src = getAudioURL(name, ext);
+  src = getUploadsURL(name, ext);
 
   const request = new XMLHttpRequest();
   request.open('GET', src, true);

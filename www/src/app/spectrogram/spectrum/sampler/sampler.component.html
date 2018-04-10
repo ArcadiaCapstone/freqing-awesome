@@ -1,21 +1,29 @@
-<div class="controlPanel">
-  <div class="arrow icon icon-down-arrow" id="prev" (click)="prevSample()"></div>
-  <div class="icon icon-play-button" *ngIf="!playing" (click)="playSample()"></div>
-  <div class="icon icon-pause-sign" *ngIf="playing" (click)="pauseSample()"></div>
-  <div class="icon icon-stop-button" (click)="stopSample()"></div>
-  <div class="arrow icon icon-up-arrow" id="next" (click)="nextSample()"></div>
-</div>
+<mat-card>
+  <mat-card-content class="sampler">
 
-<div id="sampleInfo"><h3>{{note}}<span><img src="{{waveTypeIcon}}"></span></h3></div>
+    <div class="samplerControls">
+      <p><button mat-button (click)="prevSample()"><i class="material-icons">skip_previous</i></button></p>
+      <p><button mat-button (click)="playSample()" *ngIf="!playing"><i class="material-icons">play_arrow</i></button></p>
+      <p><button mat-button (click)="pauseSample()" *ngIf="playing"><i class="material-icons">pause</i></button></p>
+      <p><button mat-button (click)="stopSample()"><i class="material-icons">stop</i></button></p>
+      <p><button mat-button (click)="nextSample()"><i class="material-icons">skip_next</i></button></p>
+    </div>
 
-<div>
-  <mat-form-field id="wavetype-selector">
-    <mat-select [(ngModel)]="waveType" (change)="update()">
-      <mat-option value="">Sin</mat-option>
-      <mat-option value="square">Square</mat-option>
-      <mat-option value="saw">Sawtooth</mat-option>
-      <mat-option value="tri">Triangle</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+    <div class="info">
+      <h1>{{note}}</h1>
+      <img src="{{waveTypeIcon}}">
+    </div>
+
+    <mat-form-field>
+      <mat-select [(ngModel)]="waveType" (change)="update()">
+        <mat-option value="">Sin</mat-option>
+        <mat-option value="square">Square</mat-option>
+        <mat-option value="saw">Sawtooth</mat-option>
+        <mat-option value="tri">Triangle</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-card-content>
+</mat-card>
+
 

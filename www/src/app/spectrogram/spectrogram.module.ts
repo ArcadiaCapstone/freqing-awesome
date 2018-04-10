@@ -104,7 +104,7 @@ import {DataExportComponent} from "./spectrum/data-export/data-export.component"
     SpecialsComponent,
     SettingsComponent,
     NavMenuComponent,
-    DataExportComponent
+    DataExportComponent,
   ],
   bootstrap: [],
 

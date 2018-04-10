@@ -1,37 +1,34 @@
-.special-controls {
-  margin-left: 4.5rem;
-  margin-bottom: 1rem;
-}
-.special-buttons {
-  margin-left: 2.5rem;
-  margin-bottom: 1rem;
-  div {
-    background-color: #333333;
-    color: #EEEEEE;
-    cursor: pointer;
-    width: 4.5rem;
-    height: 4.5rem;
-    display: inline-block;
-    border-radius: 30rem;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-    margin-right: 1rem;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    z-index: 100;
-    i {
-      font-size: xx-large;
-      margin-top: 1rem;
-    }
-    &.selected  {
-      background-color: #7a42f4;
-    }
-    &:active, &:visited {
-      background-color: #333333;
-    }
+.specialButtons { text-align: center; }
 
+.specialControls { display: flex; }
+
+p:hover { color: darkviolet; }
+
+.special-button {
+  background-color: #333333;
+  color: #EEEEEE;
+  cursor: pointer;
+  width: 4.5rem;
+  height: 4.5rem;
+  display: inline-block;
+  border-radius: 30rem;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  margin-left: 1.75rem;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 100;
+  i {
+    font-size: xx-large;
+    margin-top: 1rem;
+  }
+  &.selected  {
+    background-color: #7a42f4;
+  }
+  &:active, &:visited {
+    background-color: #333333;
   }
 
-
 }
+
 

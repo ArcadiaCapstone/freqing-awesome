@@ -1,13 +1,11 @@
-<div class="controlPanel special-controls">
-  <div class="controls icon icon-play-button" *ngIf="!isPlaying" (click)="play()"></div>
-  <div class="controls icon icon-pause-sign" *ngIf="isPlaying" (click)="pause()"></div>
-  <div class="controls icon icon-stop-button" (click)="stop()"></div>
-</div>
-<div class="special-buttons">
-  <div class="special-button" id="micButton">
-    <i class="material-icons">mic</i>
-  </div>
-  <div class="special-button" (click)="freeWrite()" id="drawButton">
-    <i class="material-icons">edit</i>
-  </div>
-</div>
+<mat-card>
+  <mat-card-content class="specialButtons">
+    <div class="specialControls">
+      <p><button mat-button (click)="playSample()" *ngIf="!playing"><i class="material-icons">play_arrow</i></button></p>
+      <p><button mat-button (click)="pauseSample()" *ngIf="playing"><i class="material-icons">pause</i></button></p>
+      <p><button mat-button (click)="stopSample()"><i class="material-icons">stop</i></button></p>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div class="special-button" id="micButton"><i class="material-icons">mic</i></div>
+<div class="special-button" (click)="freeWrite()" id="drawButton"><i class="material-icons">edit</i></div>

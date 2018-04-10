@@ -227,7 +227,7 @@ o3djs.included_ = {};
 
 
 /**
- * This object is used to keep track of dependencies and other data that is
+ * This object is used to keep track of dependencies and other fileName that is
  * used for loading scripts.
  * @private
  * @type {Object}
