@@ -13,5 +13,6 @@ p:hover { color: darkviolet; }
   }
   img {
     width: 10rem;
+    filter: invert(1);
   }
 }

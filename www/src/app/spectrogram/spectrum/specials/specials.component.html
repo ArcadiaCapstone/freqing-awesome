@@ -1,11 +1,6 @@
-<mat-card>
+<mat-card class="general">
   <mat-card-content class="specialButtons">
-    <div class="specialControls">
-      <p><button mat-button (click)="playSample()" *ngIf="!playing"><i class="material-icons">play_arrow</i></button></p>
-      <p><button mat-button (click)="pauseSample()" *ngIf="playing"><i class="material-icons">pause</i></button></p>
-      <p><button mat-button (click)="stopSample()"><i class="material-icons">stop</i></button></p>
-    </div>
+    <div class="special-button" id="micButton"><i class="material-icons">mic</i></div>
+    <div class="special-button" id="drawButton"><i class="material-icons">edit</i></div>
   </mat-card-content>
 </mat-card>
-<div class="special-button" id="micButton"><i class="material-icons">mic</i></div>
-<div class="special-button" (click)="freeWrite()" id="drawButton"><i class="material-icons">edit</i></div>

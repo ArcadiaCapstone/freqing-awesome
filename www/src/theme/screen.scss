@@ -49,9 +49,10 @@ body,html{
   font-feature-settings: 'liga';
 }
 
-.mat-select-arrow { color: #7a42f4; }
 .mat-form-field-underline { background: #EEEEEE; }
-.mat-select-content { background: #373735; }
+.mat-select-content { background: #373735;}
+.mat-select-arrow { color: whitesmoke; }
+.mat-select-value { color: whitesmoke;}
 .mat-option { color: #EEEEEE; }
 .mat-card.clear {
   background: #555;
@@ -80,4 +81,8 @@ body,html{
     display:inline-flex;
     font-size: 2rem;
   }
+}
+.general {
+  background: #555;
+  color: whitesmoke;
 }

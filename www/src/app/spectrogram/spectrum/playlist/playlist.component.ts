@@ -18,7 +18,6 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit() {
     this.getPlaylist();
-    Toolkit.spectrogram.setPlaylistSrc();
   }
 
   getPlaylist(): void {
@@ -28,8 +27,8 @@ export class PlaylistComponent implements OnInit {
 
   playSong(src) {
     Toolkit.spectrogram.stop();
+    Toolkit.spectrogram.stopRender();
     Toolkit.spectrogram.play(src);
-    console.log('Playlist Source = ', src);
     Toolkit.spectrogram.startRender();
   }
   pauseSong() {
