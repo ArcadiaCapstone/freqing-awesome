@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {notes} from "../../core/runtime/notes";
-import Toolkit from "../../core/runtime/index";
-import {FormControl} from "@angular/forms";
+import {notes} from "./notes";
+import {Spectrogram} from "../../core/runtime/spectrogram";
 
+import Toolkit from "../../core/runtime/index";
+const TKS:Spectrogram = Toolkit["spectrogram"];
 
 @Component({
   selector: 'app-sampler',
@@ -17,8 +18,7 @@ export class SamplerComponent implements OnInit {
   sampleSrc: string = "";
   waveType = '';
   waveTypeIcon = '../bin/icons/sin.svg';
-
-
+  
   constructor() { }
 
   ngOnInit() {
@@ -33,10 +33,10 @@ export class SamplerComponent implements OnInit {
   }
 
   playSample() {
-    Toolkit.spectrogram.stop();
+    TKS.stop();
     this.playing = true;
-    Toolkit.spectrogram.play(this.sampleSrc);
-    Toolkit.spectrogram.startRender();
+    TKS.play(this.sampleSrc);
+    TKS.startRender();
   }
   nextSample() {
     this.playing = false;
@@ -46,14 +46,14 @@ export class SamplerComponent implements OnInit {
 
   pauseSample() {
     this.playing = false;
-    Toolkit.spectrogram.stopRender();
-    Toolkit.spectrogram.stop();
+    TKS.stopRender();
+    TKS.stop();
   }
 
   stopSample() {
     this.playing = false;
-    Toolkit.spectrogram.startRender();
-    Toolkit.spectrogram.stop();
+    TKS.startRender();
+    TKS.stop();
   }
 
   update() {

@@ -1,8 +1,8 @@
-import Toolkit from "../../core/runtime/index";
 import {
   Component,
   ViewEncapsulation
 } from '@angular/core';
+import Toolkit from "../../core/runtime/index";
 import {Spectrogram} from "../../core/runtime/spectrogram";
 
 const TKS:Spectrogram = Toolkit["spectrogram"];

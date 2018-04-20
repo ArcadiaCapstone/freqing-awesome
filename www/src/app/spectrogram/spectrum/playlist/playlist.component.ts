@@ -29,14 +29,9 @@ export class PlaylistComponent implements OnInit {
 
   playSong(src) {
     TKS.stop();
-    TKS.stopRender();
     TKS.play(src);
     TKS.startRender();
   }
-  // pauseSong() {
-  //   Toolkit.stop();
-  //   Toolkit.stopRender();
-  // }
 
   onPicked(input: HTMLInputElement) {
     const file = input.files[0];

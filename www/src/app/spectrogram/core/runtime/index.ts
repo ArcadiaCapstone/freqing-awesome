@@ -13,8 +13,11 @@ declare const window: any;
 
 Toolkit.spectrogram = (function() {
 
+  let player:Player = null;
+
   let spec3D: any = {
     cxRot: 90,
+    player,
     drawingMode: false,
     prevX: 0,
     isExporting: false,
@@ -149,8 +152,6 @@ Toolkit.spectrogram = (function() {
       analyserView.initByteBuffer();
       analyserView.setAnalysisType(2);
 
-      // spec3D.setdraw_();
-      // impliment!!
       spec3D.player = player;
       spec3D.analyserView = analyserView;
       $('#spectrogram')
