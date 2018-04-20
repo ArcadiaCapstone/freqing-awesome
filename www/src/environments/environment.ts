@@ -8,11 +8,12 @@ export const environment = {
   audioStorageStorageURL: "https://firebasestorage.googleapis.com/v0/b/fq-server-capstone.appspot.com/o/samples",
   uploadsStorageURL: "http://localhost:3000/music",
   firebase: {
-    apiKey: "AIzaSyDg_lKU3tDABcZv1_F-MfrUlrbhbw3Pvkc",
-    authDomain: "fq-server-capstone.firebaseapp.com",
-    databaseURL: "https://fq-server-capstone.firebaseio.com",
-    projectId: "fq-server-capstone",
-    storageBucket: "fq-server-capstone.appspot.com",
-    messagingSenderId: "956652339816"
+    apiKey: "AIzaSyAc3-o0GAVMoCsyfgH_gQ1-nvsiy4SUsRI",
+    authDomain: "fa-16a3c.firebaseapp.com",
+    databaseURL: "https://fa-16a3c.firebaseio.com",
+    projectId: "fa-16a3c",
+    storageBucket: "",
+    messagingSenderId: "357804882774"
   }
+
 };
