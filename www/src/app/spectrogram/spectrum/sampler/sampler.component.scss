@@ -4,7 +4,11 @@
   display: flex;
   margin-bottom: 1rem;
 }
-
+p {
+  button {
+    min-width: 68px;
+  }
+}
 p:hover { color: darkviolet; }
 
 .info {
