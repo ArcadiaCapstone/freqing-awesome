@@ -137,6 +137,10 @@ Toolkit.spectrogram = (function() {
 
     init_: function() {
       // Initialize everything.
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+
+
       let player = new Player();
       let analyserNode = player.getAnalyserNode();
 

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PlaylistService } from './playlist.service';
 import {Song} from './song';
 import Toolkit from "../../core/runtime";
+import {Spectrogram} from "../../core/runtime/spectrogram";
+const TKS:Spectrogram = Toolkit["spectrogram"];
 
 @Component({
   selector: 'app-playlist',
@@ -26,15 +28,15 @@ export class PlaylistComponent implements OnInit {
   }
 
   playSong(src) {
-    Toolkit.spectrogram.stop();
-    Toolkit.spectrogram.stopRender();
-    Toolkit.spectrogram.play(src);
-    Toolkit.spectrogram.startRender();
+    TKS.stop();
+    TKS.stopRender();
+    TKS.play(src);
+    TKS.startRender();
   }
-  pauseSong() {
-    Toolkit.stop();
-    Toolkit.stopRender();
-  }
+  // pauseSong() {
+  //   Toolkit.stop();
+  //   Toolkit.stopRender();
+  // }
 
   onPicked(input: HTMLInputElement) {
     const file = input.files[0];

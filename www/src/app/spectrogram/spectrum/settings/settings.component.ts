@@ -1,9 +1,11 @@
 import Toolkit from "../../core/runtime/index";
 import {
   Component,
-  OnInit,
   ViewEncapsulation
 } from '@angular/core';
+import {Spectrogram} from "../../core/runtime/spectrogram";
+
+const TKS:Spectrogram = Toolkit["spectrogram"];
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +14,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
 
   // 0 = 2D, 2 = 3D 3 = WaveForm
   analysisType: number = 2;
@@ -31,43 +33,38 @@ export class SettingsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-
-  }
 
   changeType(n) {
-    Toolkit.spectrogram.stop();
+    TKS.stop();
     this.analysisType = n;
     if (n !== 2) {
       this.grid = false;
       this.toggleGrid();
     }
-    Toolkit.spectrogram.switchAnalysisType(this.analysisType, 'bin/snd/empty.mp3');
+    TKS.switchAnalysisType(this.analysisType);
   }
   toggleGrid() {
-    Toolkit.spectrogram.toggleGrid(this.grid);
+    TKS.toggleGrid(this.grid);
   }
   rotationX() {
-    Toolkit.spectrogram.rotateX(this.dx);
+    TKS.rotateX(this.dx);
     this.grid = false;
-    Toolkit.spectrogram.toggleGrid(this.grid);
+    TKS.toggleGrid(this.grid);
   }
   rotationY() {
-    Toolkit.spectrogram.rotateY(this.dy);
+    TKS.rotateY(this.dy);
     this.grid = false;
-    Toolkit.spectrogram.toggleGrid(this.grid);
+    TKS.toggleGrid(this.grid);
   }
   rotationZ() {
-    Toolkit.spectrogram.rotateZ(this.dz);
+    TKS.rotateZ(this.dz);
     this.grid = false;
-    Toolkit.spectrogram.toggleGrid(this.grid);
+    TKS.toggleGrid(this.grid);
   }
   get tickInterval(): number | 'auto' {
     return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
   }
-  set tickInterval(v) {
-    this._tickInterval = Number(v);
-  }
+
   private _tickInterval = 1;
 
 
