@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PlaylistService } from './playlist.service';
+import {PlaylistService } from '../../../../services/playlist.service';
 import {Song} from './song';
 import Toolkit from "../../core/runtime";
 import {Spectrogram} from "../../core/runtime/spectrogram";

@@ -4,8 +4,8 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, last, map, retry, tap } from 'rxjs/operators';
-import {Song} from "./song";
-import {HandleError, HttpErrorHandler} from "../../../../services/http-error-handler.service";
+import {Song} from "../app/spectrogram/spectrum/playlist/song";
+import {HandleError, HttpErrorHandler} from "./http-error-handler.service";
 import {of} from "rxjs/observable/of";
 
 const httpOptions = {
