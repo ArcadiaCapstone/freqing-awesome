@@ -34,45 +34,9 @@
     </div>
 
   <mat-card-content class="rotationControl">
-    <mat-slider (change)="rotationX()"
-      class="sliders x-slider"
-      [color]="'primary'"
-      [disabled]="disabled"
-      [invert]="invert"
-      [max]=360
-      [min]=0
-      [step]="step"
-      [thumb-label]="thumbLabel"
-      [tick-interval]="tickInterval"
-      [(ngModel)]="dx"
-      [vertical]="vertical">
-    </mat-slider>
-    <mat-slider (change)="rotationY()"
-      class="sliders y-slider"
-      [color]="'primary'"
-      [disabled]="disabled"
-      [invert]="invert"
-      [max]=360
-      [min]=0
-      [step]="step"
-      [thumb-label]="thumbLabel"
-      [tick-interval]="tickInterval"
-      [(ngModel)]="dy"
-      [vertical]="vertical">
-    </mat-slider>
-    <mat-slider (change)="rotationZ()"
-      class="sliders z-slider"
-      [color]="'primary'"
-      [disabled]="disabled"
-      [invert]="invert"
-      [max]=360
-      [min]=0
-      [step]="step"
-      [thumb-label]="thumbLabel"
-      [tick-interval]="tickInterval"
-      [(ngModel)]="dz"
-      [vertical]="vertical">
-    </mat-slider>
+    <button mat-button (click)="rotationX()"><i class="material-icons">rotate_90_degrees_ccw</i></button>
+    <button mat-button (click)="rotationY()"><i class="material-icons">rotate_90_degrees_ccw</i></button>
+    <button mat-button (click)="rotationZ()"><i class="material-icons">rotate_90_degrees_ccw</i></button>
   </mat-card-content>
 
 </mat-card>

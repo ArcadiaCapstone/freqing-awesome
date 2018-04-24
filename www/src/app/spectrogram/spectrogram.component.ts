@@ -1,17 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-spectrogram',
   templateUrl: './spectrogram.component.html',
   styleUrls: ['./spectrogram.component.scss']
 })
-export class SpectrogramComponent implements OnInit {
+export class SpectrogramComponent {
 
-  constructor(private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    console.log(this.route)
-  }
+  constructor() { }
 
 }

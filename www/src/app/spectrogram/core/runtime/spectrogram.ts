@@ -7,12 +7,16 @@ export interface Spectrogram {
   toggleGrid: (grid:boolean) => void;
   switchAnalysisType: (type:number) => void;
   play: (src:string) => void;
+  playSample: (src:string) => void;
   stop: () => void;
   stopRender: () => void;
   startRender: () => void;
   switchComponent: (comp:any) => void;
   toggleElem: (elem:any, visible:boolean) => void;
   attached: () => void;
+  dataPoints,
+  isExporting,
+  recordRaw: () => any;
 }
 
 

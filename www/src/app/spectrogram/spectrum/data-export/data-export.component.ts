@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import Toolkit from "../../core/runtime";
-
+import {Spectrogram} from "../../core/runtime/spectrogram";
+import Toolkit from "../../core/runtime/index";
+const TKS:Spectrogram = Toolkit["spectrogram"];
 
 @Component({
   selector: 'app-data-export',
@@ -19,14 +20,14 @@ export class DataExportComponent implements OnInit {
 
   beginExport() {
     this.isExporting = true;
-    Toolkit.spectrogram.dataPoints = [];
-    Toolkit.spectrogram.isExporting = true;
+    TKS.dataPoints = [];
+    TKS.isExporting = true;
   }
   finishExport() {
     this.isExporting = false;
-    let data = Toolkit.spectrogram.recordRaw();
-    Toolkit.spectrogram.stop();
-    Toolkit.spectrogram.stopRender();
+    let data = TKS.recordRaw();
+    TKS.stop();
+    TKS.stopRender();
     for(let i=0; i < data.length; i++) {
       if (data[i] !== ',') {
         console.log(i + "\t" + data[i]);

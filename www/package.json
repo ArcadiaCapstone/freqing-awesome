@@ -28,7 +28,8 @@
     "jquery": "^3.3.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19",
-    "@angular/material": "latest"
+    "@angular/material": "latest",
+    "fuel-ui": "latest"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.3",

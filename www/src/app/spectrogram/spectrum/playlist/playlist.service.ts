@@ -1,27 +1,27 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, last, map, retry, tap } from 'rxjs/operators';
-import {Song} from "../app/spectrogram/spectrum/playlist/song";
-import {HandleError, HttpErrorHandler} from "./http-error-handler.service";
+import {Song} from "./song";
+import {HandleError, HttpErrorHandler} from "../../../../services/http-error-handler.service";
 import {of} from "rxjs/observable/of";
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin':'*',
     'Authorization': 'my-auth-token'
   })
 };
 
-
 @Injectable()
 export class PlaylistService {
 
-  directory = 'http://localhost:3000/music/directory.json';
-  uploadUrl = 'http://localhost:3000/uploads/';
-  private handleError: HandleError;
+  directory = 'https://fa-16a3c.appspot.com';
+  uploadUrl = 'https://fa-16a3c.appspot.com/uploads';
+  handleError: HandleError;
 
   constructor(
     private http: HttpClient,

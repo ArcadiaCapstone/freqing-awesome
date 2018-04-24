@@ -10,9 +10,9 @@
         <p><button mat-button (click)="toggleDataExport()"><i class="material-icons">timeline</i></button></p>
         <p><button mat-button (click)="toggleSettings()"><i class="material-icons">settings</i></button></p>
         <p id="acct">
-          <button mat-button (click)="close('login')">
-            <i *ngIf="!auth.isLoggedIn()" class="material-icons">account_box</i>
-            <img id="navatar" *ngIf="auth.isLoggedIn()" [src]="auth.userPhoto">
+          <button mat-button>
+            <i *ngIf="!auth.isLoggedIn()" (click)="onAuth()" class="material-icons">account_box</i>
+            <img id="navatar" *ngIf="auth.isLoggedIn()" (click)="onLogOut()" [src]="auth.userPhoto">
           </button>
         </p>
       </mat-nav-list>

@@ -18,19 +18,10 @@ export class SettingsComponent {
 
   // 0 = 2D, 2 = 3D 3 = WaveForm
   analysisType: number = 2;
-
   grid = false;
-  disabled = false;
-  invert = true;
-  showTicks = false;
-  thumbLabel = true;
-  vertical = true;
-  autoTicks = false;
-  step: 1;
-  dx: number;
-  dy: number;
-  dz: number;
-
+  x:number= 0;
+  y:number= 0;
+  z:number= 0;
   constructor() { }
 
 
@@ -47,30 +38,20 @@ export class SettingsComponent {
     TKS.toggleGrid(this.grid);
   }
   rotationX() {
-    TKS.rotateX(this.dx);
+    this.x == 270 ? TKS.rotateX(this.x=0) : TKS.rotateX(this.x+=90);
     this.grid = false;
     TKS.toggleGrid(this.grid);
   }
   rotationY() {
-    TKS.rotateY(this.dy);
+    this.y == 270 ? TKS.rotateY(this.y=0) : TKS.rotateY(this.y+=90);
     this.grid = false;
     TKS.toggleGrid(this.grid);
   }
   rotationZ() {
-    TKS.rotateZ(this.dz);
+    this.z == 270 ? TKS.rotateZ(this.z=0) : TKS.rotateZ(this.z+=90);
     this.grid = false;
     TKS.toggleGrid(this.grid);
   }
-  get tickInterval(): number | 'auto' {
-    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
-  }
-
-  private _tickInterval = 1;
-
-
-
-
-
 
 }
 

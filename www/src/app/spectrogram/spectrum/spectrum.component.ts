@@ -1,5 +1,7 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import Toolkit from "../core/runtime";
+import {AfterViewInit, Component} from '@angular/core';
+import Toolkit from "../core/runtime/index";
+import {Spectrogram} from "../core/runtime/spectrogram";
+const TKS:Spectrogram = Toolkit["spectrogram"];
 
 
 @Component({
@@ -7,13 +9,9 @@ import Toolkit from "../core/runtime";
   templateUrl: './spectrum.component.html',
   styleUrls: ['./spectrum.component.scss']
 })
-export class SpectrumComponent implements OnInit,AfterViewInit {
+export class SpectrumComponent implements AfterViewInit {
 
   constructor() { }
-
-  ngOnInit() {
-    Toolkit.spectrogram.toggleGrid(false);
-  }
 
   ngAfterViewInit(): void {
     Toolkit.startScript();

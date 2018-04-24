@@ -110,7 +110,10 @@ Toolkit.spectrogram = (function() {
       spec3D.player.playSrc(src);
       console.log('play: ', src);
     },
-
+    playSample: function(src) {
+      spec3D.src = src;
+      spec3D.player.playSample(src);
+    },
     stop: function() {
       spec3D.player.stop();
       console.log("STOP");
@@ -141,8 +144,6 @@ Toolkit.spectrogram = (function() {
     init_: function() {
       // Initialize everything.
       window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-
 
       let player = new Player();
       let analyserNode = player.getAnalyserNode();
@@ -178,22 +179,7 @@ Toolkit.spectrogram = (function() {
         .on('mouseup', this.handleTrack)
         .on('touchend', this.handleTrack);
     },
-    setSampleSrc() {
-      let player = new Player();
-      let analyserNode = player.getAnalyserNode();
 
-      let analyserView = new AnalyserView(this.canvas);
-      analyserView.setAnalyserNode(analyserNode);
-      analyserView.initByteBuffer();
-      analyserView.setAnalysisType(2);
-      spec3D.player = player;
-      spec3D.analyserView = analyserView;
-      $('#spectrogram')
-        .on('mousedown', this.handleTrack)
-        .on('touchstart', this.handleTrack)
-        .on('mouseup', this.handleTrack)
-        .on('touchend', this.handleTrack);
-    },
 
     rotateX(dx) {
       let angle_x =  dx + spec3D.x;
@@ -247,7 +233,6 @@ Toolkit.spectrogram = (function() {
       spec3D.isExporting = false;
       return spec3D.dataPoints;
     },
-
     switchComponent(elemId) {
       spec3D.stop();
       $('.switch').hide();

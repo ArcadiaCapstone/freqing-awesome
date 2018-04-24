@@ -13,10 +13,39 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 *********************************************************/
-import {getAudioURL, getUploadsURL} from '../';
+import {getStorageURL, getSampleURL} from '../';
 
 export const Util:any = {};
 
+Util.loadSampleSrc = function(context, src, callback, opt_progressCallback) {
+  const {
+    ext,
+    name
+  } = Util.win32.parse(src);
+
+  src = getSampleURL(name, ext);
+
+  const request = new XMLHttpRequest();
+  request.open('GET', src, true);
+  request.responseType = 'arraybuffer';
+
+  // Decode asynchronously.
+  request.onload = function() {
+    context.decodeAudioData(request.response, function(buffer) {
+      callback(buffer);
+    }, function(e) {
+      console.error(e);
+    });
+  };
+  if (opt_progressCallback) {
+    request.onprogress = function(e) {
+      const percent = e.loaded / e.total;
+      opt_progressCallback(percent);
+    };
+  }
+
+  request.send();
+};
 Util.loadTrackSrc = function(context, src, callback, opt_progressCallback) {
 
   const {
@@ -25,7 +54,7 @@ Util.loadTrackSrc = function(context, src, callback, opt_progressCallback) {
   } = Util.win32.parse(src);
 
   // src = getAudioURL(name, ext);
-  src = getUploadsURL(name, ext);
+  src = getStorageURL(name, ext);
 
   const request = new XMLHttpRequest();
   request.open('GET', src, true);

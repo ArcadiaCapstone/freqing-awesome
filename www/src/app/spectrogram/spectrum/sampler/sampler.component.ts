@@ -18,7 +18,7 @@ export class SamplerComponent implements OnInit {
   sampleSrc: string = "";
   waveType = '';
   waveTypeIcon = '../bin/icons/sin.svg';
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class SamplerComponent implements OnInit {
   playSample() {
     TKS.stop();
     this.playing = true;
-    TKS.play(this.sampleSrc);
+    TKS.playSample(this.sampleSrc);
     TKS.startRender();
   }
   nextSample() {

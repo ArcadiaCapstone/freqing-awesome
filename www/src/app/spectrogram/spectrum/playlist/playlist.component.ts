@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {PlaylistService } from '../../../../services/playlist.service';
+// import {OrderByPipe} from 'fuel-ui/fuel-ui';
+import {PlaylistService } from './playlist.service';
 import {Song} from './song';
 import Toolkit from "../../core/runtime";
 import {Spectrogram} from "../../core/runtime/spectrogram";
@@ -24,7 +25,7 @@ export class PlaylistComponent implements OnInit {
 
   getPlaylist(): void {
     this.playlistService.getSongs()
-      .subscribe(songs => this.songs = songs);
+      .subscribe(songs => this.songs = songs.reverse());
   }
 
   playSong(src) {

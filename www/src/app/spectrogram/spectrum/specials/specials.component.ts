@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {Spectrogram} from "../../core/runtime/spectrogram";
 
 import Toolkit from "../../core/runtime/index";
@@ -11,6 +11,7 @@ const TKS:Spectrogram = Toolkit["spectrogram"];
 export class SpecialsComponent {
 
   isPlaying = true;
+  draw = false;
 
   constructor() { }
 
@@ -19,6 +20,5 @@ export class SpecialsComponent {
     TKS.startRender();
     TKS.stop();
   }
-
 
 }
